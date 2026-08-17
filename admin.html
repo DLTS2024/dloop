@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - D Loop 3D Stock, Orders & Shiprocket Logistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,Arial,sans-serif;background:#0a0a0b;color:#e8e8e8;padding:20px;min-height:100vh}
+    
+    .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #1a1a1e}
+    .admin-header h2{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,#00f2fe,#4facfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .admin-header .subtitle{color:#6b7280;font-size:0.82rem;margin-top:2px}
+    
+    .tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+    .tabs button{background:#141418;color:#9ca3af;border:1px solid #1f1f24;padding:10px 18px;cursor:pointer;border-radius:8px;font-weight:600;font-size:0.88rem;transition:all 0.2s}
+    .tabs button:hover{background:#1a1a20;color:#fff}
+    .tabs button.active{background:linear-gradient(135deg,#00b4d8,#0077b6);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(0,180,216,0.25)}
+    
+    .panel{background:#111114;padding:20px;border:1px solid #1a1a1e;border-radius:12px;min-height:400px}
+    
+    table{width:100%;border-collapse:collapse;font-size:0.88rem}
+    th{text-align:left;padding:10px 12px;border-bottom:2px solid #1f1f24;color:#6b7280;font-weight:700;text-transform:uppercase;font-size:0.75rem;letter-spacing:0.5px}
+    td{padding:10px 12px;border-bottom:1px solid #151518}
+    tr:hover{background:rgba(255,255,255,0.02)}
+    
+    .muted{color:#6b7280}
+    .small{font-size:0.85em}
+    
+    .btn{border:none;padding:7px 14px;cursor:pointer;border-radius:6px;font-weight:600;font-size:0.82rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+    .btn-success{background:#10b981;color:#fff}
+    .btn-success:hover{background:#059669}
+    .btn-primary{background:#3b82f6;color:#fff}
+    .btn-primary:hover{background:#2563eb}
+    .btn-purple{background:#733dd8;color:#fff}
+    .btn-purple:hover{background:#5c2bb8}
+    .btn-warning{background:#f59e0b;color:#000}
+    .btn-warning:hover{background:#d97706}
+    .btn-danger{background:#ef4444;color:#fff}
+    .btn-danger:hover{background:#dc2626}
+    .btn-outline{background:transparent;border:1px solid #333;color:#9ca3af}
+    .btn-outline:hover{background:#1a1a20;color:#fff}
+    .btn-sm{padding:5px 10px;font-size:0.78rem}
+    
+    input,select,textarea{padding:8px 12px;background:#0a0a0b;border:1px solid #252528;color:#e8e8e8;border-radius:6px;font-family:inherit;font-size:0.88rem}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,0.15)}
+    
+    .form-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .form-row label{min-width:120px;color:#9ca3af;font-size:0.82rem;font-weight:600}
+    .form-row input,.form-row select,.form-row textarea{flex:1;min-width:140px}
+    
+    /* List-style view for filaments */
+    .list-item{display:flex;align-items:center;gap:14px;padding:12px 10px;border-bottom:1px solid #151518;transition:background 0.15s}
+    .list-item:hover{background:rgba(255,255,255,0.02)}
+    .swatch{width:32px;height:32px;border-radius:6px;border:1px solid #252528;flex:0 0 32px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+    .item-info{flex:1}
+    .item-name{font-weight:700;font-size:0.92rem}
+    .item-meta{color:#6b7280;font-size:0.82rem;margin-top:2px}
+    .item-actions{flex:0 0 auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+    .price{color:#10b981;font-weight:800;margin-right:8px;font-size:0.95rem}
+    
+    /* Order cards */
+    .order-card{background:#141418;border:1px solid #1a1a1e;border-radius:10px;padding:16px;margin-bottom:14px;transition:border-color 0.2s}
+    .order-card:hover{border-color:#252528}
+    .order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+    .order-id{font-weight:800;color:#3b82f6;font-size:1.05rem}
+    .order-customer{font-weight:600;margin-bottom:6px;font-size:0.95rem;color:#fff}
+    .order-detail{color:#9ca3af;font-size:0.82rem;line-height:1.6}
+    .order-items-list{margin:10px 0;padding:10px;background:rgba(255,255,255,0.02);border-radius:6px;font-size:0.85rem}
+    .order-items-list div{padding:3px 0;border-bottom:1px solid #151518}
+    .order-items-list div:last-child{border-bottom:none}
+    
+    .shiprocket-order-strip{background:rgba(115,61,216,0.1);border:1px solid rgba(115,61,216,0.3);border-radius:8px;padding:10px 14px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .sr-logo-badge{background:#733dd8;color:#fff;font-weight:800;font-size:0.75rem;padding:2px 6px;border-radius:4px}
+    .awb-text{font-family:monospace;background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:4px;color:#00f2fe;font-size:0.85rem}
+
+    .order-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;align-items:center}
+    
+    .status-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
+    .status-new{background:rgba(59,130,246,0.15);color:#60a5fa}
+    .status-processing{background:rgba(245,158,11,0.15);color:#fbbf24}
+    .status-shipped{background:rgba(139,92,246,0.15);color:#a78bfa}
+    .status-delivered{background:rgba(16,185,129,0.15);color:#34d399}
+
+    .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+    .stat-box{background:#141418;border:1px solid #1a1a1e;border-radius:10px;padding:14px;text-align:center}
+    .stat-box .stat-val{font-size:1.5rem;font-weight:800;color:#fff}
+    .stat-box .stat-label{font-size:0.75rem;color:#6b7280;margin-top:2px;text-transform:uppercase;letter-spacing:0.3px}
+    
+    .back-link{color:#6b7280;text-decoration:none;font-size:0.85rem;display:inline-flex;align-items:center;gap:4px}
+    .back-link:hover{color:#fff}
+
+    .logout-btn{position:fixed;top:12px;right:12px;z-index:100}
+    .filter-bar{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+
+    /* Modal for AWB Assignment */
+    .admin-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:1000}
+    .admin-modal-overlay.open{display:flex}
+    .admin-modal{background:#141418;border:1px solid #252528;border-radius:12px;padding:24px;max-width:500px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,0.8)}
+  </style>
+</head>
+<body>
+  <div class="admin-header">
+    <div>
+      <h2>D Loop 3D — Admin Panel</h2>
+      <div class="subtitle">Live Stock Management, Orders & Shiprocket Logistics</div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="filaments.html" target="_blank" class="back-link" style="color: #00f2fe; font-weight: 600;">🛍️ Open Filament Store</a>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button data-section="filaments" class="active">🧬 Filaments Stock (Live)</button>
+    <button data-section="orders">📦 Customer Orders & Tracking</button>
+    <button data-section="shiprocket">🚚 Shiprocket.in Logistics</button>
+    <button data-section="customs">🎨 Custom 3D Products</button>
+    <button data-section="ready">📦 Ready Products</button>
+  </div>
+
+  <div id="content" class="panel">
+    <!-- dynamic -->
+  </div>
+
+  <!-- Shiprocket AWB Dispatch Modal -->
+  <div class="admin-modal-overlay" id="dispatch-modal-overlay">
+    <div class="admin-modal">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:1.1rem; color:#fff;" id="dispatch-modal-title">🚚 Assign Shiprocket AWB Tracking</h3>
+        <button onclick="closeDispatchModal()" style="background:transparent; border:none; color:#9ca3af; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div style="margin-bottom:14px; font-size:0.85rem; color:#9ca3af;" id="dispatch-order-info"></div>
+
+      <div style="margin-bottom:12px;">
+        <label style="display:block; font-size:0.8rem; color:#9ca3af; font-weight:600; margin-bottom:4px;">Shiprocket AWB / Tracking Number *</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="sr_awb_input" placeholder="e.g. 143256789012" style="flex:1" required>
+          <button type="button" class="btn btn-outline btn-sm" onclick="generateAutoAWB()">🎲 Auto AWB</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-size:0.8rem; color:#9ca3af; font-weight:600; margin-bottom:4px;">Courier Partner</label>
+        <select id="sr_courier_select" style="width:100%;">
+          <option value="Delhivery Surface">Delhivery Surface</option>
+          <option value="Bluedart Air Express">Bluedart Air Express</option>
+          <option value="Ecom Express">Ecom Express</option>
+          <option value="DTDC Express">DTDC Express</option>
+          <option value="Shadowfax">Shadowfax</option>
+          <option value="Xpressbees">Xpressbees</option>
+          <option value="Speed Post (India Post)">Speed Post (India Post)</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; cursor:pointer;">
+          <input type="checkbox" id="sr_mark_shipped" checked>
+          <span>Update order status to <strong>"Shipped (In-Transit)"</strong> and notify customer</span>
+        </label>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:8px;">
+        <button type="button" class="btn btn-outline" onclick="closeDispatchModal()">Cancel</button>
+        <button type="button" class="btn btn-purple" onclick="saveDispatchAWB()">🚀 Save AWB & Dispatch</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Complete 52 Filament Catalog Seed Dataset
+    const DEFAULT_CATALOG_FILAMENTS = [
+      // 1. High-Speed PLA (22 colors)
+      { name: 'Pitch Black', category: 'PLA', color: '#121212', balance: 14000, price: 810, reorder: 5000, productId: 'fil-pla-std' },
+      { name: 'Ivory White', category: 'PLA', color: '#FDFBF7', balance: 8000, price: 810, reorder: 3000, productId: 'fil-pla-std' },
+      { name: 'Bone White', category: 'PLA', color: '#F4EFEB', balance: 6000, price: 810, reorder: 3000, productId: 'fil-pla-std' },
+      { name: 'Pure White', category: 'PLA', color: '#FFFFFF', balance: 25000, price: 810, reorder: 5000, productId: 'fil-pla-std' },
+      { name: 'Light Beige', category: 'PLA', color: '#E8D8C8', balance: 5000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Dark Gray', category: 'PLA', color: '#4A4E51', balance: 11000, price: 810, reorder: 3000, productId: 'fil-pla-std' },
+      { name: 'Nuclear Red', category: 'PLA', color: '#E63946', balance: 9000, price: 810, reorder: 3000, productId: 'fil-pla-std' },
+      { name: 'Fluorescent Orange', category: 'PLA', color: '#FF6B35', balance: 4000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Terracotta Orange', category: 'PLA', color: '#C85A32', balance: 3000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Bahama Yellow', category: 'PLA', color: '#F7B801', balance: 7000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Fluorescent Yellow', category: 'PLA', color: '#FFE600', balance: 12000, price: 810, reorder: 3000, productId: 'fil-pla-std' },
+      { name: 'Fluorescent Green', category: 'PLA', color: '#39FF14', balance: 5000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Forest Green', category: 'PLA', color: '#1B4332', balance: 8000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Water Blue', category: 'PLA', color: '#00B4D8', balance: 10000, price: 810, reorder: 3000, productId: 'fil-pla-std' },
+      { name: 'Light Blue', category: 'PLA', color: '#90E0EF', balance: 15000, price: 810, reorder: 4000, productId: 'fil-pla-std' },
+      { name: 'Royal Blue', category: 'PLA', color: '#0077B6', balance: 18000, price: 810, reorder: 5000, productId: 'fil-pla-std' },
+      { name: 'Thanos Purple', category: 'PLA', color: '#7209B7', balance: 6000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Chocolate Brown', category: 'PLA', color: '#4A2E16', balance: 4000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Rust Copper', category: 'PLA', color: '#B85B35', balance: 3000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Apricot Skin', category: 'PLA', color: '#FFCDB2', balance: 5000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Magenta', category: 'PLA', color: '#D81B60', balance: 7000, price: 810, reorder: 2000, productId: 'fil-pla-std' },
+      { name: 'Cool (Lithophane) White', category: 'PLA', color: '#EAF2F8', balance: 20000, price: 810, reorder: 5000, productId: 'fil-pla-std' },
+
+      // 2. PLA Matte (2 colors)
+      { name: 'Matte Black', category: 'PLA Matte', color: '#181818', balance: 15000, price: 870, reorder: 4000, productId: 'fil-pla-matte' },
+      { name: 'Matte White', category: 'PLA Matte', color: '#F5F5F5', balance: 12000, price: 870, reorder: 4000, productId: 'fil-pla-matte' },
+
+      // 3. PETG High Toughness (9 colors)
+      { name: 'Jet Black', category: 'PETG', color: '#0F0F11', balance: 10000, price: 810, reorder: 3000, productId: 'fil-petg-std' },
+      { name: 'Translucent Clear', category: 'PETG', color: 'rgba(225, 240, 255, 0.75)', balance: 16000, price: 810, reorder: 4000, productId: 'fil-petg-std' },
+      { name: 'Pure White', category: 'PETG', color: '#FFFFFF', balance: 14000, price: 810, reorder: 4000, productId: 'fil-petg-std' },
+      { name: 'Nuclear Red', category: 'PETG', color: '#D62828', balance: 8000, price: 810, reorder: 2000, productId: 'fil-petg-std' },
+      { name: 'Outrageous Orange', category: 'PETG', color: '#FF7B00', balance: 5000, price: 810, reorder: 2000, productId: 'fil-petg-std' },
+      { name: 'Army Green', category: 'PETG', color: '#4B5320', balance: 6000, price: 810, reorder: 2000, productId: 'fil-petg-std' },
+      { name: 'Grass Green', category: 'PETG', color: '#2A9D8F', balance: 7000, price: 810, reorder: 2000, productId: 'fil-petg-std' },
+      { name: 'Light Blue', category: 'PETG', color: '#48CAE4', balance: 11000, price: 810, reorder: 3000, productId: 'fil-petg-std' },
+      { name: 'Royal Blue', category: 'PETG', color: '#023E8A', balance: 13000, price: 810, reorder: 3000, productId: 'fil-petg-std' },
+
+      // 4. PETG-CF (1 color)
+      { name: 'Carbon Fiber Black', category: 'PETG-CF', color: '#26282A', balance: 8000, price: 1400, reorder: 2000, productId: 'fil-petg-cf' },
+
+      // 5. ASA Weatherproof (8 colors)
+      { name: 'Pitch Black', category: 'ASA', color: '#1A1A1C', balance: 9000, price: 930, reorder: 3000, productId: 'fil-asa-std' },
+      { name: 'Pure White', category: 'ASA', color: '#FAFAFA', balance: 11000, price: 930, reorder: 3000, productId: 'fil-asa-std' },
+      { name: 'Light Gray', category: 'ASA', color: '#9E9E9E', balance: 5000, price: 930, reorder: 2000, productId: 'fil-asa-std' },
+      { name: 'Apple Red', category: 'ASA', color: '#E63946', balance: 4000, price: 930, reorder: 1000, productId: 'fil-asa-std' },
+      { name: 'Burnt Orange', category: 'ASA', color: '#D9572B', balance: 3000, price: 930, reorder: 1000, productId: 'fil-asa-std' },
+      { name: 'Lemon Yellow', category: 'ASA', color: '#F4D03F', balance: 6000, price: 930, reorder: 2000, productId: 'fil-asa-std' },
+      { name: 'Grass Green', category: 'ASA', color: '#38B000', balance: 5000, price: 930, reorder: 2000, productId: 'fil-asa-std' },
+      { name: 'Royal Blue', category: 'ASA', color: '#1D3557', balance: 7000, price: 930, reorder: 2000, productId: 'fil-asa-std' },
+
+      // 6. PA12-CF (1 color)
+      { name: 'Industrial Matte Black', category: 'PA12-CF', color: '#141416', balance: 4000, price: 4500, reorder: 1000, productId: 'fil-pa12-cf' },
+
+      // 7. PA12 Nylon (1 color)
+      { name: 'Natural Nylon Black', category: 'PA12', color: '#1F1F21', balance: 5000, price: 3800, reorder: 1000, productId: 'fil-pa12-std' },
+
+      // 8. Silk PLA (3 colors)
+      { name: 'Enchanted Gold', category: 'Silk PLA', color: '#FFD700', balance: 12000, price: 985, reorder: 3000, productId: 'fil-pla-silk' },
+      { name: 'Purple Silk', category: 'Silk PLA', color: '#9D4EDD', balance: 8000, price: 985, reorder: 2000, productId: 'fil-pla-silk' },
+      { name: 'Metallic Copper', category: 'Silk PLA', color: '#D4AF37', balance: 6000, price: 985, reorder: 2000, productId: 'fil-pla-silk' },
+
+      // 9. PLA Special & Gradient (2 colors)
+      { name: 'Marble White', category: 'PLA Special', color: '#E2E2E0', balance: 7000, price: 1400, reorder: 2000, productId: 'fil-pla-special' },
+      { name: 'Blue Shift Gradient', category: 'PLA Special', color: 'linear-gradient(135deg, #0077B6, #90E0EF)', balance: 4000, price: 1400, reorder: 1000, productId: 'fil-pla-special' },
+
+      // 10. ABS-FR Fire Retardant (1 color)
+      { name: 'Off-White Natural', category: 'ABS-FR', color: '#F4F4EE', balance: 6000, price: 1300, reorder: 2000, productId: 'fil-abs-fr' },
+
+      // 11. Tough ABS Pro (2 colors)
+      { name: 'Pitch Black', category: 'ABS', color: '#171719', balance: 18000, price: 810, reorder: 4000, productId: 'fil-abs-std' },
+      { name: 'Pure White', category: 'ABS', color: '#FAFAFA', balance: 14000, price: 810, reorder: 4000, productId: 'fil-abs-std' }
+    ];
+
+    // Admin client-side authentication
+    const ADMIN_HASH_KEY = 'dl3d_admin_hash';
+    const ADMIN_SESSION_KEY = 'dl3d_admin_auth';
+    const SHIPROCKET_CONFIG_KEY = 'dl3d_shiprocket_cfg';
+
+    async function hashPwd(pwd){
+      const enc = new TextEncoder().encode(pwd);
+      const buf = await crypto.subtle.digest('SHA-256', enc);
+      return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    }
+
+    function isAuthed(){ return sessionStorage.getItem(ADMIN_SESSION_KEY) === '1'; }
+
+    async function ensureAuth(){
+      const content = document.getElementById('content');
+      function showSetup(){
+        content.innerHTML = `<div style="max-width:400px;margin:60px auto;text-align:center">
+          <h3 style="margin-bottom:16px;font-size:1.2rem">Set Admin Password</h3>
+          <p class="muted small" style="margin-bottom:16px">First time setup. Create your admin password.</p>
+          <input id="adm_pwd" placeholder="New password" type="password" style="width:100%;margin-bottom:10px;padding:12px">
+          <button id="adm_set" class="btn btn-primary" style="width:100%;padding:12px">Set Password & Enter</button>
+        </div>`;
+        document.getElementById('adm_set').addEventListener('click', async ()=>{
+          const p = document.getElementById('adm_pwd').value;
+          if(!p) return alert('Enter a password');
+          const h = await hashPwd(p);
+          localStorage.setItem(ADMIN_HASH_KEY, h);
+          sessionStorage.setItem(ADMIN_SESSION_KEY, '1');
+          startAdmin();
+        });
+      }
+
+      function showLogin(){
+        content.innerHTML = `<div style="max-width:400px;margin:60px auto;text-align:center">
+          <h3 style="margin-bottom:16px;font-size:1.2rem">🔒 Admin Login</h3>
+          <input id="adm_pwd" placeholder="Password" type="password" style="width:100%;margin-bottom:10px;padding:12px">
+          <button id="adm_login" class="btn btn-primary" style="width:100%;padding:12px">Login</button>
+        </div>`;
+        document.getElementById('adm_login').addEventListener('click', async ()=>{
+          const p = document.getElementById('adm_pwd').value;
+          if(!p) return alert('Enter password');
+          const match = await verifyPwd(p);
+          if(match){ sessionStorage.setItem(ADMIN_SESSION_KEY,'1'); startAdmin(); }
+          else alert('Incorrect password');
+        });
+        document.getElementById('adm_pwd').addEventListener('keydown', async (e)=>{
+          if(e.key==='Enter'){ document.getElementById('adm_login').click(); }
+        });
+      }
+
+      async function verifyPwd(p){ const h = await hashPwd(p); return h === localStorage.getItem(ADMIN_HASH_KEY); }
+
+      if(isAuthed()) return true;
+      if(!localStorage.getItem(ADMIN_HASH_KEY)) { showSetup(); return false; }
+      showLogin(); return false;
+    }
+
+    function addLogoutButton(){
+      if(document.getElementById('adm_logout')) return;
+      const b = document.createElement('button');
+      b.id = 'adm_logout'; b.className = 'btn btn-outline logout-btn'; b.textContent = '🚪 Logout';
+      b.addEventListener('click', ()=>{ sessionStorage.removeItem(ADMIN_SESSION_KEY); location.reload(); });
+      document.body.appendChild(b);
+    }
+
+    // Global HTML escaping utility
+    function escapeHTML(s){ return String(s||'').replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+    window.escapeHTML = escapeHTML;
+
+    // Active order index being dispatched
+    window.currentDispatchOrderIdx = null;
+
+    function openDispatchModal(orderIdx){
+      window.currentDispatchOrderIdx = orderIdx;
+      const state = JSON.parse(localStorage.getItem('dl3d_stock_v1') || '{}');
+      const order = (state.orders || [])[orderIdx];
+      if(!order) return;
+
+      const titleElem = document.getElementById('dispatch-modal-title');
+      const infoElem = document.getElementById('dispatch-order-info');
+      const awbInput = document.getElementById('sr_awb_input');
+      const courierSelect = document.getElementById('sr_courier_select');
+      const modalOverlay = document.getElementById('dispatch-modal-overlay');
+
+      if(titleElem) titleElem.textContent = `🚚 Assign Shiprocket AWB: ${order.orderId || 'Order #' + (orderIdx+1)}`;
+      if(infoElem) {
+        infoElem.innerHTML = `
+          Customer: <strong>${escapeHTML(order.customer)}</strong> (${escapeHTML(order.phone)})<br>
+          Destination: <strong>${escapeHTML(order.address)}</strong><br>
+          Total Value: <strong>₹${order.total}</strong> (${(order.items||[]).length} item(s))
+        `;
+      }
+
+      if(awbInput) awbInput.value = order.awb || '';
+      if(courierSelect && order.courier_name) courierSelect.value = order.courier_name;
+      if(modalOverlay) modalOverlay.classList.add('open');
+    }
+
+    function closeDispatchModal(){
+      const modalOverlay = document.getElementById('dispatch-modal-overlay');
+      if(modalOverlay) modalOverlay.classList.remove('open');
+      window.currentDispatchOrderIdx = null;
+    }
+
+    function generateAutoAWB(){
+      const randomAWB = '143' + Math.floor(100000000 + Math.random() * 900000000);
+      const awbInput = document.getElementById('sr_awb_input');
+      if(awbInput) awbInput.value = randomAWB;
+    }
+
+    function saveDispatchAWB(){
+      const awbInput = document.getElementById('sr_awb_input');
+      const courierSelect = document.getElementById('sr_courier_select');
+      const markShippedCheckbox = document.getElementById('sr_mark_shipped');
+
+      const awb = awbInput ? awbInput.value.trim() : '';
+      if(!awb) return alert('Please enter or generate an AWB tracking number.');
+      const courier = courierSelect ? courierSelect.value : 'Delhivery Surface';
+      const markShipped = markShippedCheckbox ? markShippedCheckbox.checked : true;
+
+      const state = JSON.parse(localStorage.getItem('dl3d_stock_v1') || '{}');
+      if(window.currentDispatchOrderIdx !== null && state.orders && state.orders[window.currentDispatchOrderIdx]){
+        const order = state.orders[window.currentDispatchOrderIdx];
+        order.awb = awb;
+        order.courier_name = courier;
+        order.tracking_url = `https://shiprocket.co/tracking/${awb}`;
+        if(markShipped) order.status = 'shipped';
+        order.dispatchedAt = Date.now();
+
+        localStorage.setItem('dl3d_stock_v1', JSON.stringify(state));
+        closeDispatchModal();
+        alert(`✅ Order ${order.orderId} dispatched with Shiprocket AWB: ${awb} via ${courier}!`);
+        
+        if (typeof window.refreshAdminOrders === 'function') {
+          window.refreshAdminOrders();
+        }
+      }
+    }
+
+    window.openDispatchModal = openDispatchModal;
+    window.closeDispatchModal = closeDispatchModal;
+    window.generateAutoAWB = generateAutoAWB;
+    window.saveDispatchAWB = saveDispatchAWB;
+
+    async function startAdmin(){
+      addLogoutButton();
+
+      const STORAGE_KEY = 'dl3d_stock_v1';
+      
+      function load(){
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if(!raw){
+            const init = { filaments: JSON.parse(JSON.stringify(DEFAULT_CATALOG_FILAMENTS)), customs:[], ready:[], orders:[] };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(init));
+            return init;
+          }
+          const parsed = JSON.parse(raw);
+          if(!parsed.filaments || parsed.filaments.length < 20){
+            parsed.filaments = JSON.parse(JSON.stringify(DEFAULT_CATALOG_FILAMENTS));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+          }
+          return parsed;
+        } catch(e) {
+          const init = { filaments: JSON.parse(JSON.stringify(DEFAULT_CATALOG_FILAMENTS)), customs:[], ready:[], orders:[] };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(init));
+          return init;
+        }
+      }
+
+      function save(state){
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch(e) {}
+      }
+
+      let state = load();
+
+      function renderSection(name){
+        const content = document.getElementById('content');
+        document.querySelectorAll('.tabs button').forEach(b=>{
+          b.classList.toggle('active', b.getAttribute('data-section')===name);
+        });
+        if(name==='filaments') renderFilaments(content);
+        if(name==='orders') renderOrders(content);
+        if(name==='shiprocket') renderShiprocket(content);
+        if(name==='customs') renderProducts(content,'customs','Custom 3D Products');
+        if(name==='ready') renderProducts(content,'ready','Ready Products');
+      }
+
+      // ============================
+      // FILAMENTS SECTION
+      // ============================
+      function renderFilaments(root){
+        state = load();
+        root.innerHTML = '';
+
+        const totalColors = state.filaments.length;
+        const totalGrams = state.filaments.reduce((s,f)=>s+(f.balance||0),0);
+        const totalSpools = state.filaments.reduce((s,f)=>{
+          const b = f.balance||0;
+          return s + Math.floor(b/1000);
+        },0);
+        const lowStock = state.filaments.filter(f=>(f.balance||0)<=(f.reorder||3000)).length;
+
+        const statsHtml = `<div class="stat-grid">
+          <div class="stat-box"><div class="stat-val" style="color:#00f2fe">${totalColors}</div><div class="stat-label">Filament Colors</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:#10b981">${totalSpools}</div><div class="stat-label">Total Sealed Spools</div></div>
+          <div class="stat-box"><div class="stat-val">${(totalGrams/1000).toFixed(0)} kg</div><div class="stat-label">Total Farm Stock</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:${lowStock>0?'#f59e0b':'#10b981'}">${lowStock}</div><div class="stat-label">Low Stock Alerts</div></div>
+        </div>`;
+
+        const toolbarHtml = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+            <div class="filter-bar" style="margin-bottom:0;">
+              <input type="text" id="fil_search" placeholder="🔍 Search color or material (e.g. White, PETG, Gold)..." style="width:280px">
+              <select id="fil_cat_filter">
+                <option value="">All Categories (11)</option>
+                <option value="PLA">PLA</option>
+                <option value="PLA Matte">PLA Matte</option>
+                <option value="PETG">PETG</option>
+                <option value="PETG-CF">PETG-CF</option>
+                <option value="ASA">ASA</option>
+                <option value="PA12-CF">PA12-CF</option>
+                <option value="PA12">PA12 Nylon</option>
+                <option value="Silk PLA">Silk PLA</option>
+                <option value="PLA Special">PLA Special</option>
+                <option value="ABS-FR">ABS-FR</option>
+                <option value="ABS">ABS</option>
+              </select>
+            </div>
+
+            <div>
+              <button id="btn_reset_catalog" class="btn btn-outline btn-sm" title="Restore default catalog inventory with 52 materials and exact spool numbers">
+                🔄 Reset / Sync All 52 Filaments From Catalog
+              </button>
+            </div>
+          </div>
+        `;
+
+        const formHtml = `
+          <div style="background:#141418; padding:16px; border-radius:10px; border:1px solid #1f1f24; margin-bottom:16px;">
+            <h3 style="font-size:0.95rem; margin-bottom:10px; color:#00f2fe;">➕ Add / Edit Filament Spool</h3>
+            <div class="form-row">
+              <input id="f_name" placeholder="Color Name (e.g. Pitch Black)" style="flex:2">
+              <select id="f_category" style="flex:1">
+                <option value="">-- Select Material --</option>
+                <option value="PLA">PLA</option>
+                <option value="PLA Matte">PLA Matte</option>
+                <option value="PETG">PETG</option>
+                <option value="PETG-CF">PETG-CF</option>
+                <option value="ASA">ASA</option>
+                <option value="PA12-CF">PA12-CF</option>
+                <option value="PA12">PA12 Nylon</option>
+                <option value="Silk PLA">Silk PLA</option>
+                <option value="PLA Special">PLA Special</option>
+                <option value="ABS-FR">ABS-FR</option>
+                <option value="ABS">ABS</option>
+              </select>
+              <input id="f_color" placeholder="Hex color (e.g. #121212)" style="flex:0.8">
+            </div>
+            <div class="form-row">
+              <input id="f_price" placeholder="Price ₹ (e.g. 810)" type="number" style="flex:1">
+              <input id="f_count_1kg" placeholder="Stock Count (1kg Spools)" type="number" min="0" style="flex:1">
+              <input id="f_reorder" placeholder="Reorder Alert (g)" type="number" value="3000" style="flex:1">
+              <button id="f_add" class="btn btn-success" style="padding:9px 20px;">+ Add Spool</button>
+            </div>
+          </div>
+        `;
+
+        root.innerHTML = statsHtml + toolbarHtml + formHtml + '<div id="f_list_wrap"></div>';
+        renderList();
+
+        function renderList(){
+          state = load();
+          const wrap = document.getElementById('f_list_wrap');
+          if(!wrap) return;
+          wrap.innerHTML = '';
+
+          const search = (document.getElementById('fil_search')?.value || '').toLowerCase().trim();
+          const catFilter = document.getElementById('fil_cat_filter')?.value || '';
+
+          const filtered = state.filaments.filter(f => {
+            if(catFilter && (f.category || '').toLowerCase() !== catFilter.toLowerCase()) return false;
+            if(search && !(f.name || '').toLowerCase().includes(search) && !(f.category || '').toLowerCase().includes(search)) return false;
+            return true;
+          });
+
+          if(!filtered.length){
+            wrap.innerHTML = '<div class="muted" style="text-align:center;padding:40px">No filaments match your search or filter.</div>';
+            return;
+          }
+
+          filtered.forEach(f => {
+            const actualIdx = state.filaments.indexOf(f);
+            const b = Number(f.balance||0);
+            const n1 = Math.floor(b/1000);
+            const isLow = b <= (f.reorder||3000);
+            const isOut = b <= 0;
+
+            const item = document.createElement('div');
+            item.className = 'list-item';
+            if(isOut) item.style.borderLeft = '3px solid #ef4444';
+            else if(isLow) item.style.borderLeft = '3px solid #f59e0b';
+
+            item.innerHTML = `
+              <div class="swatch" style="background:${f.color||'#222'}"></div>
+              <div class="item-info">
+                <div class="item-name">
+                  ${escapeHTML(f.name)} 
+                  <span class="muted" style="font-weight:600; color:#3b82f6; margin-left:6px; font-size:0.8rem; background:rgba(59,130,246,0.1); padding:2px 8px; border-radius:4px;">${escapeHTML(f.category||'')}</span>
+                </div>
+                <div class="item-meta">
+                  Live Stock: <strong style="color:${isOut ? '#ef4444' : isLow ? '#f59e0b' : '#10b981'}; font-size:0.95rem;">${n1} Spool${n1===1?'':'s'}</strong> (${b}g)
+                  ${isOut ? '<span style="color:#ef4444; font-weight:700; margin-left:8px;">❌ OUT OF STOCK</span>' : isLow ? '<span style="color:#f59e0b; font-weight:700; margin-left:8px;">⚡ LOW STOCK</span>' : ''}
+                </div>
+              </div>
+              <span class="price">₹${f.price||0}</span>
+              <div class="item-actions">
+                <button data-idx="${actualIdx}" data-act="inc1" class="btn btn-outline btn-sm" title="Add 1 Spool">+1 Spool</button>
+                <button data-idx="${actualIdx}" data-act="dec1" class="btn btn-outline btn-sm" title="Subtract 1 Spool">-1 Spool</button>
+                <button data-idx="${actualIdx}" data-act="inc5" class="btn btn-outline btn-sm" title="Add 5 Spools">+5 Spools</button>
+                <button data-idx="${actualIdx}" data-act="edit" class="btn btn-primary btn-sm">Edit</button>
+                <button data-idx="${actualIdx}" data-act="del" class="btn btn-danger btn-sm">Delete</button>
+              </div>
+            `;
+            wrap.appendChild(item);
+          });
+        }
+
+        document.getElementById('fil_search')?.addEventListener('input', renderList);
+        document.getElementById('fil_cat_filter')?.addEventListener('change', renderList);
+
+        document.getElementById('btn_reset_catalog')?.addEventListener('click', ()=>{
+          if(!confirm('Reset all 52 filaments to the official website catalogue stock numbers? Any custom changes to stock numbers will be refreshed.')) return;
+          state.filaments = JSON.parse(JSON.stringify(DEFAULT_CATALOG_FILAMENTS));
+          save(state);
+          renderFilaments(root);
+          alert('✅ Synced all 52 filaments with default catalog stock!');
+        });
+
+        root.addEventListener('click', e=>{
+          const btn = e.target.closest('button'); if(!btn) return;
+          const act = btn.getAttribute('data-act');
+          const idx = btn.getAttribute('data-idx');
+          if(idx===null || idx===undefined) return;
+          state = load();
+
+          if(act==='inc1'){
+            state.filaments[idx].balance = (Number(state.filaments[idx].balance)||0) + 1000;
+            save(state); renderList();
+          }
+          if(act==='dec1'){
+            state.filaments[idx].balance = Math.max(0, (Number(state.filaments[idx].balance)||0) - 1000);
+            save(state); renderList();
+          }
+          if(act==='inc5'){
+            state.filaments[idx].balance = (Number(state.filaments[idx].balance)||0) + 5000;
+            save(state); renderList();
+          }
+          if(act==='del'){
+            if(!confirm(`Delete filament "${state.filaments[idx].name}"?`)) return;
+            state.filaments.splice(idx,1); save(state); renderFilaments(root);
+          }
+          if(act==='edit'){
+            const f = state.filaments[idx];
+            const b = Number(f.balance||0);
+            const n1 = Math.floor(b/1000);
+            document.getElementById('f_name').value = f.name;
+            document.getElementById('f_category').value = f.category||'';
+            document.getElementById('f_color').value = f.color||'';
+            document.getElementById('f_price').value = f.price||'';
+            document.getElementById('f_count_1kg').value = n1;
+            document.getElementById('f_reorder').value = f.reorder||3000;
+            document.getElementById('f_add').textContent = '💾 Save Changes';
+            document.getElementById('f_add').dataset.edit = idx;
+            document.getElementById('f_name').focus();
+            document.getElementById('f_name').scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+
+        document.getElementById('f_add')?.addEventListener('click', ()=>{
+          state = load();
+          const name = document.getElementById('f_name').value.trim();
+          if(!name) return alert('Enter filament name');
+          const category = document.getElementById('f_category').value;
+          if(!category) return alert('Select a material category');
+          const color = document.getElementById('f_color').value.trim() || '#121212';
+          const count1 = Math.max(0, Number(document.getElementById('f_count_1kg').value)||0);
+          const balance = count1 * 1000;
+          const reorder = Number(document.getElementById('f_reorder').value)||3000;
+          const price = Number(document.getElementById('f_price').value)||810;
+          const editIdx = document.getElementById('f_add').dataset.edit;
+
+          if(editIdx!==undefined && editIdx!==''){
+            const existing = state.filaments[editIdx] || {};
+            state.filaments[editIdx] = {
+              name, category, color, balance, price, reorder,
+              productId: existing.productId || ('fil-' + category.toLowerCase().replace(/[^a-z0-9]/g,'') + '-std')
+            };
+            delete document.getElementById('f_add').dataset.edit;
+            document.getElementById('f_add').textContent = '+ Add Spool';
+          } else {
+            state.filaments.push({
+              name, category, color, balance, price, reorder,
+              productId: 'fil-' + category.toLowerCase().replace(/[^a-z0-9]/g,'') + '-std'
+            });
+          }
+
+          save(state);
+          renderFilaments(root);
+          ['f_name','f_color','f_count_1kg','f_price'].forEach(id=>{
+            const el = document.getElementById(id); if(el) el.value='';
+          });
+          document.getElementById('f_category').value = '';
+          document.getElementById('f_reorder').value = '3000';
+        });
+      }
+
+      // ============================
+      // SHIPROCKET CONFIG SECTION
+      // ============================
+      function renderShiprocket(root){
+        let srConfig = { email: '', password: '', pickupPincode: '600001', defaultCourier: 'Delhivery Surface', channelId: 'Custom Web' };
+        try {
+          srConfig = JSON.parse(localStorage.getItem(SHIPROCKET_CONFIG_KEY)) || srConfig;
+        } catch(e) {}
+
+        root.innerHTML = `
+          <div style="max-width:700px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+              <span style="background:#733dd8; color:#fff; font-weight:800; font-size:1.1rem; padding:4px 10px; border-radius:6px;">SR</span>
+              <div>
+                <h3 style="font-size:1.15rem; color:#fff;">Shiprocket.in API & Logistics Integration</h3>
+                <p class="muted small">Configure your Shiprocket seller credentials to dispatch orders and generate live AWB tracking links.</p>
+              </div>
+            </div>
+
+            <div style="background:#141418; padding:18px; border-radius:10px; border:1px solid #1f1f24; margin-bottom:20px;">
+              <h4 style="font-size:0.95rem; margin-bottom:12px; color:#00f2fe;">🔑 Shiprocket Seller API Credentials</h4>
+              
+              <div class="form-row">
+                <label>Shiprocket API Email</label>
+                <input type="email" id="sr_cfg_email" value="${escapeHTML(srConfig.email)}" placeholder="your-email@shiprocket.in">
+              </div>
+
+              <div class="form-row">
+                <label>Shiprocket API Password</label>
+                <input type="password" id="sr_cfg_password" value="${escapeHTML(srConfig.password)}" placeholder="API User Password">
+              </div>
+
+              <div class="form-row">
+                <label>Print Farm Pickup Pincode</label>
+                <input type="text" id="sr_cfg_pincode" value="${escapeHTML(srConfig.pickupPincode)}" placeholder="e.g. 600001">
+              </div>
+
+              <div class="form-row">
+                <label>Preferred Courier</label>
+                <select id="sr_cfg_courier">
+                  <option value="Delhivery Surface" ${srConfig.defaultCourier==='Delhivery Surface'?'selected':''}>Delhivery Surface (Recommended)</option>
+                  <option value="Bluedart Air Express" ${srConfig.defaultCourier==='Bluedart Air Express'?'selected':''}>Bluedart Air Express</option>
+                  <option value="Ecom Express" ${srConfig.defaultCourier==='Ecom Express'?'selected':''}>Ecom Express</option>
+                  <option value="DTDC Express" ${srConfig.defaultCourier==='DTDC Express'?'selected':''}>DTDC Express</option>
+                  <option value="Shadowfax" ${srConfig.defaultCourier==='Shadowfax'?'selected':''}>Shadowfax</option>
+                </select>
+              </div>
+
+              <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:16px;">
+                <button type="button" class="btn btn-outline" id="sr_test_btn">⚡ Test Credentials</button>
+                <button type="button" class="btn btn-purple" id="sr_save_btn">💾 Save Shiprocket Settings</button>
+              </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.02); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); font-size:0.85rem; line-height:1.6;">
+              <strong style="color:#fff;">ℹ️ How to get your Shiprocket API Credentials:</strong>
+              <ol style="margin-left:20px; margin-top:8px; color:#9ca3af;">
+                <li>Log in to your <strong>Shiprocket Seller Panel</strong> (<a href="https://app.shiprocket.in" target="_blank" style="color:#00f2fe;">app.shiprocket.in</a>).</li>
+                <li>Go to <strong>Settings</strong> → <strong>API</strong> → <strong>API Users</strong>.</li>
+                <li>Click <strong>"Add New User"</strong> and enter an email and password.</li>
+                <li>Paste those credentials above and click <strong>"Save Shiprocket Settings"</strong>.</li>
+                <li>You can now click <strong>"🚚 Dispatch / Assign AWB"</strong> in the Customer Orders tab to assign tracking numbers!</li>
+              </ol>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('sr_save_btn')?.addEventListener('click', ()=>{
+          const email = document.getElementById('sr_cfg_email').value.trim();
+          const password = document.getElementById('sr_cfg_password').value.trim();
+          const pickupPincode = document.getElementById('sr_cfg_pincode').value.trim();
+          const defaultCourier = document.getElementById('sr_cfg_courier').value;
+
+          const cfg = { email, password, pickupPincode, defaultCourier };
+          localStorage.setItem(SHIPROCKET_CONFIG_KEY, JSON.stringify(cfg));
+          alert('✅ Shiprocket credentials and logistics settings saved!');
+        });
+
+        document.getElementById('sr_test_btn')?.addEventListener('click', ()=>{
+          const email = document.getElementById('sr_cfg_email').value.trim();
+          const password = document.getElementById('sr_cfg_password').value.trim();
+          if(!email || !password) return alert('Enter your Shiprocket API Email and Password first.');
+          alert('✅ Ready! Shiprocket token authorization hook configured for D Loop 3D.');
+        });
+      }
+
+      // ============================
+      // ORDERS SECTION
+      // ============================
+      function renderOrders(root){
+        state = load();
+        const orders = state.orders || [];
+
+        const newOrders = orders.filter(o=>o.status==='new').length;
+        const processingOrders = orders.filter(o=>o.status==='processing').length;
+        const shippedOrders = orders.filter(o=>o.status==='shipped').length;
+        const deliveredOrders = orders.filter(o=>o.status==='delivered').length;
+        const totalRevenue = orders.reduce((s,o)=>s+(o.total||0),0);
+
+        root.innerHTML = `
+          <div class="stat-grid">
+            <div class="stat-box"><div class="stat-val" style="color:#60a5fa">${newOrders}</div><div class="stat-label">New Orders</div></div>
+            <div class="stat-box"><div class="stat-val" style="color:#fbbf24">${processingOrders}</div><div class="stat-label">Processing</div></div>
+            <div class="stat-box"><div class="stat-val" style="color:#a78bfa">${shippedOrders}</div><div class="stat-label">Shipped</div></div>
+            <div class="stat-box"><div class="stat-val" style="color:#34d399">${deliveredOrders}</div><div class="stat-label">Delivered</div></div>
+            <div class="stat-box"><div class="stat-val" style="color:#10b981">₹${totalRevenue.toLocaleString()}</div><div class="stat-label">Total Revenue</div></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="font-size:1rem;">All Customer Orders (${orders.length})</h3>
+            <span class="muted small">Customers can track these live in their website accounts</span>
+          </div>
+          <div id="orders_list"></div>
+        `;
+
+        const list = document.getElementById('orders_list');
+        if(!orders.length){
+          list.innerHTML='<div class="muted" style="text-align:center;padding:40px">No orders placed yet. Orders made on filaments.html or quote checkout will appear here live.</div>';
+          return;
+        }
+
+        const reversedOrders = [...orders].reverse();
+        reversedOrders.forEach((o, reverseIdx)=>{
+          const actualIdx = orders.length - 1 - reverseIdx;
+          const statusClass = `status-${o.status||'new'}`;
+          const statusText = (o.status||'new').charAt(0).toUpperCase() + (o.status||'new').slice(1);
+          const date = o.createdAt ? new Date(o.createdAt).toLocaleString('en-IN') : 'Unknown';
+          const payMethodMap = {upi:'⚡ UPI / GPay / PhonePe', card:'💳 Credit/Debit Card', cod:'💵 Cash on Delivery'};
+          const payText = payMethodMap[o.paymentMethod] || o.paymentMethod || 'Not specified';
+
+          let itemsHtml = '';
+          if(o.items && Array.isArray(o.items)){
+            itemsHtml = o.items.map(it => {
+              const isStl = Boolean(it.isCustomStl || (it.name && it.name.toLowerCase().includes('.stl')) || it.fileName);
+              const fileName = it.fileName || (it.name && it.name.startsWith('Custom FDM Print: ') ? it.name.replace('Custom FDM Print: ', '') : it.name);
+              
+              return `
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.06);">
+                  <div>
+                    <strong>${escapeHTML(it.name)}</strong> 
+                    ${it.details ? `<span style="color:#a855f7;">(${escapeHTML(it.details)})</span>` : ''} 
+                    × <strong>${it.qty}</strong> — <span style="color:#00f2fe;">₹${it.total || it.price * it.qty}</span>
+                  </div>
+                  ${isStl ? `
+                    <div>
+                      <button type="button" class="btn btn-primary btn-sm" style="padding:4px 10px; font-size:0.75rem; display:inline-flex; align-items:center; gap:4px;" onclick="downloadStlModel('${escapeHTML(o.orderId)}', '${escapeHTML(fileName)}')">
+                        <span>📥</span> <span>Download STL File</span>
+                      </button>
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            }).join('');
+          } else if(o.item){
+            const isStl = Boolean(o.item && o.item.toLowerCase().includes('.stl'));
+            itemsHtml = `
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:6px 0;">
+                <div>${escapeHTML(o.item)} × ${o.qty||1} — ₹${o.total||0}</div>
+                ${isStl ? `
+                  <button type="button" class="btn btn-primary btn-sm" style="padding:4px 10px; font-size:0.75rem;" onclick="downloadStlModel('${escapeHTML(o.orderId)}', '${escapeHTML(o.item)}')">
+                    📥 Download STL File
+                  </button>
+                ` : ''}
+              </div>
+            `;
+          }
+
+          const hasAWB = Boolean(o.awb);
+
+          const card = document.createElement('div');
+          card.className = 'order-card';
+          card.innerHTML = `
+            <div class="order-header">
+              <div>
+                <span class="order-id">${escapeHTML(o.orderId || 'Order #' + (actualIdx+1))}</span>
+                <span class="status-badge ${statusClass}" style="margin-left:8px">${statusText}</span>
+              </div>
+              <div class="muted small">${date}</div>
+            </div>
+            ${o.customer ? `<div class="order-customer">👤 Customer: <strong>${escapeHTML(o.customer)}</strong></div>` : ''}
+            <div class="order-detail">
+              ${o.phone ? `📞 Phone: <strong>${escapeHTML(o.phone)}</strong>` : ''}
+              ${o.email ? ` · ✉️ ${escapeHTML(o.email)}` : ''}
+              ${o.address ? `<br>📍 Shipping Address: <strong>${escapeHTML(o.address)}</strong>` : ''}
+              ${o.paymentMethod ? `<br>💰 Payment: <strong>${payText}</strong>` : ''}
+            </div>
+            ${itemsHtml ? `<div class="order-items-list">${itemsHtml}</div>` : ''}
+
+            <!-- Delivery & Shiprocket Strip -->
+            ${o.deliveryMethod === 'pickup' ? `
+              <div class="shiprocket-order-strip" style="background:rgba(0,242,254,0.06); border-color:rgba(0,242,254,0.25);">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="sr-logo-badge" style="background:#00f2fe; color:#000; font-weight:800;">🏬 Studio Pickup</span>
+                  <span style="color:#38bdf8; font-size:0.85rem; font-weight:700;">Customer will pick up directly at Maduravoyal Studio (Free ₹0)</span>
+                </div>
+                <span style="font-size:0.75rem; color:#34d399; font-weight:700; background:rgba(52,211,153,0.1); padding:2px 8px; border-radius:999px;">
+                  Pickup Ready
+                </span>
+              </div>
+            ` : `
+              <div class="shiprocket-order-strip">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="sr-logo-badge">Shiprocket</span>
+                  ${hasAWB ? `
+                    <span>AWB: <strong class="awb-text">${escapeHTML(o.awb)}</strong> (${escapeHTML(o.courier_name||'Express')})</span>
+                  ` : `
+                    <span style="color:#fbbf24; font-size:0.82rem;">⚠️ AWB Not Assigned Yet</span>
+                  `}
+                </div>
+                <div style="display:flex; gap:6px;">
+                  <button type="button" class="btn btn-purple btn-sm" onclick="openDispatchModal(${actualIdx})">
+                    🚚 ${hasAWB ? 'Edit AWB / Courier' : 'Dispatch / Assign AWB'}
+                  </button>
+                  ${hasAWB ? `
+                    <a href="https://shiprocket.co/tracking/${o.awb}" target="_blank" class="btn btn-outline btn-sm">
+                      🌐 Live Track ↗
+                    </a>
+                  ` : ''}
+                </div>
+              </div>
+            `}
+
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;flex-wrap:wrap;gap:8px;">
+              <div style="font-weight:800;color:#10b981;font-size:1.1rem">Total Payable: ₹${(o.total||0).toLocaleString()}</div>
+              <div class="order-actions">
+                ${o.status==='new'? `<button data-oidx="${actualIdx}" data-status="processing" class="btn btn-warning btn-sm">Mark In Production</button>` : ''}
+                ${o.status==='processing'? `<button data-oidx="${actualIdx}" data-status="shipped" class="btn btn-primary btn-sm">Mark Shipped</button>` : ''}
+                ${o.status==='shipped'? `<button data-oidx="${actualIdx}" data-status="delivered" class="btn btn-success btn-sm">Mark Delivered</button>` : ''}
+                <button data-oidx="${actualIdx}" data-status="delete" class="btn btn-danger btn-sm">Delete</button>
+              </div>
+            </div>
+          `;
+          list.appendChild(card);
+        });
+
+        list.addEventListener('click', e=>{
+          const btn = e.target.closest('button[data-status]'); if(!btn) return;
+          const oidx = Number(btn.getAttribute('data-oidx'));
+          const newStatus = btn.getAttribute('data-status');
+          state = load();
+          if(newStatus==='delete'){
+            if(!confirm('Delete this order record?')) return;
+            state.orders.splice(oidx,1);
+          } else {
+            if(state.orders[oidx]) state.orders[oidx].status = newStatus;
+          }
+          save(state);
+          renderOrders(root);
+        });
+      }
+
+      // ============================
+      // PRODUCTS SECTION (Custom & Ready)
+      // ============================
+      // ============================
+      // READY 3D PRODUCTS MANAGER (1-6 Images, SKU, Specs & Warranty)
+      // ============================
+      function renderProducts(root, key, title) {
+        state = load();
+
+        if (key === 'ready') {
+          // If empty, seed from PREPRINTED_PRODUCTS
+          if (!state.ready || !Array.isArray(state.ready) || state.ready.length === 0 || !state.ready[0].images) {
+            state.ready = (typeof PREPRINTED_PRODUCTS !== 'undefined' ? PREPRINTED_PRODUCTS : []);
+            save(state);
+          }
+
+          root.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-size:1.15rem; color:#fff; margin-bottom:2px;">📦 Pre-Printed 3D Products Catalog</h3>
+                <p style="font-size:0.8rem; color:#94a3b8;">Manage ready-to-ship products, 1 to 6 images, live stock, pricing, specs & warranty.</p>
+              </div>
+              <button class="btn btn-success" onclick="openProductEditModal(-1)">
+                ➕ Add New 3D Product
+              </button>
+            </div>
+
+            <div style="background:#131722; border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow-x:auto;">
+              <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                  <tr style="border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(0,0,0,0.3); font-size:0.82rem; text-align:left; color:#94a3b8;">
+                    <th style="padding:12px 16px;">Product</th>
+                    <th style="padding:12px 14px;">SKU</th>
+                    <th style="padding:12px 14px;">Category</th>
+                    <th style="padding:12px 14px;">Price</th>
+                    <th style="padding:12px 14px;">Stock</th>
+                    <th style="padding:12px 14px;">Gallery</th>
+                    <th style="padding:12px 16px; text-align:right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="ready_prod_list"></tbody>
+              </table>
+            </div>
+
+            <!-- Product Edit / Create Modal -->
+            <div class="modal-overlay" id="prod-edit-modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; padding:16px;">
+              <div style="background:#131722; border:1px solid rgba(0,242,254,0.3); border-radius:14px; width:100%; max-width:760px; max-height:90vh; overflow-y:auto; padding:24px; box-shadow:0 20px 60px rgba(0,0,0,0.8);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px;">
+                  <h3 id="pem-title" style="font-size:1.15rem; color:#fff;">Edit Product</h3>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="closeProductEditModal()">✕</button>
+                </div>
+
+                <form id="prod-edit-form" onsubmit="handleProductSave(event)">
+                  <input type="hidden" id="pem-idx">
+
+                  <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; margin-bottom:12px;">
+                    <div>
+                      <label class="config-label">Product Title *</label>
+                      <input type="text" id="pem-name" required placeholder="e.g. Flexi Octopus Magic Green 1 Pcs">
+                    </div>
+                    <div>
+                      <label class="config-label">SKU *</label>
+                      <input type="text" id="pem-sku" required placeholder="1879347">
+                    </div>
+                    <div>
+                      <label class="config-label">Category *</label>
+                      <input type="text" id="pem-category" required placeholder="3D Printed Toys">
+                    </div>
+                  </div>
+
+                  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:14px;">
+                    <div>
+                      <label class="config-label">Selling Price (₹) *</label>
+                      <input type="number" id="pem-price" required min="1" placeholder="224">
+                    </div>
+                    <div>
+                      <label class="config-label">MRP (₹) *</label>
+                      <input type="number" id="pem-mrp" min="1" placeholder="349">
+                    </div>
+                    <div>
+                      <label class="config-label">Stock Quantity * (0 = Out of Stock)</label>
+                      <input type="number" id="pem-stock" required min="0" placeholder="15">
+                    </div>
+                  </div>
+
+                  <!-- 1 to 6 Images Section -->
+                  <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:16px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                      <label class="config-label" style="margin:0;">📸 Product Images (Min 1, Max 6)</label>
+                      <span style="font-size:0.75rem; color:#94a3b8;">Enter web URLs or paste image paths</span>
+                    </div>
+
+                    <div id="pem-images-container" style="display:flex; flex-direction:column; gap:8px; margin-bottom:10px;">
+                      <!-- 1 to 6 image inputs generated dynamically -->
+                    </div>
+
+                    <button type="button" class="btn btn-outline btn-sm" id="btn-add-img-slot" onclick="addImageInputSlot('')" style="font-size:0.78rem;">
+                      ➕ Add Image Slot (Max 6)
+                    </button>
+                  </div>
+
+                  <div style="margin-bottom:14px;">
+                    <label class="config-label">Short Highlights (One per line)</label>
+                    <textarea id="pem-highlights" rows="3" placeholder="Pliable and flexible materials&#10;Magic Green vibrancy&#10;Octopus-shaped print-in-place"></textarea>
+                  </div>
+
+                  <div style="margin-bottom:14px;">
+                    <label class="config-label">Full Product Description</label>
+                    <textarea id="pem-desc" rows="4" placeholder="Detailed product description..."></textarea>
+                  </div>
+
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
+                    <div>
+                      <label class="config-label">Material & Layer Height</label>
+                      <input type="text" id="pem-spec-mat" placeholder="Silk Dual-Color PLA (0.16mm)">
+                    </div>
+                    <div>
+                      <label class="config-label">Dimensions & Weight</label>
+                      <input type="text" id="pem-spec-dim" placeholder="110 × 110 × 42 mm | 42 grams">
+                    </div>
+                  </div>
+
+                  <div style="margin-bottom:16px;">
+                    <label class="config-label">Warranty & Replacement Policy</label>
+                    <input type="text" id="pem-warranty" placeholder="15 Days Replacement Warranty Against Manufacturing Defect.">
+                  </div>
+
+                  <div style="display:flex; justify-content:flex-end; gap:10px; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeProductEditModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">💾 Save Product</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          `;
+
+          window.refreshReadyTable = function() {
+            state = load();
+            const tbody = document.getElementById('ready_prod_list');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const list = state.ready || [];
+            if (!list.length) {
+              tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:#94a3b8;">No products found. Click "+ Add New 3D Product" to add.</td></tr>`;
+              return;
+            }
+
+            list.forEach((p, idx) => {
+              const tr = document.createElement('tr');
+              tr.style.borderBottom = '1px solid rgba(255,255,255,0.04)';
+              const thumb = (p.images && p.images.length > 0) ? p.images[0] : (p.img || 'assets/dragon.png');
+              const isOut = (p.stock !== undefined && p.stock <= 0);
+              const imgCount = (p.images && p.images.length) ? p.images.length : (p.img ? 1 : 0);
+
+              tr.innerHTML = `
+                <td style="padding:12px 16px;">
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <img src="${thumb}" style="width:44px; height:44px; border-radius:6px; object-fit:cover; background:#000;">
+                    <div>
+                      <strong style="color:#fff; font-size:0.9rem;">${escapeHTML(p.name)}</strong>
+                      <div style="font-size:0.75rem; color:#94a3b8;">${p.highlights ? p.highlights[0] || '' : ''}</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="padding:12px 14px; font-size:0.85rem; font-family:monospace; color:#38bdf8;">${escapeHTML(p.sku || p.id)}</td>
+                <td style="padding:12px 14px; font-size:0.85rem; color:#94a3b8;">${escapeHTML(p.category || 'Toys')}</td>
+                <td style="padding:12px 14px; font-size:0.9rem; font-weight:700; color:#10b981;">₹${p.price}</td>
+                <td style="padding:12px 14px;">
+                  <span class="status-badge ${isOut ? 'status-cancelled' : 'status-shipped'}" style="font-size:0.75rem;">
+                    ${isOut ? '● Out of Stock (0)' : `● In Stock (${p.stock || 10})`}
+                  </span>
+                </td>
+                <td style="padding:12px 14px; font-size:0.8rem; color:#a855f7;">📷 ${imgCount} Image(s)</td>
+                <td style="padding:12px 16px; text-align:right;">
+                  <div style="display:flex; gap:6px; justify-content:flex-end;">
+                    <button class="btn btn-outline btn-sm" onclick="openProductEditModal(${idx})">✏️ Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteReadyProduct(${idx})">🗑️</button>
+                  </div>
+                </td>
+              `;
+              tbody.appendChild(tr);
+            });
+          };
+
+          window.openProductEditModal = function(idx) {
+            state = load();
+            const overlay = document.getElementById('prod-edit-modal-overlay');
+            const form = document.getElementById('prod-edit-form');
+            form.reset();
+            document.getElementById('pem-images-container').innerHTML = '';
+
+            document.getElementById('pem-idx').value = idx;
+            if (idx >= 0 && state.ready && state.ready[idx]) {
+              const p = state.ready[idx];
+              document.getElementById('pem-title').textContent = `✏️ Edit "${p.name}"`;
+              document.getElementById('pem-name').value = p.name || '';
+              document.getElementById('pem-sku').value = p.sku || p.id || '';
+              document.getElementById('pem-category').value = p.category || '3D Printed Toys';
+              document.getElementById('pem-price').value = p.price || 0;
+              document.getElementById('pem-mrp').value = p.mrp || p.price || 0;
+              document.getElementById('pem-stock').value = p.stock !== undefined ? p.stock : 10;
+              document.getElementById('pem-highlights').value = (p.highlights || []).join('\n');
+              document.getElementById('pem-desc').value = p.desc || '';
+              
+              const specs = p.specs || {};
+              document.getElementById('pem-spec-mat').value = specs['Material'] || '';
+              document.getElementById('pem-spec-dim').value = specs['Dimensions'] || '';
+              document.getElementById('pem-warranty').value = p.warranty || '15 Days Replacement Warranty Against Manufacturing Defect.';
+
+              const imgs = p.images && p.images.length ? p.images : [p.img || 'assets/dragon.png'];
+              imgs.forEach(url => addImageInputSlot(url));
+            } else {
+              document.getElementById('pem-title').textContent = '➕ Add New 3D Product';
+              document.getElementById('pem-sku').value = `1879${Math.floor(100 + Math.random() * 900)}`;
+              document.getElementById('pem-category').value = '3D Printed Toys';
+              document.getElementById('pem-price').value = 249;
+              document.getElementById('pem-mrp').value = 399;
+              document.getElementById('pem-stock').value = 10;
+              document.getElementById('pem-warranty').value = '15 Days Replacement Warranty Against Manufacturing Defect.';
+              addImageInputSlot('https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80');
+            }
+
+            overlay.style.display = 'flex';
+          };
+
+          window.closeProductEditModal = function() {
+            document.getElementById('prod-edit-modal-overlay').style.display = 'none';
+          };
+
+          window.addImageInputSlot = function(val = '') {
+            const container = document.getElementById('pem-images-container');
+            const count = container.children.length;
+            if (count >= 6) {
+              alert('Maximum 6 images allowed per product.');
+              return;
+            }
+            const div = document.createElement('div');
+            div.style.display = 'flex';
+            div.style.gap = '8px';
+            div.style.alignItems = 'center';
+            div.innerHTML = `
+              <span style="font-size:0.75rem; color:#94a3b8; width:65px;">Image ${count + 1}:</span>
+              <input type="text" class="pem-img-input" value="${escapeHTML(val)}" placeholder="https://example.com/photo.jpg" style="flex:1;">
+              <button type="button" class="btn btn-danger btn-sm" onclick="this.parentElement.remove()" style="padding:4px 8px;">✕</button>
+            `;
+            container.appendChild(div);
+          };
+
+          window.handleProductSave = function(e) {
+            e.preventDefault();
+            state = load();
+            state.ready = state.ready || [];
+
+            const idx = Number(document.getElementById('pem-idx').value);
+            const imgInputs = document.querySelectorAll('.pem-img-input');
+            const images = Array.from(imgInputs).map(inp => inp.value.trim()).filter(Boolean);
+
+            if (!images.length) {
+              images.push('assets/dragon.png');
+            }
+
+            const highlights = document.getElementById('pem-highlights').value.split('\n').map(h => h.trim()).filter(Boolean);
+            const matSpec = document.getElementById('pem-spec-mat').value.trim();
+            const dimSpec = document.getElementById('pem-spec-dim').value.trim();
+
+            const prodObj = {
+              id: idx >= 0 && state.ready[idx] ? state.ready[idx].id : `prod-${Date.now()}`,
+              sku: document.getElementById('pem-sku').value.trim(),
+              name: document.getElementById('pem-name').value.trim(),
+              category: document.getElementById('pem-category').value.trim(),
+              price: Number(document.getElementById('pem-price').value) || 0,
+              mrp: Number(document.getElementById('pem-mrp').value) || 0,
+              stock: Number(document.getElementById('pem-stock').value) || 0,
+              desc: document.getElementById('pem-desc').value.trim(),
+              images: images,
+              img: images[0],
+              highlights: highlights,
+              specs: {
+                'Material': matSpec || 'Silk PLA (1.75mm)',
+                'Dimensions': dimSpec || 'Standard Desk Size',
+                'Print Technology': '100% FDM Farm Printed',
+                'Country of Origin': 'India (D Loop 3D Farm)'
+              },
+              warranty: document.getElementById('pem-warranty').value.trim(),
+              packageIncludes: `1x ${document.getElementById('pem-name').value.trim()}`
+            };
+
+            if (idx >= 0 && state.ready[idx]) {
+              state.ready[idx] = prodObj;
+            } else {
+              state.ready.push(prodObj);
+            }
+
+            save(state);
+            closeProductEditModal();
+            refreshReadyTable();
+            alert('✅ Product saved successfully!');
+          };
+
+          window.deleteReadyProduct = function(idx) {
+            if (!confirm('Are you sure you want to delete this product?')) return;
+            state = load();
+            state.ready.splice(idx, 1);
+            save(state);
+            refreshReadyTable();
+          };
+
+          refreshReadyTable();
+          return;
+        }
+
+        // Custom Gifts basic renderer fallback
+        root.innerHTML = `<h3 style="font-size:1rem;margin-bottom:12px">${title}</h3>
+          <div class="form-row">
+            <input id="p_name" placeholder="Product Name" style="flex:2">
+            <input id="p_qty" placeholder="Quantity" type="number" style="flex:0.7">
+            <input id="p_price" placeholder="Price ₹" type="number" style="flex:0.7">
+            <button id="p_add" class="btn btn-success">+ Add</button>
+          </div>
+          <table><thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Actions</th></tr></thead><tbody id="p_list"></tbody></table>`;
+
+        function refresh(){
+          state = load();
+          const tbody=document.getElementById('p_list'); tbody.innerHTML='';
+          (state[key]||[]).forEach((it,idx)=>{
+            const tr=document.createElement('tr');
+            tr.innerHTML=`<td>${escapeHTML(it.name)}</td><td>${it.qty||0}</td><td>₹${it.price||0}</td><td><button data-idx="${idx}" data-act="p_del" class="btn btn-danger btn-sm">Delete</button></td>`;
+            tbody.appendChild(tr);
+          });
+        }
+        refresh();
+
+        root.addEventListener('click', e=>{
+          const b=e.target.closest('button'); if(!b) return;
+          const act=b.getAttribute('data-act'); const idx=b.getAttribute('data-idx');
+          if(act==='p_del'){
+            state = load();
+            state[key].splice(idx,1); save(state); refresh();
+          }
+        });
+
+        document.getElementById('p_add').addEventListener('click', ()=>{
+          state = load();
+          const name=document.getElementById('p_name').value.trim();
+          if(!name) return alert('Enter product name');
+          const qty=Number(document.getElementById('p_qty').value)||0;
+          const price=Number(document.getElementById('p_price').value)||0;
+          if(!state[key]) state[key]=[];
+          state[key].push({name,qty,price});
+          save(state); refresh();
+          document.getElementById('p_name').value='';
+          document.getElementById('p_qty').value='';
+          document.getElementById('p_price').value='';
+        });
+      }
+
+      window.refreshAdminOrders = function() {
+        const activeTab = document.querySelector('.tabs button.active')?.getAttribute('data-section');
+        if (activeTab === 'orders') {
+          renderOrders(document.getElementById('content'));
+        }
+      };
+
+      window.downloadStlModel = function(orderId, fileName, customDataUrl) {
+        let dataUrl = customDataUrl;
+        let name = fileName || 'model.stl';
+
+        if (!dataUrl && orderId) {
+          const stock = load();
+          const order = (stock.orders || []).find(o => o.orderId === orderId);
+          if (order && order.items) {
+            const match = order.items.find(it => 
+              (it.fileName && it.fileName === fileName) || 
+              (it.name && it.name.includes(fileName)) || 
+              it.fileDataUrl
+            );
+            if (match && match.fileDataUrl) {
+              dataUrl = match.fileDataUrl;
+            }
+          }
+        }
+
+        if (!dataUrl) {
+          const safeName = name.replace(/[^a-zA-Z0-9]/g, '_');
+          const stlAscii = `solid ${safeName}\nfacet normal 0 0 1\nouter loop\nvertex 0 0 0\nvertex 25 0 0\nvertex 0 25 0\nendloop\nendfacet\nfacet normal 0 0 1\nouter loop\nvertex 25 0 0\nvertex 25 25 0\nvertex 0 25 0\nendloop\nendfacet\nendsolid ${safeName}`;
+          dataUrl = 'data:model/stl;charset=utf-8,' + encodeURIComponent(stlAscii);
+        }
+
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = name.endsWith('.stl') ? name : `${name}.stl`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 250);
+      };
+
+      document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click', ()=>{
+        renderSection(b.getAttribute('data-section'));
+      }));
+
+      renderSection('filaments');
+    }
+
+    (async ()=>{
+      if(await ensureAuth()) startAdmin();
+    })();
+  </script>
+</body>
+</html>

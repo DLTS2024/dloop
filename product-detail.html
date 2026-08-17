@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — D Loop 3D Studio</title>
+  <meta name="description" content="View product specifications, material details, interactive multi-angle image gallery, and 15 days warranty for D Loop 3D pre-printed products.">
+  
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0b0e14;
+      --card-bg: #121620;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #00f2fe;
+      --accent: #4facfe;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .detail-wrapper {
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb-nav a:hover {
+      color: var(--primary);
+    }
+
+    .breadcrumb-separator {
+      color: var(--text-dim);
+    }
+
+    /* Top Grid: Gallery on Left + Buy Box on Right */
+    .product-main-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 36px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 36px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 900px) {
+      .product-main-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+    }
+
+    /* Gallery (1 to 6 Images) */
+    .gallery-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .gallery-main-view {
+      width: 100%;
+      height: 380px;
+      background: #090c12;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .gallery-main-view img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+
+    .thumbnails-strip {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .thumb-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 8px;
+      background: #090c12;
+      border: 2px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      overflow: hidden;
+      padding: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .thumb-btn:hover {
+      border-color: rgba(0,242,254,0.5);
+    }
+
+    .thumb-btn.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(0,242,254,0.4);
+    }
+
+    .thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Pincode Box */
+    .pincode-check-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .pincode-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pincode-input-row input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    /* Right Column: Product Meta & Purchasing */
+    .product-meta-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-category-badge {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .meta-product-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .meta-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #fbbf24;
+      margin-bottom: 14px;
+    }
+
+    .meta-sku-tag {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .meta-sku-tag strong {
+      color: #fff;
+    }
+
+    .meta-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .meta-price-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .meta-price-gst {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .meta-price-mrp {
+      font-size: 1rem;
+      color: var(--text-dim);
+      text-decoration: line-through;
+    }
+
+    .meta-stock-availability {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .meta-stock-availability.in-stock {
+      color: #34d399;
+    }
+
+    .meta-stock-availability.out-of-stock {
+      color: #f87171;
+    }
+
+    .meta-highlights-list {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .meta-highlights-list li {
+      margin-bottom: 4px;
+      list-style-type: disc;
+      margin-left: 18px;
+    }
+
+    .meta-attributes-table {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .meta-attributes-table strong {
+      color: #fff;
+    }
+
+    /* Action Buttons Row */
+    .actions-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .qty-picker-box {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.4);
+      border: 1.5px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .qty-picker-btn {
+      width: 36px;
+      height: 42px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-picker-btn:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .qty-picker-val {
+      width: 40px;
+      text-align: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .btn-add-cart-main {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 20px;
+      background: #8b5cf6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-add-cart-main:hover {
+      background: #7c3aed;
+      box-shadow: 0 4px 15px rgba(139,92,246,0.4);
+    }
+
+    .btn-buy-now-main {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-buy-now-main:hover {
+      box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+    }
+
+    /* Trust Badges Strip */
+    .trust-badges-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      padding-top: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .trust-badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .trust-badge-item {
+      text-align: center;
+      padding: 8px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .trust-badge-item .icon {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    /* Bottom Tabbed Deep-Dive Section */
+    .detail-tabs-wrapper {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .detail-tabs-header {
+      display: flex;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(0,0,0,0.2);
+      overflow-x: auto;
+    }
+
+    .detail-tab-btn {
+      padding: 16px 24px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .detail-tab-btn:hover {
+      color: #fff;
+    }
+
+    .detail-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: rgba(0,242,254,0.04);
+    }
+
+    .detail-tab-content {
+      padding: 30px;
+      display: none;
+    }
+
+    .detail-tab-content.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .spec-table-styled {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .spec-table-styled tr {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .spec-table-styled td {
+      padding: 12px 14px;
+      font-size: 0.9rem;
+    }
+
+    .spec-table-styled td:first-child {
+      color: var(--text-dim);
+      width: 220px;
+      font-weight: 600;
+    }
+
+    .spec-table-styled td:last-child {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">D</div>
+        <div>
+          <span class="brand-name gradient-text">D LOOP 3D</span>
+          <span class="fdm-badge">FDM Specialist</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="quote.html" class="nav-link">Instant Quote</a></li>
+        <li><a href="products.html" class="nav-link active">Pre-Printed Products</a></li>
+        <li><a href="index.html#custom-gifts" class="nav-link">Custom Gifts</a></li>
+        <li><a href="filaments.html" class="nav-link">Filament Store</a></li>
+        <li><a href="account.html" class="nav-link">My Account</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="cart-trigger" id="cart-trigger" aria-label="Shopping Cart">
+          <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+
+        <a href="quote.html" class="btn btn-primary">Upload 3D File</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Product Detail View -->
+  <main class="detail-wrapper">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb-nav">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">→</span>
+        <a href="products.html">Pre-Printed Products</a>
+        <span class="breadcrumb-separator">→</span>
+        <span id="bc-category">3D Printed Toys</span>
+        <span class="breadcrumb-separator">→</span>
+        <span id="bc-title" style="color:#fff;">Product Name</span>
+      </nav>
+
+      <!-- Main Product Card: Gallery + Buy Box -->
+      <div class="product-main-grid">
+        
+        <!-- Left: 1 to 6 Image Gallery -->
+        <div class="gallery-container">
+          <div class="gallery-main-view">
+            <img id="main-product-img" src="assets/dragon.png" alt="Product Image">
+          </div>
+
+          <!-- 1 to 6 Thumbnails Strip -->
+          <div class="thumbnails-strip" id="gallery-thumbnails">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Pincode Delivery Checker -->
+          <div class="pincode-check-card">
+            <div style="font-size:0.85rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:6px;">
+              <span>📍</span> <span>Check estimated delivery</span>
+            </div>
+            <div class="pincode-input-row">
+              <input type="text" id="pincode-input" placeholder="Enter 6-digit pincode (e.g. 600001)" maxlength="6">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="checkDeliveryPincode()">Check</button>
+            </div>
+            <div id="pincode-result" style="font-size:0.8rem; color:var(--primary); margin-top:6px; display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Right: Purchasing & Details Box -->
+        <div class="product-meta-col">
+          <div class="meta-category-badge" id="prod-category">3D Printed Toys</div>
+          <h1 class="meta-product-title" id="prod-name">Flexi Octopus Magic Green 1 Pcs</h1>
+
+          <div class="meta-rating-row">
+            <span>★★★★★</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;" id="prod-reviews-text">(18 customer reviews)</span>
+          </div>
+
+          <div class="meta-sku-tag">
+            SKU: <strong id="prod-sku">1879347</strong>
+          </div>
+
+          <div class="meta-price-row">
+            <span class="meta-price-val" id="prod-price">₹224.00</span>
+            <span class="meta-price-gst">(Incl. GST)</span>
+            <span class="meta-price-mrp" id="prod-mrp">₹349.00</span>
+          </div>
+
+          <div style="font-size:0.82rem; color:var(--text-dim); margin-bottom:12px;">
+            Purchase this product now and earn <strong>2 D Loop Points!</strong>
+          </div>
+
+          <div class="meta-stock-availability in-stock" id="prod-stock-status">
+            Availability: <span>In Stock</span>
+          </div>
+
+          <ul class="meta-highlights-list" id="prod-highlights">
+            <!-- Bullet points -->
+          </ul>
+
+          <div class="meta-attributes-table">
+            <div>MPN:</div> <div id="prod-mpn">N/A</div>
+            <div>Brand:</div> <div><strong>D Loop 3D Farm</strong></div>
+            <div>Category:</div> <div id="prod-cat-attr">3D Printed Toys</div>
+          </div>
+
+          <!-- Quantity + Add to Cart + Buy Now -->
+          <div class="actions-row">
+            <div class="qty-picker-box">
+              <button type="button" class="qty-picker-btn" onclick="updateDetailQty(-1)">-</button>
+              <div class="qty-picker-val" id="detail-qty-val">1</div>
+              <button type="button" class="qty-picker-btn" onclick="updateDetailQty(1)">+</button>
+            </div>
+
+            <button type="button" class="btn-add-cart-main" id="btn-add-cart" onclick="handleDetailAddToCart()">
+              <span>Add to Cart 🛍️</span>
+            </button>
+
+            <button type="button" class="btn-buy-now-main" id="btn-buy-now" onclick="handleDetailBuyNow()">
+              <span>Buy Now ⚡</span>
+            </button>
+          </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="trust-badges-grid">
+            <div class="trust-badge-item">
+              <div class="icon">🛡️</div>
+              <div><strong>15 Days Warranty</strong><br>Against Defect</div>
+            </div>
+            <div class="trust-badge-item">
+              <div class="icon">🚚</div>
+              <div><strong>Free Delivery</strong><br>Above ₹999</div>
+            </div>
+            <div class="trust-badge-item">
+              <div class="icon">💵</div>
+              <div><strong>COD / UPI</strong><br>Payment Options</div>
+            </div>
+            <div class="trust-badge-item">
+              <div class="icon">🎧</div>
+              <div><strong>Farm Support</strong><br>Direct Helpline</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Deep-Dive Tabs (Description, Specification, Warranty, Reviews) -->
+      <div class="detail-tabs-wrapper">
+        <div class="detail-tabs-header">
+          <button type="button" class="detail-tab-btn active" data-dtab="desc" onclick="switchDetailTab('desc')">Description</button>
+          <button type="button" class="detail-tab-btn" data-dtab="specs" onclick="switchDetailTab('specs')">Specification</button>
+          <button type="button" class="detail-tab-btn" data-dtab="warranty" onclick="switchDetailTab('warranty')">Warranty</button>
+          <button type="button" class="detail-tab-btn" data-dtab="reviews" onclick="switchDetailTab('reviews')">Reviews</button>
+        </div>
+
+        <!-- TAB 1: DESCRIPTION -->
+        <div class="detail-tab-content active" id="dtab-desc">
+          <div id="desc-body-text" style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:24px;"></div>
+          
+          <h4 style="font-size:1.1rem; color:#fff; margin-bottom:12px;">Features:</h4>
+          <ol id="desc-features-list" style="color:var(--text-muted); font-size:0.92rem; line-height:1.8; margin-left:20px; margin-bottom:24px;">
+            <!-- Generated features -->
+          </ol>
+
+          <h4 style="font-size:1.1rem; color:#fff; margin-bottom:8px;">Package Includes:</h4>
+          <div id="desc-package-text" style="color:var(--text-main); font-size:0.92rem; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:6px; border:1px solid var(--card-border);">
+            1x Flexi Octopus Magic Green 1 Pcs
+          </div>
+        </div>
+
+        <!-- TAB 2: SPECIFICATION -->
+        <div class="detail-tab-content" id="dtab-specs">
+          <table class="spec-table-styled" id="specs-table-body">
+            <!-- Dynamically populated -->
+          </table>
+        </div>
+
+        <!-- TAB 3: WARRANTY -->
+        <div class="detail-tab-content" id="dtab-warranty">
+          <h4 style="font-size:1.1rem; color:#fff; margin-bottom:10px;">15 Days Replacement Warranty Policy</h4>
+          <p id="warranty-body-text" style="color:var(--text-muted); font-size:0.92rem; line-height:1.7; margin-bottom:16px;">
+            Every single 3D printed product is farm-tested on our Creality and Bambu printers for structural layer bonding, dimensional accuracy, and clean finishes.
+          </p>
+          <div style="background:rgba(0,242,254,0.04); border:1px solid rgba(0,242,254,0.2); border-radius:8px; padding:14px; color:#e2e8f0; font-size:0.88rem; line-height:1.6;">
+            <strong>What is Covered:</strong><br>
+            ✔ Manufacturing defects or layer delamination within 15 days of delivery.<br>
+            ✔ Transit damages or broken components upon parcel opening.<br>
+            ✔ Free replacement shipped via Shiprocket expedited courier.
+          </div>
+        </div>
+
+        <!-- TAB 4: REVIEWS -->
+        <div class="detail-tab-content" id="dtab-reviews">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h4 style="font-size:1.1rem; color:#fff;">Verified Customer Reviews</h4>
+              <p style="font-size:0.85rem; color:var(--text-muted);">Real feedback from customers who purchased this 3D print.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Review form is active below.')">✍ Write a Review</button>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:24px;" id="reviews-list">
+            <div style="background:rgba(255,255,255,0.02); border:1px solid var(--card-border); border-radius:8px; padding:14px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-weight:700; color:#fff;">Aravind R.</span>
+                <span style="color:#fbbf24;">★★★★★</span>
+              </div>
+              <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5;">
+                Incredible print quality! The joints move so smoothly and the dual-color silk shine looks awesome on my desk.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3 style="font-size: 1.2rem;">Your Shopping Cart</h3>
+        <button class="close-btn" id="close-cart-btn">✕</button>
+      </div>
+      <div class="cart-items" id="cart-items-container"></div>
+      <div class="cart-footer">
+        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem;">
+          <span>Subtotal:</span>
+          <span style="color: var(--primary);" id="cart-total-price">₹0</span>
+        </div>
+        <button class="btn btn-primary" id="btn-proceed-checkout" style="width: 100%; padding: 0.9rem;">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Express Checkout Modal -->
+  <div class="modal-overlay" id="checkout-modal-overlay">
+    <div class="modal-card" style="max-width: 640px;">
+      <div class="modal-header">
+        <h3>🚀 D Loop 3D Express Checkout</h3>
+        <button class="modal-close-btn" id="close-checkout-modal">✕</button>
+      </div>
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+        <!-- Order Summary Box -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem;">
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--primary);">Order Summary</h4>
+          <div id="checkout-items-summary" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"></div>
+          
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-muted); border-top:1px dashed rgba(255,255,255,0.1); padding-top:0.5rem; margin-bottom:4px;">
+            <span>Items Subtotal:</span>
+            <span id="checkout-subtotal-val" style="color:#fff; font-weight:700;">₹0</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-muted); margin-bottom:6px;">
+            <span>Delivery (<span id="checkout-delivery-note" style="font-size:0.75rem;">Standard Courier</span>):</span>
+            <span id="checkout-delivery-val" style="color:#34d399; font-weight:700;">FREE</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.15rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.5rem;">
+            <span>Total Payable:</span>
+            <span style="color: var(--primary);" id="checkout-grand-total">₹0</span>
+          </div>
+        </div>
+
+        <form id="checkout-form" autocomplete="on">
+          
+          <!-- Delivery Method Selector (Courier vs Self Pickup) -->
+          <div style="margin-bottom: 1.2rem;">
+            <label class="config-label" style="margin-bottom: 6px;">Select Fulfillment Method *</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button type="button" id="chk-method-courier-btn" class="delivery-toggle-btn active" onclick="setCheckoutDeliveryMethod('courier')">
+                🚚 Shiprocket Courier
+              </button>
+              <button type="button" id="chk-method-pickup-btn" class="delivery-toggle-btn" onclick="setCheckoutDeliveryMethod('pickup')">
+                🏬 Self Pickup (FREE)
+              </button>
+            </div>
+          </div>
+
+          <!-- Self Pickup Info Box -->
+          <div id="chk-pickup-info" style="display:none; background:rgba(0,242,254,0.06); border:1px solid rgba(0,242,254,0.25); padding:12px; border-radius:8px; margin-bottom:1rem; font-size:0.85rem; color:#e2e8f0; line-height:1.5;">
+            <div style="font-weight:700; color:var(--primary); margin-bottom:4px;">🏬 Pickup Location: D Loop 3D Studio</div>
+            <div>📍 No. 25, 3rd Cross Street, Ganga Nagar, Maduravoyal, Chennai, Tamil Nadu - 600095</div>
+            <div style="font-size:0.78rem; color:var(--text-dim); margin-top:4px;">🕒 Pickup Timings: Mon – Sat, 9:30 AM – 7:30 PM (Free ₹0 Delivery)</div>
+          </div>
+
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.8rem; color: #fff;">Customer Contact & Shipping Details</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
+            <div>
+              <label class="config-label">Full Name *</label>
+              <input type="text" id="chk-name" name="name" autocomplete="shipping name" class="input-field" placeholder="John Doe" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            </div>
+            <div>
+              <label class="config-label">Phone Number *</label>
+              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 0.8rem;">
+            <label class="config-label">Email Address *</label>
+            <input type="email" id="chk-email" name="email" autocomplete="shipping email" class="input-field" placeholder="john@example.com" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+          </div>
+
+          <!-- Courier Address Fields (Hidden when Self-Pickup is selected) -->
+          <div id="chk-courier-fields">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <label class="config-label">Pincode *</label>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="triggerCheckoutGPSFill()" style="font-size:0.7rem; padding:1px 6px;">📍 GPS Fill</button>
+                </div>
+                <input type="text" id="chk-pincode" name="postal-code" autocomplete="shipping postal-code" class="input-field" placeholder="e.g. 600095" maxlength="6" oninput="handleCheckoutPincodeChange(this.value)" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              </div>
+              <div>
+                <label class="config-label">City / Town *</label>
+                <input type="text" id="chk-city" name="city" autocomplete="shipping address-level2" class="input-field" placeholder="Chennai" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.6rem;">
+              <div>
+                <label class="config-label">Door / Flat No *</label>
+                <input type="text" id="chk-door" name="address-line1" autocomplete="shipping address-line1" class="input-field" placeholder="Door No, Flat, Building" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              </div>
+              <div>
+                <label class="config-label">Street / Road</label>
+                <input type="text" id="chk-street" name="address-line2" autocomplete="shipping address-line2" class="input-field" placeholder="Street Name, Road" style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: 0.8rem;">
+              <label class="config-label">Area / Locality / Landmark</label>
+              <input type="text" id="chk-area" name="address-line3" autocomplete="shipping address-line3" class="input-field" placeholder="Area, Locality, Near Landmark" style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            </div>
+          </div>
+
+          <h4 style="font-size: 0.95rem; margin-top: 1.2rem; margin-bottom: 0.8rem; color: #fff;">Payment Method</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem;">
+            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+              <input type="radio" name="pay-method" value="upi" checked> <span>⚡ UPI / GPay / PhonePe / Paytm</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+              <input type="radio" name="pay-method" value="card"> <span>💳 Credit / Debit Card</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+              <input type="radio" name="pay-method" value="cod"> <span>💵 Cash on Delivery (COD)</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:0.9rem; font-size:1rem; font-weight:700;">Place Product Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1.2rem; display: inline-flex;">
+            <div class="logo-icon">D</div>
+            <span class="brand-name gradient-text">D LOOP 3D</span>
+          </a>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 300px;">
+            Your premier FDM 3D printing studio and filament sales provider. Bringing digital 3D models into physical reality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quote.html">Upload 3D File</a></li>
+            <li><a href="products.html">Pre-Printed Products</a></li>
+            <li><a href="filaments.html">Filament Store</a></li>
+            <li><a href="account.html">My Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Product Categories</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">3D Printed Toys</a></li>
+            <li><a href="products.html">Mobile & Desk Stands</a></li>
+            <li><a href="products.html">Infinity Fidget Cubes</a></li>
+            <li><a href="products.html">Marble Home Decor</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Contact Studio</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Email:</strong> support@dloop3d.com</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Phone:</strong> +91 98765 43210</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;"><strong>Specialization:</strong> 100% FDM 3D Printing</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 D Loop 3D. All rights reserved. Specialized FDM 3D Printing & Filament Store.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+
+  <!-- Product Detail Page Logic -->
+  <script>
+    let currentProduct = null;
+    let currentDetailQty = 1;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodId = urlParams.get('id') || 'prod-1879347';
+      loadProductDetail(prodId);
+    });
+
+    function loadProductDetail(prodId) {
+      currentProduct = getReadyProductById(prodId);
+      if (!currentProduct) {
+        currentProduct = getReadyProducts()[0];
+      }
+
+      // Breadcrumbs
+      document.getElementById('bc-category').textContent = currentProduct.category || '3D Printed Toys';
+      document.getElementById('bc-title').textContent = currentProduct.name;
+
+      // Meta Information
+      document.getElementById('prod-category').textContent = currentProduct.category || '3D Printed Toys';
+      document.getElementById('prod-cat-attr').textContent = currentProduct.category || '3D Printed Toys';
+      document.getElementById('prod-name').textContent = currentProduct.name;
+      document.getElementById('prod-sku').textContent = currentProduct.sku || currentProduct.id;
+      document.getElementById('prod-price').textContent = `₹${currentProduct.price}.00`;
+      
+      const mrpElem = document.getElementById('prod-mrp');
+      if (currentProduct.mrp && currentProduct.mrp > currentProduct.price) {
+        mrpElem.textContent = `₹${currentProduct.mrp}.00`;
+        mrpElem.style.display = 'inline';
+      } else {
+        mrpElem.style.display = 'none';
+      }
+
+      document.getElementById('prod-reviews-text').textContent = `(${currentProduct.reviews || 0} customer reviews)`;
+
+      // Stock Status
+      const stockStatus = document.getElementById('prod-stock-status');
+      const addCartBtn = document.getElementById('btn-add-cart');
+      const buyNowBtn = document.getElementById('btn-buy-now');
+
+      if (currentProduct.stock !== undefined && currentProduct.stock <= 0) {
+        stockStatus.className = 'meta-stock-availability out-of-stock';
+        stockStatus.innerHTML = 'Availability: <span>Out of Stock</span>';
+        addCartBtn.disabled = true;
+        addCartBtn.style.opacity = '0.5';
+        addCartBtn.style.cursor = 'not-allowed';
+        buyNowBtn.disabled = true;
+        buyNowBtn.style.opacity = '0.5';
+        buyNowBtn.style.cursor = 'not-allowed';
+      } else {
+        stockStatus.className = 'meta-stock-availability in-stock';
+        const stockCount = currentProduct.stock || 10;
+        stockStatus.innerHTML = `Availability: <span>In Stock</span> (${stockCount} available)`;
+        addCartBtn.disabled = false;
+        addCartBtn.style.opacity = '1';
+        addCartBtn.style.cursor = 'pointer';
+        buyNowBtn.disabled = false;
+        buyNowBtn.style.opacity = '1';
+        buyNowBtn.style.cursor = 'pointer';
+      }
+
+      // Highlights List
+      const hlContainer = document.getElementById('prod-highlights');
+      if (currentProduct.highlights && currentProduct.highlights.length) {
+        hlContainer.innerHTML = currentProduct.highlights.map(h => `<li>${escapeHTML(h)}</li>`).join('');
+        hlContainer.style.display = 'block';
+      } else {
+        hlContainer.style.display = 'none';
+      }
+
+      // 1 to 6 Image Gallery Setup
+      setupGallery(currentProduct);
+
+      // Deep Dive Tabs: Description
+      document.getElementById('desc-body-text').innerHTML = (currentProduct.desc || '').replace(/\n/g, '<br>');
+      
+      const featuresList = document.getElementById('desc-features-list');
+      const features = currentProduct.features || (currentProduct.highlights || [
+        'Shaped with engaging and interactive print-in-place design.',
+        'Crafted with pliable materials to be twisted and turned smoothly.',
+        'Vibrant color palette provides visual appeal and desk elegance.',
+        'Suitable as stress-relief tactile fidget companion.'
+      ]);
+      featuresList.innerHTML = features.map(f => `<li>${escapeHTML(f)}</li>`).join('');
+
+      document.getElementById('desc-package-text').textContent = currentProduct.packageIncludes || `1x ${currentProduct.name}`;
+
+      // Deep Dive Tabs: Specification Table
+      const specsTable = document.getElementById('specs-table-body');
+      const specs = currentProduct.specs || {
+        'Material': 'PLA / PETG (1.75mm)',
+        'Layer Height': '0.16mm High Detail',
+        'Print Tech': '100% FDM Farm Printed',
+        'Country of Origin': 'India (D Loop 3D Farm)'
+      };
+      
+      specsTable.innerHTML = Object.entries(specs).map(([key, val]) => `
+        <tr>
+          <td>${escapeHTML(key)}</td>
+          <td><strong>${escapeHTML(val)}</strong></td>
+        </tr>
+      `).join('');
+
+      // Deep Dive Tabs: Warranty
+      if (currentProduct.warranty) {
+        document.getElementById('warranty-body-text').textContent = currentProduct.warranty;
+      }
+    }
+
+    // 1 to 6 Gallery Manager
+    function setupGallery(prod) {
+      const images = (prod.images && prod.images.length > 0) ? prod.images : [prod.img || 'assets/dragon.png'];
+      const mainImg = document.getElementById('main-product-img');
+      const thumbsContainer = document.getElementById('gallery-thumbnails');
+
+      mainImg.src = images[0];
+
+      thumbsContainer.innerHTML = images.slice(0, 6).map((imgUrl, idx) => `
+        <button type="button" class="thumb-btn ${idx === 0 ? 'active' : ''}" onclick="switchGalleryImg('${imgUrl}', this)">
+          <img src="${imgUrl}" alt="Thumb ${idx+1}">
+        </button>
+      `).join('');
+    }
+
+    function switchGalleryImg(imgUrl, btn) {
+      document.getElementById('main-product-img').src = imgUrl;
+      document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function updateDetailQty(delta) {
+      currentDetailQty = Math.max(1, currentDetailQty + delta);
+      document.getElementById('detail-qty-val').textContent = currentDetailQty;
+    }
+
+    function handleDetailAddToCart() {
+      if (!currentProduct) return;
+      addReadyProductToCart(currentProduct.id, currentDetailQty);
+    }
+
+    function handleDetailBuyNow() {
+      if (!currentProduct) return;
+      addReadyProductToCart(currentProduct.id, currentDetailQty);
+      const checkoutBtn = document.getElementById('btn-proceed-checkout');
+      if (checkoutBtn) checkoutBtn.click();
+    }
+
+    function switchDetailTab(tabName) {
+      document.querySelectorAll('.detail-tab-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-dtab') === tabName);
+      });
+      document.querySelectorAll('.detail-tab-content').forEach(c => {
+        c.classList.toggle('active', c.id === `dtab-${tabName}`);
+      });
+    }
+
+    function checkDeliveryPincode() {
+      const pin = document.getElementById('pincode-input').value.trim();
+      const res = document.getElementById('pincode-result');
+      if (!/^\d{6}$/.test(pin)) {
+        res.style.color = '#f87171';
+        res.textContent = '❌ Please enter a valid 6-digit Indian pincode.';
+        res.style.display = 'block';
+        return;
+      }
+      res.style.color = '#34d399';
+      res.textContent = `✔ Delivery available to ${pin}! Estimated dispatch: Next day via Shiprocket.`;
+      res.style.display = 'block';
+    }
+
+    // Cross-tab sync
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'dl3d_stock_v1' && currentProduct) {
+        loadProductDetail(currentProduct.id);
+      }
+    });
+  </script>
+</body>
+</html>
