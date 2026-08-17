@@ -870,10 +870,19 @@
       if (!currentUser) return;
 
       const stock = loadAdminStock();
+      const allOrders = [...(stock.orders || [])];
+      if (currentUser.myOrders && Array.isArray(currentUser.myOrders)) {
+        currentUser.myOrders.forEach(co => {
+          if (!allOrders.some(o => o.orderId === co.orderId)) {
+            allOrders.push(co);
+          }
+        });
+      }
+
       const userEmail = (currentUser.email || '').toLowerCase().trim();
       const userPhone = (currentUser.phone || '').replace(/\D/g, '');
 
-      const myOrders = (stock.orders || []).filter(o => {
+      const myOrders = allOrders.filter(o => {
         const oEmail = (o.email || '').toLowerCase().trim();
         const oPhone = (o.phone || '').replace(/\D/g, '');
         const emailMatch = Boolean(oEmail && userEmail && oEmail === userEmail);

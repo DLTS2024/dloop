@@ -704,7 +704,26 @@ function loadAdminStock() {
 function saveAdminStock(stockState) {
   try {
     localStorage.setItem(ADMIN_STOCK_KEY, JSON.stringify(stockState));
-  } catch(e) {}
+  } catch(e) {
+    console.warn('LocalStorage quota limit reached, optimizing order payloads...', e);
+    try {
+      const sanitized = JSON.parse(JSON.stringify(stockState));
+      if (sanitized.orders) {
+        sanitized.orders.forEach(ord => {
+          if (ord.items) {
+            ord.items.forEach(it => {
+              if (it.fileDataUrl && it.fileDataUrl.length > 20000) {
+                it.fileDataUrl = null; // strip heavy binary to keep order record intact
+              }
+            });
+          }
+        });
+      }
+      localStorage.setItem(ADMIN_STOCK_KEY, JSON.stringify(sanitized));
+    } catch (err) {
+      console.error('Failed to save admin stock:', err);
+    }
+  }
 }
 
 // Generate the complete 52-filament catalog stock state with exact spool numbers from catalog
@@ -2608,11 +2627,11 @@ window.detectLocationFromGPS = detectLocationFromGPS;
       // Generate order ID
       const orderId = `DL3D-${Math.floor(10000 + Math.random() * 90000)}`;
       
-      // Build order items list
+      // Build order items list (lightweight without heavy base64 to avoid quota limits)
       const orderItems = state.cart.map(item => ({
         name: item.name,
         fileName: item.fileName || (item.name.startsWith('Custom FDM Print: ') ? item.name.replace('Custom FDM Print: ', '') : (item.name.includes('.stl') ? item.name : null)),
-        fileDataUrl: item.fileDataUrl || null,
+        fileDataUrl: item.fileDataUrl && item.fileDataUrl.length < 20000 ? item.fileDataUrl : null,
         isCustomStl: Boolean(item.isCustomStl || item.name.includes('.stl') || item.name.startsWith('Custom FDM Print:')),
         details: item.details || '',
         price: item.price,
@@ -2626,10 +2645,7 @@ window.detectLocationFromGPS = detectLocationFromGPS;
       const deliveryCalc = calculateDeliveryCharge(customerPincode, itemsSubtotal, deliveryMethod);
       const grandTotal = itemsSubtotal + deliveryCalc.charge;
 
-      // Save order to admin stock localStorage with customer account and Shiprocket tracking hooks
-      const adminStock = loadAdminStock();
-      adminStock.orders = adminStock.orders || [];
-      adminStock.orders.push({
+      const newOrder = {
         orderId: orderId,
         userId: currentUser.id || null,
         customer: customerName,
@@ -2650,8 +2666,26 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         shipment_id: null,
         tracking_url: null,
         createdAt: Date.now()
-      });
+      };
+
+      // 1. Save order to admin stock localStorage with customer account and Shiprocket tracking hooks
+      const adminStock = loadAdminStock();
+      adminStock.orders = adminStock.orders || [];
+      adminStock.orders.push(newOrder);
       saveAdminStock(adminStock);
+
+      // 2. Save order directly to customer's account records for guaranteed persistence
+      currentUser.myOrders = currentUser.myOrders || [];
+      currentUser.myOrders.push(newOrder);
+      setCurrentUser(currentUser);
+
+      const allUsers = getAllUsers();
+      const uIdx = allUsers.findIndex(u => u.id === currentUser.id || (u.email && u.email.toLowerCase() === currentUser.email.toLowerCase()));
+      if (uIdx !== -1) {
+        allUsers[uIdx].myOrders = allUsers[uIdx].myOrders || [];
+        allUsers[uIdx].myOrders.push(newOrder);
+        saveAllUsers(allUsers);
+      }
 
       // Clear cart and close modals
       state.cart = [];
@@ -4113,7 +4147,14 @@ function openMyOrdersModal() {
   }
 
   const adminStock = loadAdminStock();
-  const allOrders = adminStock.orders || [];
+  const allOrders = [...(adminStock.orders || [])];
+  if (currentUser.myOrders && Array.isArray(currentUser.myOrders)) {
+    currentUser.myOrders.forEach(co => {
+      if (!allOrders.some(o => o.orderId === co.orderId)) {
+        allOrders.push(co);
+      }
+    });
+  }
   
   const userEmail = (currentUser.email || '').toLowerCase().trim();
   const userPhone = (currentUser.phone || '').replace(/\D/g, '');

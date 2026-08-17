@@ -1316,6 +1316,16 @@
         renderSection(b.getAttribute('data-section'));
       }));
 
+      // Live update admin orders when customer places order in another tab
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'dl3d_stock_v1') {
+          const activeTab = document.querySelector('.tabs button.active')?.getAttribute('data-section');
+          if (activeTab === 'orders') {
+            renderOrders(document.getElementById('content'));
+          }
+        }
+      });
+
       renderSection('filaments');
     }
 
