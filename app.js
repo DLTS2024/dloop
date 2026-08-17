@@ -4070,15 +4070,15 @@ function handleLoginFormSubmit(e) {
 
 function handleSignupFormSubmit(e) {
   e.preventDefault();
-  const data = {
-    name: document.getElementById('signup-name').value,
-    phone: document.getElementById('signup-phone').value,
-    email: document.getElementById('signup-email').value,
-    password: document.getElementById('signup-password').value,
-    address: document.getElementById('signup-address').value,
-    city: document.getElementById('signup-city').value,
-    pincode: document.getElementById('signup-pincode').value
-  };
+  const name = document.getElementById('signup-name')?.value.trim() || '';
+  const phone = document.getElementById('signup-phone')?.value.trim() || '';
+  const email = document.getElementById('signup-email')?.value.trim() || '';
+  const password = document.getElementById('signup-password')?.value || '';
+  const address = document.getElementById('signup-address')?.value.trim() || '';
+  const city = document.getElementById('signup-city')?.value.trim() || 'Chennai';
+  const pincode = document.getElementById('signup-pincode')?.value.trim() || '';
+
+  const data = { name, phone, email, password, address, city, pincode };
 
   const result = signupUser(data);
   if (!result.success) {

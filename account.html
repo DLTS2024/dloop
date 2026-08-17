@@ -814,15 +814,38 @@
 
     function handlePortalSignup(e) {
       e.preventDefault();
+      const door = document.getElementById('p-signup-door')?.value.trim() || '';
+      const street = document.getElementById('p-signup-street')?.value.trim() || '';
+      const area = document.getElementById('p-signup-area')?.value.trim() || '';
+      const fullAddressParts = [door, street, area].filter(Boolean);
+      const combinedAddress = fullAddressParts.join(', ');
+
       const data = {
-        name: document.getElementById('p-signup-name').value,
-        phone: document.getElementById('p-signup-phone').value,
-        email: document.getElementById('p-signup-email').value,
-        password: document.getElementById('p-signup-password').value,
-        address: document.getElementById('p-signup-address').value,
-        city: document.getElementById('p-signup-city').value,
-        pincode: document.getElementById('p-signup-pincode').value
+        name: document.getElementById('p-signup-name')?.value.trim() || '',
+        phone: document.getElementById('p-signup-phone')?.value.trim() || '',
+        email: document.getElementById('p-signup-email')?.value.trim() || '',
+        password: document.getElementById('p-signup-password')?.value || '',
+        door: door,
+        street: street,
+        area: area,
+        address: combinedAddress,
+        city: document.getElementById('p-signup-city')?.value.trim() || 'Chennai',
+        pincode: document.getElementById('p-signup-pincode')?.value.trim() || ''
       };
+
+      if (!data.name) return showToast('❌ Please enter your full name');
+      if (!data.phone) return showToast('❌ Please enter your phone number');
+      if (!data.email) return showToast('❌ Please enter a valid email address');
+      if (!data.password || data.password.length < 6) return showToast('❌ Password must be at least 6 characters');
+      if (!data.address) {
+        document.getElementById('p-signup-door')?.focus();
+        return showToast('❌ Please enter your street / door address');
+      }
+      if (!data.pincode || data.pincode.length !== 6) {
+        document.getElementById('p-signup-pincode')?.focus();
+        return showToast('❌ Please enter a valid 6-digit postal pincode');
+      }
+
       const res = signupUser(data);
       if (!res.success) return showToast(`❌ ${res.message}`);
       showToast(`🎉 Welcome to D Loop 3D, ${res.user.name}!`);
@@ -1001,9 +1024,9 @@
         const details = await lookupPincodeDetails(pin);
         if (details) {
           const cityInput = document.getElementById('p-signup-city');
-          const addrInput = document.getElementById('p-signup-address');
+          const areaInput = document.getElementById('p-signup-area');
           if (cityInput && !cityInput.value) cityInput.value = details.city;
-          if (addrInput && !addrInput.value && details.area) addrInput.value = `${details.area}, ${details.district}`;
+          if (areaInput && !areaInput.value && details.area) areaInput.value = `${details.area}, ${details.district}`;
         }
       }
     };
@@ -1012,10 +1035,12 @@
       showToast('📍 Detecting GPS location...');
       detectLocationFromGPS(
         (res) => {
-          const addrInput = document.getElementById('p-signup-address');
+          const doorInput = document.getElementById('p-signup-door');
+          const areaInput = document.getElementById('p-signup-area');
           const cityInput = document.getElementById('p-signup-city');
           const pinInput = document.getElementById('p-signup-pincode');
-          if (addrInput) addrInput.value = res.address;
+          if (doorInput && !doorInput.value) doorInput.value = res.address || '';
+          if (areaInput && !areaInput.value && res.area) areaInput.value = res.area;
           if (cityInput) cityInput.value = res.city;
           if (pinInput) pinInput.value = res.pincode;
           showToast(`✔ Auto-filled: ${res.city} - ${res.pincode}`);
@@ -1033,10 +1058,10 @@
         if (details) {
           const cityInput = document.getElementById('addr-city');
           const stateInput = document.getElementById('addr-state');
-          const addrLine = document.getElementById('addr-line');
+          const areaInput = document.getElementById('addr-area');
           if (cityInput && !cityInput.value) cityInput.value = details.city;
           if (stateInput && !stateInput.value) stateInput.value = details.state;
-          if (addrLine && !addrLine.value && details.area) addrLine.value = `${details.area}, ${details.district}`;
+          if (areaInput && !areaInput.value && details.area) areaInput.value = `${details.area}, ${details.district}`;
         }
       }
     };
@@ -1045,11 +1070,13 @@
       showToast('📍 Detecting GPS location...');
       detectLocationFromGPS(
         (res) => {
-          const addrLine = document.getElementById('addr-line');
+          const doorInput = document.getElementById('addr-door');
+          const areaInput = document.getElementById('addr-area');
           const cityInput = document.getElementById('addr-city');
           const stateInput = document.getElementById('addr-state');
           const pinInput = document.getElementById('addr-pincode');
-          if (addrLine) addrLine.value = res.address;
+          if (doorInput) doorInput.value = res.address || '';
+          if (areaInput) areaInput.value = res.area || '';
           if (cityInput) cityInput.value = res.city;
           if (stateInput) stateInput.value = res.state;
           if (pinInput) pinInput.value = res.pincode;
@@ -1184,7 +1211,9 @@
       document.getElementById('addr-title').value = 'Home';
       document.getElementById('addr-recipient').value = user ? user.name : '';
       document.getElementById('addr-phone').value = user ? user.phone : '';
-      document.getElementById('addr-line').value = '';
+      document.getElementById('addr-door').value = '';
+      document.getElementById('addr-street').value = '';
+      document.getElementById('addr-area').value = '';
       document.getElementById('addr-city').value = user ? user.city || 'Chennai' : 'Chennai';
       document.getElementById('addr-state').value = 'Tamil Nadu';
       document.getElementById('addr-pincode').value = user ? user.pincode || '' : '';
@@ -1201,7 +1230,9 @@
       document.getElementById('addr-title').value = addr.title || 'Home';
       document.getElementById('addr-recipient').value = addr.recipient || user.name;
       document.getElementById('addr-phone').value = addr.phone || user.phone;
-      document.getElementById('addr-line').value = addr.line || '';
+      document.getElementById('addr-door').value = addr.door || addr.line || '';
+      document.getElementById('addr-street').value = addr.street || '';
+      document.getElementById('addr-area').value = addr.area || '';
       document.getElementById('addr-city').value = addr.city || 'Chennai';
       document.getElementById('addr-state').value = addr.state || 'Tamil Nadu';
       document.getElementById('addr-pincode').value = addr.pincode || '';
@@ -1226,14 +1257,22 @@
         user.addresses.forEach(a => a.isDefault = false);
       }
 
+      const door = document.getElementById('addr-door')?.value.trim() || '';
+      const street = document.getElementById('addr-street')?.value.trim() || '';
+      const area = document.getElementById('addr-area')?.value.trim() || '';
+      const fullLine = [door, street, area].filter(Boolean).join(', ') || door;
+
       const newAddr = {
         id: editIdx !== '' ? user.addresses[editIdx].id : `addr-${Date.now()}`,
         title: document.getElementById('addr-title').value.trim() || 'Home',
         recipient: document.getElementById('addr-recipient').value.trim(),
         phone: document.getElementById('addr-phone').value.trim(),
-        line: document.getElementById('addr-line').value.trim(),
+        door: door,
+        street: street,
+        area: area,
+        line: fullLine,
         city: document.getElementById('addr-city').value.trim(),
-        state: document.getElementById('addr-state').value.trim(),
+        state: document.getElementById('addr-state').value.trim() || 'Tamil Nadu',
         pincode: document.getElementById('addr-pincode').value.trim(),
         isDefault: isDef || user.addresses.length === 0
       };
