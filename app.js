@@ -3991,7 +3991,7 @@ function openAuthModal(noticeMessage = '') {
     <div class="auth-card">
       <div class="auth-header">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <h3 style="font-size:1.15rem; color:#fff; font-weight:800;" id="auth-modal-title">Welcome to D Loop 3D</h3>
+          <h3 style="font-size:1.15rem; color:#0F172A; font-weight:800;" id="auth-modal-title">Welcome to D Loop 3D</h3>
           <button class="modal-close-btn" onclick="closeAuthModal()">✕</button>
         </div>
         ${noticeMessage ? `<div style="background:rgba(0,242,254,0.1); border:1px solid rgba(0,242,254,0.3); color:var(--primary); padding:8px 12px; border-radius:6px; font-size:0.8rem; margin-top:10px;">${escapeHTML(noticeMessage)}</div>` : ''}
