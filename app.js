@@ -28,7 +28,7 @@ const state = {
     estMinutes: 23,
     estHours: 0.38
   },
-  gift: { text: 'D LOOP 3D', photoUrl: '', glow: 'Warm White' },
+  gift: { text: 'D LOOP 3D', photoUrl: '' },
   orderType: 'normal'
 };
 
@@ -366,14 +366,14 @@ window.getReadyProductById = getReadyProductById;
 const FILAMENT_PRODUCTS = [
   {
     id: 'fil-pla-std',
-    name: 'D Loop High-Speed PLA Filament (1.75mm, 1kg)',
+    name: 'Numakers High-Speed PLA Filament (1.75mm, 1kg)',
     category: 'pla',
     price: 810,
     rating: '4.9',
     reviews: 142,
-    tag: 'High Speed 500mm/s',
+    tag: 'Numakers High Speed 500mm/s',
     tagClass: 'badge-primary',
-    desc: 'Premium high-speed PLA spool for FDM printers. Low warping, easy printing, excellent layer adhesion & ultra-vibrant colors.',
+    desc: 'Official Numakers high-speed PLA spool for FDM 3D printers. Low warping, easy printing, excellent layer adhesion & ultra-vibrant colors.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
@@ -400,8 +400,9 @@ const FILAMENT_PRODUCTS = [
       { name: 'Magenta', hex: '#D81B60', stock: 7 },
       { name: 'Cool (Lithophane) White', hex: '#EAF2F8', stock: 20 }
     ],
-    specs: ['Temp: 190-220°C', 'Bed: 50-60°C', 'Density: 1.24 g/cm³', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 190-220°C', 'Bed: 50-60°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '60 MPa',
       heatDeflection: '55°C',
       nozzle: 'Standard Brass / Hardened Steel (0.4mm)',
@@ -412,22 +413,23 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-pla-matte',
-    name: 'D Loop PLA Matte Filament (1.75mm, 1kg)',
+    name: 'Numakers PLA Matte Filament (1.75mm, 1kg)',
     category: 'pla-matte',
     price: 870,
     rating: '4.8',
     reviews: 89,
-    tag: 'Anti-Glare Finish',
+    tag: 'Numakers Anti-Glare Finish',
     tagClass: 'badge-accent',
-    desc: 'Satin-smooth matte surface finish that effectively masks print layer lines. Perfect for architectural models and glare-free prototypes.',
+    desc: 'Official Numakers satin-smooth matte surface finish that effectively masks print layer lines. Perfect for architectural models and glare-free prototypes.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/keychains.png',
     colors: [
       { name: 'Matte Black', hex: '#181818', stock: 15 },
       { name: 'Matte White', hex: '#F5F5F5', stock: 12 }
     ],
-    specs: ['Temp: 200-220°C', 'Bed: 50-60°C', 'Hides Layer Lines', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 200-220°C', 'Bed: 50-60°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '55 MPa',
       heatDeflection: '53°C',
       nozzle: 'Standard Brass (0.4mm)',
@@ -438,14 +440,14 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-petg-std',
-    name: 'D Loop High Toughness PETG Filament (1.75mm, 1kg)',
+    name: 'Numakers High Toughness PETG Filament (1.75mm, 1kg)',
     category: 'petg',
     price: 810,
     rating: '4.9',
     reviews: 116,
-    tag: 'Water & Chemical Proof',
+    tag: 'Numakers Water & Chemical Proof',
     tagClass: 'badge-primary',
-    desc: 'Combines the high strength of ABS with the easy printability of PLA. Weather resistant, high impact resistance, and virtually odorless.',
+    desc: 'Official Numakers high strength PETG. Weather resistant, high impact resistance, and virtually odorless with exceptional layer cohesion.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
@@ -459,8 +461,9 @@ const FILAMENT_PRODUCTS = [
       { name: 'Light Blue', hex: '#48CAE4', stock: 11 },
       { name: 'Royal Blue', hex: '#023E8A', stock: 13 }
     ],
-    specs: ['Temp: 230-250°C', 'Bed: 70-80°C', 'High Impact Strength', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 230-250°C', 'Bed: 70-80°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '50 MPa',
       heatDeflection: '70°C',
       nozzle: 'Standard Brass / Hardened Steel',
@@ -471,21 +474,22 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-petg-cf',
-    name: 'D Loop PETG-CF Carbon Fiber Filament (1.75mm, 1kg)',
+    name: 'Numakers PETG-CF Carbon Fiber Filament (1.75mm, 1kg)',
     category: 'petg-cf',
     price: 1400,
     rating: '5.0',
     reviews: 47,
-    tag: '15% Chopped Carbon Fiber',
+    tag: 'Numakers 15% Carbon Fiber',
     tagClass: 'badge-warning',
-    desc: 'Reinforced with 15% high-modulus carbon fibers. Provides extreme structural rigidity, minimal warping, and a dark carbon texture finish.',
+    desc: 'Official Numakers reinforced with 15% high-modulus carbon fibers. Provides extreme structural rigidity, minimal warping, and a dark carbon texture finish.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/filaments.png',
     colors: [
       { name: 'Carbon Fiber Black', hex: '#26282A', stock: 8 }
     ],
-    specs: ['Temp: 240-260°C', 'Bed: 70-80°C', 'Hardened Nozzle Needed', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 240-260°C', 'Bed: 70-80°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '78 MPa',
       heatDeflection: '80°C',
       nozzle: 'Hardened Steel or Ruby Nozzle (0.4mm+ required)',
@@ -496,14 +500,14 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-asa-std',
-    name: 'D Loop Weatherproof ASA Filament (1.75mm, 1kg)',
+    name: 'Numakers Weatherproof ASA Filament (1.75mm, 1kg)',
     category: 'asa',
     price: 930,
     rating: '4.8',
     reviews: 62,
-    tag: 'UV & Weather Resistant',
+    tag: 'Numakers UV & Weather Resistant',
     tagClass: 'badge-accent',
-    desc: 'The ultimate outdoor FDM material. Exceptional resistance to UV radiation, harsh sunlight, rain, and heat without color fading.',
+    desc: 'Official Numakers ultimate outdoor FDM material. Exceptional resistance to UV radiation, harsh sunlight, rain, and heat without color fading.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/keychains.png',
     colors: [
@@ -516,8 +520,9 @@ const FILAMENT_PRODUCTS = [
       { name: 'Grass Green', hex: '#38B000', stock: 5 },
       { name: 'Royal Blue', hex: '#1D3557', stock: 7 }
     ],
-    specs: ['Temp: 240-260°C', 'Bed: 90-100°C', 'UV Resistant Outdoor', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 240-260°C', 'Bed: 90-100°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '45 MPa',
       heatDeflection: '95°C',
       nozzle: 'Standard Brass / Hardened Steel',
@@ -528,21 +533,22 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-pa12-cf',
-    name: 'D Loop PA12-CF Nylon Carbon Fiber (1.75mm, 1kg)',
+    name: 'Numakers PA12-CF Nylon Carbon Fiber (1.75mm, 1kg)',
     category: 'pa12-cf',
     price: 4500,
     rating: '5.0',
     reviews: 31,
-    tag: 'Aerospace Industrial 150°C',
+    tag: 'Numakers Aerospace 150°C',
     tagClass: 'badge-warning',
-    desc: 'Professional engineering grade Nylon 12 with carbon fibers. Continuous heat resistance up to 150°C, ultra-low moisture absorption, and extreme tensile strength.',
+    desc: 'Official Numakers professional engineering grade Nylon 12 with carbon fibers. Continuous heat resistance up to 150°C, ultra-low moisture absorption, and extreme tensile strength.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/filaments.png',
     colors: [
       { name: 'Industrial Matte Black', hex: '#141416', stock: 4 }
     ],
-    specs: ['Temp: 270-300°C', 'Bed: 80-100°C', 'Heat Resistant 150°C', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 270-300°C', 'Bed: 80-100°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '115 MPa',
       heatDeflection: '150°C',
       nozzle: 'Hardened Steel / Carbide Nozzle (0.4mm+)',
@@ -553,21 +559,22 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-pa12-std',
-    name: 'D Loop PA12 Pure Nylon Filament (1.75mm, 1kg)',
+    name: 'Numakers PA12 Pure Nylon Filament (1.75mm, 1kg)',
     category: 'pa12',
     price: 3800,
     rating: '4.9',
     reviews: 24,
-    tag: 'Low Friction & Self Lubricating',
+    tag: 'Numakers Self Lubricating Nylon',
     tagClass: 'badge-primary',
-    desc: 'Pure polyamide 12 filament offering unmatched tough flexibility, chemical resistance against oils & solvents, and ultra-low friction.',
+    desc: 'Official Numakers pure polyamide 12 filament offering unmatched tough flexibility, chemical resistance against oils & solvents, and ultra-low friction.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
       { name: 'Natural Nylon Black', hex: '#1F1F21', stock: 5 }
     ],
-    specs: ['Temp: 250-270°C', 'Bed: 80-100°C', 'Self Lubricating', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 250-270°C', 'Bed: 80-100°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '65 MPa',
       heatDeflection: '110°C',
       nozzle: 'Standard Brass / Hardened Steel',
@@ -578,14 +585,14 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-pla-silk',
-    name: 'D Loop Silk PLA Ultra Gloss (1.75mm, 1kg)',
+    name: 'Numakers Silk PLA Ultra Gloss (1.75mm, 1kg)',
     category: 'silk',
     price: 985,
     rating: '4.9',
     reviews: 95,
-    tag: 'High Shine Metallic Sheen',
+    tag: 'Numakers Metallic Sheen',
     tagClass: 'badge-pink',
-    desc: 'Formulated with special gloss additives to yield a silky, mirror-like metallic sheen. Transforms 3D models into eye-catching jewelry, trophies, and vases.',
+    desc: 'Official Numakers special gloss formulation to yield a silky, mirror-like metallic sheen. Transforms 3D models into eye-catching jewelry, trophies, and vases.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/lithophane.png',
     colors: [
@@ -593,8 +600,9 @@ const FILAMENT_PRODUCTS = [
       { name: 'Purple Silk', hex: '#9D4EDD', stock: 8 },
       { name: 'Metallic Copper', hex: '#D4AF37', stock: 6 }
     ],
-    specs: ['Temp: 200-220°C', 'Bed: 50-60°C', 'High Mirror Shine', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 200-220°C', 'Bed: 50-60°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '52 MPa',
       heatDeflection: '52°C',
       nozzle: 'Standard Brass (0.4mm)',
@@ -605,22 +613,23 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-pla-special',
-    name: 'D Loop PLA Special & Dual Color Gradient (1.75mm, 1kg)',
+    name: 'Numakers PLA Special & Dual Color Gradient (1.75mm, 1kg)',
     category: 'special',
     price: 1400,
     rating: '5.0',
     reviews: 53,
-    tag: 'Aesthetic & Gradient Finish',
+    tag: 'Numakers Special & Gradient',
     tagClass: 'badge-warning',
-    desc: 'Unique aesthetic formulations. Marble White simulates real granite stone finish, while Blue Shift features smooth color-changing gradient transitions.',
+    desc: 'Official Numakers aesthetic formulations. Marble White simulates real granite stone finish, while Blue Shift features smooth color-changing gradient transitions.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
       { name: 'Marble White', hex: '#E2E2E0', stock: 7 },
       { name: 'Blue Shift Gradient', hex: 'linear-gradient(135deg, #0077B6, #90E0EF)', stock: 4 }
     ],
-    specs: ['Temp: 200-220°C', 'Bed: 50-60°C', 'Granite & Gradient', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 200-220°C', 'Bed: 50-60°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '54 MPa',
       heatDeflection: '54°C',
       nozzle: 'Hardened Steel (0.4mm+ for Marble)',
@@ -631,21 +640,22 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-abs-fr',
-    name: 'D Loop ABS-FR Flame Retardant V0 (1.75mm, 1kg)',
+    name: 'Numakers ABS-FR Flame Retardant V0 (1.75mm, 1kg)',
     category: 'abs-fr',
     price: 1300,
     rating: '4.8',
     reviews: 38,
-    tag: 'UL94-V0 Fire Retardant',
+    tag: 'Numakers UL94-V0 Fire Retardant',
     tagClass: 'badge-accent',
-    desc: 'Certified UL94 V-0 flame retardant ABS formulation. Self-extinguishes within 10 seconds of flame exposure. Essential for electrical enclosures & drone safety.',
+    desc: 'Official Numakers UL94 V-0 flame retardant ABS formulation. Self-extinguishes within 10 seconds of flame exposure. Essential for electrical enclosures & drone safety.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/keychains.png',
     colors: [
       { name: 'Off-White Natural', hex: '#F4F4EE', stock: 6 }
     ],
-    specs: ['Temp: 240-260°C', 'Bed: 90-110°C', 'UL94-V0 Certified', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 240-260°C', 'Bed: 90-110°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '42 MPa',
       heatDeflection: '92°C',
       nozzle: 'Standard Brass / Hardened Steel',
@@ -656,22 +666,23 @@ const FILAMENT_PRODUCTS = [
   },
   {
     id: 'fil-abs-std',
-    name: 'D Loop Tough ABS Pro Filament (1.75mm, 1kg)',
+    name: 'Numakers Tough ABS Pro Filament (1.75mm, 1kg)',
     category: 'abs',
     price: 810,
     rating: '4.8',
     reviews: 77,
-    tag: 'High Impact & Temp 95°C',
+    tag: 'Numakers High Impact 95°C',
     tagClass: 'badge-primary',
-    desc: 'Structural grade ABS for high-temp environments up to 95°C. High impact resistance, acetone vapor smoothing compatible, and high dimensional rigidity.',
+    desc: 'Official Numakers structural grade ABS for high-temp environments up to 95°C. High impact resistance, acetone vapor smoothing compatible, and high dimensional rigidity.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/filaments.png',
     colors: [
       { name: 'Pitch Black', hex: '#171719', stock: 18 },
       { name: 'Pure White', hex: '#FAFAFA', stock: 14 }
     ],
-    specs: ['Temp: 240-260°C', 'Bed: 90-110°C', 'Heat Resistant 95°C', 'Tolerance: ±0.02mm'],
+    specs: ['Brand: Numakers', 'Temp: 240-260°C', 'Bed: 90-110°C', 'Tolerance: ±0.02mm'],
     techDetails: {
+      brand: 'Numakers',
       tensile: '48 MPa',
       heatDeflection: '95°C',
       nozzle: 'Standard Brass / Hardened Steel',
@@ -1493,10 +1504,10 @@ function renderModelCards() {
 
     if (!state.bulkFiles || state.bulkFiles.length === 0) {
       container.innerHTML = `
-        <div onclick="triggerFileUpload()" style="cursor:pointer; text-align:center; padding: 2.5rem 1.5rem; background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(255,255,255,0.1); border-radius: 10px; color: var(--text-dim); transition: border-color 0.2s;" onmouseover="this.style.borderColor='#38bdf8'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <div onclick="triggerFileUpload()" style="cursor:pointer; text-align:center; padding: 2.5rem 1.5rem; background: #FFFFFF; border: 2px dashed #CBD5E1; border-radius: 12px; color: #475569; transition: all 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.03);" onmouseover="this.style.borderColor='#FF6500'; this.style.background='rgba(255,101,0,0.02)';" onmouseout="this.style.borderColor='#CBD5E1'; this.style.background='#FFFFFF';">
           <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">📁</div>
-          <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main);">No 3D Models Uploaded</div>
-          <div style="font-size: 0.8rem; margin-top: 0.2rem;">Drag & drop your STL, OBJ, or 3MF files below to get instant quotes</div>
+          <div style="font-size: 1.05rem; font-weight: 700; color: #0F172A;">No 3D Models Uploaded</div>
+          <div style="font-size: 0.85rem; margin-top: 0.2rem; color: #64748B;">Drag & drop your STL, OBJ, or 3MF files below to get instant quotes</div>
         </div>
       `;
       return;
@@ -2202,22 +2213,22 @@ function setupEventListeners() {
       const photoFile = document.getElementById('gift-photo-input')?.files?.[0];
       
       if (!photoFile && !state.gift.photoUrl) {
-        showToast('Please upload a photo for your custom Lithophane Lightbox!');
+        showToast('Please upload a photo for your custom Lithophane Desk Frame!');
         document.getElementById('gift-photo-input')?.focus();
         return;
       }
 
       const cartItem = {
         id: `gift-${Date.now()}`,
-        name: 'Personalized Photo Lithophane Lightbox',
-        details: `Inscription: "${giftText}" | LED Glow: ${state.gift.glow || 'Warm White'}`,
-        price: 1299,
+        name: 'Personalized Photo Lithophane Desk Frame',
+        details: `Inscription: "${giftText}"`,
+        price: 849,
         qty: 1,
         img: state.gift.photoUrl || 'assets/lithophane.png'
       };
 
       addToCart(cartItem);
-      showToast('Customized Lithophane Lightbox added to your cart!');
+      showToast('Customized Lithophane Desk Frame added to your cart!');
     });
   }
 
@@ -2632,7 +2643,10 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         name: item.name,
         fileName: item.fileName || (item.name.startsWith('Custom FDM Print: ') ? item.name.replace('Custom FDM Print: ', '') : (item.name.includes('.stl') ? item.name : null)),
         fileDataUrl: item.fileDataUrl && item.fileDataUrl.length < 20000 ? item.fileDataUrl : null,
+        photoDataUrl: item.photoDataUrl && item.photoDataUrl.length < 20000 ? item.photoDataUrl : null,
         isCustomStl: Boolean(item.isCustomStl || item.name.includes('.stl') || item.name.startsWith('Custom FDM Print:')),
+        isCustomGift: Boolean(item.isCustomGift || item.giftProductId || item.name.startsWith('Custom Gift:')),
+        img: item.img || null,
         details: item.details || '',
         price: item.price,
         qty: item.qty,
@@ -2657,6 +2671,8 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         city: customerCity || 'Chennai',
         address: customerAddress,
         paymentMethod: paymentMethod,
+        paymentStatus: 'pending',
+        utr: null,
         items: orderItems,
         subtotal: itemsSubtotal,
         total: grandTotal,
@@ -2702,12 +2718,18 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         renderFilaments(FILAMENT_PRODUCTS, 'filaments-grid-container');
       }
 
-      showToast(`🎉 Order ${orderId} placed successfully! You can track it in My Orders.`);
-      setTimeout(() => {
-        if (typeof openMyOrdersModal === 'function') {
-          openMyOrdersModal();
-        }
-      }, 1000);
+      const isOnlinePay = (paymentMethod === 'upi' || paymentMethod === 'card');
+      if (isOnlinePay && typeof Pay0Gateway !== 'undefined') {
+        showToast(`⚡ Redirecting to Pay0 UPI Gateway for Order ${orderId}...`);
+        Pay0Gateway.initiateCheckout(newOrder);
+      } else {
+        showToast(`🎉 Order ${orderId} placed successfully! You can track it in My Orders.`);
+        setTimeout(() => {
+          if (typeof openMyOrdersModal === 'function') {
+            openMyOrdersModal();
+          }
+        }, 1000);
+      }
     });
   }
 
@@ -3704,21 +3726,38 @@ function loadCartFromStorage() {
   renderCart();
 }
 
+function updateCartItemQty(index, change) {
+  if (state.cart && state.cart[index]) {
+    const newQty = (state.cart[index].qty || 1) + change;
+    if (newQty <= 0) {
+      removeFromCart(index);
+    } else {
+      state.cart[index].qty = newQty;
+      saveCartAndRender();
+    }
+  }
+}
+window.updateCartItemQty = updateCartItemQty;
+
 function renderCart() {
   const container = document.getElementById('cart-items-container');
   const countBadge = document.getElementById('cart-count');
   const totalElem = document.getElementById('cart-total-price');
 
-  if (countBadge) countBadge.textContent = state.cart.length;
+  if (countBadge) {
+    const totalCount = state.cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+    countBadge.textContent = totalCount;
+  }
 
   if (!container) return;
 
   if (state.cart.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 3rem 1rem; color: var(--text-dim);">
-        <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🛒</div>
-        <p style="font-weight: 600;">Your cart is empty</p>
-        <p style="font-size: 0.78rem; margin-top: 0.4rem; color: var(--text-dim);">Upload STL files or select items from our store.</p>
+      <div style="text-align: center; padding: 4rem 1rem; color: #64748B;">
+        <div style="font-size: 3rem; margin-bottom: 0.8rem;">🛒</div>
+        <h4 style="font-weight: 700; color: #0F172A; margin-bottom: 0.4rem; font-size: 1.05rem;">Your Cart is Empty</h4>
+        <p style="font-size: 0.82rem; color: #64748B; line-height: 1.5; max-width: 240px; margin: 0 auto 1.2rem;">Explore our filaments, 3D gifts, or upload your 3D model (STL).</p>
+        <a href="filaments.html" class="btn btn-outline btn-sm" style="font-size: 0.8rem;" onclick="document.getElementById('cart-drawer-overlay').classList.remove('open')">Browse Filaments</a>
       </div>
     `;
     if (totalElem) totalElem.textContent = '₹0';
@@ -3727,23 +3766,32 @@ function renderCart() {
 
   let grandTotal = 0;
   container.innerHTML = state.cart.map((item, index) => {
-    const itemTotal = item.price * item.qty;
+    const itemTotal = item.price * (item.qty || 1);
     grandTotal += itemTotal;
     const cleanDetails = (item.details || '').replace('(null)', '(Pitch Black)');
+    const imgSrc = item.img || 'assets/lithophane.png';
+
     return `
       <div class="cart-item">
-        <img src="${item.img}" class="cart-item-img" alt="cart item">
+        <img src="${imgSrc}" class="cart-item-img" alt="${escapeHTML(item.name)}" onerror="this.src='assets/lithophane.png'">
         <div class="cart-item-details">
-          <div class="cart-item-title" title="${item.name}">${item.name}</div>
-          <div class="cart-item-sub">${cleanDetails}</div>
-          <div class="cart-item-price">₹${item.price} × ${item.qty}</div>
+          <div class="cart-item-title" title="${escapeHTML(item.name)}">${escapeHTML(item.name)}</div>
+          ${cleanDetails ? `<div class="cart-item-sub" title="${escapeHTML(cleanDetails)}">${escapeHTML(cleanDetails)}</div>` : ''}
+          <div class="cart-item-price-row">
+            <div class="cart-item-price">₹${itemTotal.toLocaleString()}</div>
+            <div class="cart-qty-ctrls">
+              <button type="button" class="cart-qty-btn" onclick="updateCartItemQty(${index}, -1)" title="Decrease quantity">−</button>
+              <span class="cart-qty-val">${item.qty || 1}</span>
+              <button type="button" class="cart-qty-btn" onclick="updateCartItemQty(${index}, 1)" title="Increase quantity">+</button>
+            </div>
+          </div>
         </div>
-        <button class="cart-item-remove" title="Remove item" onclick="removeFromCart(${index})">✕</button>
+        <button type="button" class="cart-item-remove" title="Remove item" onclick="removeFromCart(${index})">✕</button>
       </div>
     `;
   }).join('');
 
-  if (totalElem) totalElem.textContent = `₹${grandTotal}`;
+  if (totalElem) totalElem.textContent = `₹${grandTotal.toLocaleString()}`;
 }
 
 // Toast helper
@@ -4546,3 +4594,44 @@ function detectLocationFromGPS(onSuccess, onError) {
   );
 }
 window.detectLocationFromGPS = detectLocationFromGPS;
+
+// =============================================================================
+// MOBILE NAVIGATION DRAWER & APP-WIDE UI LOGIC
+// =============================================================================
+
+function toggleMobileNavDrawer() {
+  const overlay = document.getElementById('mobile-drawer-overlay');
+  if (overlay) {
+    overlay.classList.toggle('open');
+    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+  }
+}
+window.toggleMobileNavDrawer = toggleMobileNavDrawer;
+
+function closeMobileNavDrawer() {
+  const overlay = document.getElementById('mobile-drawer-overlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+window.closeMobileNavDrawer = closeMobileNavDrawer;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile drawer trigger
+  const mobBtn = document.getElementById('mobile-menu-btn');
+  if (mobBtn) {
+    mobBtn.addEventListener('click', toggleMobileNavDrawer);
+  }
+  const closeBtn = document.getElementById('close-mobile-drawer-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMobileNavDrawer);
+  }
+  const overlay = document.getElementById('mobile-drawer-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeMobileNavDrawer();
+    });
+  }
+});
+

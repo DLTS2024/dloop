@@ -18,22 +18,17 @@
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="#" class="brand-logo">
-        <div class="logo-icon">D</div>
-        <div>
-          <span class="brand-name gradient-text">D LOOP 3D</span>
-          <span class="fdm-badge">FDM Specialist</span>
-        </div>
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="DLoop Store .in" class="brand-logo-img">
       </a>
 
       <ul class="nav-links">
-        <li><a href="#hero" class="nav-link active">Home</a></li>
-        <li><a href="quote.html" class="nav-link">Instant Quote</a></li>
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="quote.html" class="nav-link">Instant Quote ⚡</a></li>
+        <li><a href="custom-gifts.html" class="nav-link">Custom Gifts ✨</a></li>
         <li><a href="products.html" class="nav-link">Pre-Printed Products</a></li>
-        <li><a href="#custom-gifts" class="nav-link">Custom Gifts</a></li>
-        <li><a href="filaments.html" class="nav-link">Filament Store</a></li>
+        <li><a href="filaments.html" class="nav-link">Filaments</a></li>
         <li><a href="account.html" class="nav-link">My Account</a></li>
-        <li><a href="#why-fdm" class="nav-link">Why FDM</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -44,10 +39,88 @@
           <span class="cart-count" id="cart-count">0</span>
         </button>
 
-        <a href="quote.html" class="btn btn-primary">Upload 3D File</a>
+        <a href="quote.html" class="btn btn-primary">Instant STL Quote</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileNavDrawer()" aria-label="Open Navigation Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Drawer Overlay & Sidebar Navigation -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/logo.png" alt="DLoop Store" class="brand-logo-img" style="height: 38px;">
+        </a>
+        <button class="mobile-drawer-close" id="close-mobile-drawer-btn" onclick="closeMobileNavDrawer()">✕</button>
+      </div>
+
+      <div class="mobile-drawer-body">
+        <a href="index.html" class="mobile-nav-item active" onclick="closeMobileNavDrawer()">
+          <span>🏠</span> Home
+        </a>
+        <a href="quote.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>⚡</span> Instant 3D Quote & Slicer
+        </a>
+        <a href="custom-gifts.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>✨</span> Custom Gifts & Lithophane
+        </a>
+        <a href="products.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>📦</span> Pre-Printed Products
+        </a>
+        <a href="filaments.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>🧵</span> Filaments Store
+        </a>
+        <a href="account.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>👤</span> My Account & Live Tracking
+        </a>
+        <a href="admin.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()" style="color: var(--text-dim); font-size: 0.82rem; margin-top: 1rem;">
+          <span>⚙️</span> Admin Portal
+        </a>
+      </div>
+
+      <div class="mobile-drawer-footer">
+        <a href="quote.html" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="closeMobileNavDrawer()">
+          ⚡ Upload 3D File (STL)
+        </a>
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-align: center;">
+          📞 Helpline: +91 98765 43210
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Quick Navigation Bar -->
+  <div class="mobile-bottom-bar">
+    <div class="mobile-bottom-items">
+      <a href="index.html" class="mobile-bottom-link active">
+        <span class="bot-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="quote.html" class="mobile-bottom-link">
+        <span class="bot-icon">⚡</span>
+        <span>Quote</span>
+      </a>
+      <a href="custom-gifts.html" class="mobile-bottom-link">
+        <span class="bot-icon">✨</span>
+        <span>Gifts</span>
+      </a>
+      <a href="filaments.html" class="mobile-bottom-link">
+        <span class="bot-icon">🧵</span>
+        <span>Filament</span>
+      </a>
+      <a href="account.html" class="mobile-bottom-link">
+        <span class="bot-icon">👤</span>
+        <span>Account</span>
+      </a>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
@@ -79,8 +152,8 @@
               Shop Filaments
             </a>
 
-            <a href="#custom-gifts" class="btn btn-accent">
-              Customized Gifts
+            <a href="custom-gifts.html" class="btn btn-accent">
+              Customized Gifts ✨
             </a>
           </div>
 
@@ -262,6 +335,11 @@
         <div class="section-subtitle">Personalized Creations</div>
         <h2 class="section-title">Customizable <span class="gradient-pink">Gift Products</span></h2>
         <p class="section-desc">Create unforgettable gifts! Personalize 3D printed lithophane lamps, custom name keychains, and desk lightboxes.</p>
+        <div style="margin-top: 1rem;">
+          <a href="custom-gifts.html" class="btn btn-primary" style="background:linear-gradient(135deg, #ec4899 0%, #a855f7 100%); border:none;">
+            🎁 Explore Full Custom 3D Gifts Superstore (20+ Items) →
+          </a>
+        </div>
       </div>
 
       <div class="gift-configurator">
@@ -273,9 +351,9 @@
 
         <!-- Customizer Form -->
         <div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Personalized Photo Lithophane Lightbox</h3>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Personalized Photo Lithophane Desk Frame</h3>
           <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-            Upload your favorite photo, and our FDM 3D printers will convert it into a translucent lithophane light panel mounted on a LED wooden stand.
+            Upload your favorite photo, and our FDM 3D printers will convert it into a high-definition translucent 3D lithophane portrait panel mounted on a premium wooden stand.
           </p>
 
           <div class="config-group">
@@ -288,17 +366,8 @@
             <input type="file" class="input-field" id="gift-photo-input" accept="image/*">
           </div>
 
-          <div class="config-group">
-            <div class="config-label">Select LED Base Light Glow</div>
-            <div class="color-picker" id="gift-glow-picker">
-              <div class="color-dot active" style="background: #FFB800;" data-glow="Warm White"></div>
-              <div class="color-dot" style="background: #00F2FE;" data-glow="Cyan Neon"></div>
-              <div class="color-dot" style="background: #FF2A85;" data-glow="Rose Pink"></div>
-            </div>
-          </div>
-
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 2rem;">
-            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">₹1,299</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">₹849</div>
             <button class="btn btn-accent" id="btn-order-custom-gift">
               🎁 Order Custom Gift
             </button>
@@ -409,7 +478,7 @@
   <div class="modal-overlay" id="custom-quote-modal-overlay">
     <div class="modal-card">
       <div class="modal-header">
-        <h3>📩 Request Custom FDM Quote</h3>
+        <h3 style="color:#0F172A;">📩 Request Custom FDM Quote</h3>
         <button class="modal-close-btn" id="close-custom-quote-modal">✕</button>
       </div>
       <div class="modal-body">
@@ -418,20 +487,20 @@
         </p>
         <form id="custom-quote-form">
           <div class="config-group" style="margin-bottom: 0.8rem;">
-            <label class="config-label">Your Name</label>
-            <input type="text" id="cq-name" class="input-field" placeholder="Enter your full name" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            <label class="config-label" style="color:#334155; font-weight:600;">Your Name</label>
+            <input type="text" id="cq-name" class="input-field" placeholder="Enter your full name" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
           </div>
           <div class="config-group" style="margin-bottom: 0.8rem;">
-            <label class="config-label">Email Address</label>
-            <input type="email" id="cq-email" class="input-field" placeholder="name@example.com" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            <label class="config-label" style="color:#334155; font-weight:600;">Email Address</label>
+            <input type="email" id="cq-email" class="input-field" placeholder="name@example.com" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
           </div>
           <div class="config-group" style="margin-bottom: 0.8rem;">
-            <label class="config-label">Phone Number</label>
-            <input type="tel" id="cq-phone" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            <label class="config-label" style="color:#334155; font-weight:600;">Phone Number</label>
+            <input type="tel" id="cq-phone" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
           </div>
           <div class="config-group" style="margin-bottom: 1rem;">
-            <label class="config-label">Special Requirements / Notes</label>
-            <textarea id="cq-notes" class="input-field" rows="3" placeholder="Specify tolerance, post-assembly requirements, or color requests..." style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px; font-family:inherit;"></textarea>
+            <label class="config-label" style="color:#334155; font-weight:600;">Special Requirements / Notes</label>
+            <textarea id="cq-notes" class="input-field" rows="3" placeholder="Specify tolerance, post-assembly requirements, or color requests..." style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px; font-family:inherit;"></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%; padding:0.8rem;">Submit Custom Quote Request</button>
         </form>
@@ -443,26 +512,26 @@
   <div class="modal-overlay" id="checkout-modal-overlay">
     <div class="modal-card" style="max-width: 640px;">
       <div class="modal-header">
-        <h3>🚀 D Loop 3D Express Checkout</h3>
+        <h3 style="color:#0F172A;">🚀 D Loop 3D Express Checkout</h3>
         <button class="modal-close-btn" id="close-checkout-modal">✕</button>
       </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
         <!-- Order Summary Box -->
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem;">
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem;">
           <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--primary);">Order Summary</h4>
-          <div id="checkout-items-summary" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"></div>
+          <div id="checkout-items-summary" style="font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem;"></div>
           
-          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-muted); border-top:1px dashed rgba(255,255,255,0.1); padding-top:0.5rem; margin-bottom:4px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:#475569; border-top:1px dashed #CBD5E1; padding-top:0.5rem; margin-bottom:4px;">
             <span>Items Subtotal:</span>
-            <span id="checkout-subtotal-val" style="color:#fff; font-weight:700;">₹0</span>
+            <span id="checkout-subtotal-val" style="color:#0F172A; font-weight:700;">₹0</span>
           </div>
 
-          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-muted); margin-bottom:6px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:#475569; margin-bottom:6px;">
             <span>Delivery (<span id="checkout-delivery-note" style="font-size:0.75rem;">Standard Courier</span>):</span>
-            <span id="checkout-delivery-val" style="color:#34d399; font-weight:700;">FREE</span>
+            <span id="checkout-delivery-val" style="color:#059669; font-weight:700;">FREE</span>
           </div>
 
-          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.15rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.5rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.15rem; border-top: 1px solid #E2E8F0; padding-top: 0.5rem; color:#0F172A;">
             <span>Total Payable:</span>
             <span style="color: var(--primary);" id="checkout-grand-total">₹0</span>
           </div>
@@ -472,7 +541,7 @@
           
           <!-- Delivery Method Selector (Courier vs Self Pickup) -->
           <div style="margin-bottom: 1.2rem;">
-            <label class="config-label" style="margin-bottom: 6px;">Select Fulfillment Method *</label>
+            <label class="config-label" style="margin-bottom: 6px; color:#334155; font-weight:600;">Select Fulfillment Method *</label>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
               <button type="button" id="chk-method-courier-btn" class="delivery-toggle-btn active" onclick="setCheckoutDeliveryMethod('courier')">
                 🚚 Shiprocket Courier
@@ -484,27 +553,27 @@
           </div>
 
           <!-- Self Pickup Info Box -->
-          <div id="chk-pickup-info" style="display:none; background:rgba(0,242,254,0.06); border:1px solid rgba(0,242,254,0.25); padding:12px; border-radius:8px; margin-bottom:1rem; font-size:0.85rem; color:#e2e8f0; line-height:1.5;">
+          <div id="chk-pickup-info" style="display:none; background:rgba(255,101,0,0.06); border:1px solid rgba(255,101,0,0.25); padding:12px; border-radius:8px; margin-bottom:1rem; font-size:0.85rem; color:#334155; line-height:1.5;">
             <div style="font-weight:700; color:var(--primary); margin-bottom:4px;">🏬 Pickup Location: D Loop 3D Studio</div>
             <div>📍 No. 25, 3rd Cross Street, Ganga Nagar, Maduravoyal, Chennai, Tamil Nadu - 600095</div>
-            <div style="font-size:0.78rem; color:var(--text-dim); margin-top:4px;">🕒 Pickup Timings: Mon – Sat, 9:30 AM – 7:30 PM (Free ₹0 Delivery)</div>
+            <div style="font-size:0.78rem; color:#64748B; margin-top:4px;">🕒 Pickup Timings: Mon – Sat, 9:30 AM – 7:30 PM (Free ₹0 Delivery)</div>
           </div>
 
-          <h4 style="font-size: 0.95rem; margin-bottom: 0.8rem; color: #fff;">Customer Contact & Shipping Details</h4>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.8rem; color: #0F172A;">Customer Contact & Shipping Details</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
             <div>
-              <label class="config-label">Full Name *</label>
-              <input type="text" id="chk-name" name="name" autocomplete="shipping name" class="input-field" placeholder="John Doe" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              <label class="config-label" style="color:#334155; font-weight:600;">Full Name *</label>
+              <input type="text" id="chk-name" name="name" autocomplete="shipping name" class="input-field" placeholder="John Doe" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
             <div>
-              <label class="config-label">Phone Number *</label>
-              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              <label class="config-label" style="color:#334155; font-weight:600;">Phone Number *</label>
+              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
           </div>
 
           <div style="margin-bottom: 0.8rem;">
-            <label class="config-label">Email Address *</label>
-            <input type="email" id="chk-email" name="email" autocomplete="shipping email" class="input-field" placeholder="john@example.com" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            <label class="config-label" style="color:#334155; font-weight:600;">Email Address *</label>
+            <input type="email" id="chk-email" name="email" autocomplete="shipping email" class="input-field" placeholder="john@example.com" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
           </div>
 
           <!-- Courier Address Fields (Hidden when Self-Pickup is selected) -->
@@ -512,43 +581,43 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <label class="config-label">Pincode *</label>
+                  <label class="config-label" style="color:#334155; font-weight:600;">Pincode *</label>
                   <button type="button" class="btn btn-outline btn-sm" onclick="triggerCheckoutGPSFill()" style="font-size:0.7rem; padding:1px 6px;">📍 GPS Fill</button>
                 </div>
-                <input type="text" id="chk-pincode" name="postal-code" autocomplete="shipping postal-code" class="input-field" placeholder="e.g. 600095" maxlength="6" oninput="handleCheckoutPincodeChange(this.value)" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <input type="text" id="chk-pincode" name="postal-code" autocomplete="shipping postal-code" class="input-field" placeholder="e.g. 600095" maxlength="6" oninput="handleCheckoutPincodeChange(this.value)" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
               <div>
-                <label class="config-label">City / Town *</label>
-                <input type="text" id="chk-city" name="city" autocomplete="shipping address-level2" class="input-field" placeholder="Chennai" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <label class="config-label" style="color:#334155; font-weight:600;">City / Town *</label>
+                <input type="text" id="chk-city" name="city" autocomplete="shipping address-level2" class="input-field" placeholder="Chennai" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.6rem;">
               <div>
-                <label class="config-label">Door / Flat No *</label>
-                <input type="text" id="chk-door" name="address-line1" autocomplete="shipping address-line1" class="input-field" placeholder="Door No, Flat, Building" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <label class="config-label" style="color:#334155; font-weight:600;">Door / Flat No *</label>
+                <input type="text" id="chk-door" name="address-line1" autocomplete="shipping address-line1" class="input-field" placeholder="Door No, Flat, Building" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
               <div>
-                <label class="config-label">Street / Road</label>
-                <input type="text" id="chk-street" name="address-line2" autocomplete="shipping address-line2" class="input-field" placeholder="Street Name, Road" style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <label class="config-label" style="color:#334155; font-weight:600;">Street / Road</label>
+                <input type="text" id="chk-street" name="address-line2" autocomplete="shipping address-line2" class="input-field" placeholder="Street Name, Road" style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
             </div>
 
             <div style="margin-bottom: 0.8rem;">
-              <label class="config-label">Area / Locality / Landmark</label>
-              <input type="text" id="chk-area" name="address-line3" autocomplete="shipping address-line3" class="input-field" placeholder="Area, Locality, Near Landmark" style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              <label class="config-label" style="color:#334155; font-weight:600;">Area / Locality / Landmark</label>
+              <input type="text" id="chk-area" name="address-line3" autocomplete="shipping address-line3" class="input-field" placeholder="Area, Locality, Near Landmark" style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
           </div>
 
-          <h4 style="font-size: 0.95rem; margin-top: 1.2rem; margin-bottom: 0.8rem; color: #fff;">Payment Method</h4>
+          <h4 style="font-size: 0.95rem; margin-top: 1.2rem; margin-bottom: 0.8rem; color: #0F172A;">Payment Method</h4>
           <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem;">
-            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; color:#0F172A;">
               <input type="radio" name="pay-method" value="upi" checked> <span>⚡ UPI / GPay / PhonePe / Paytm</span>
             </label>
-            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; color:#0F172A;">
               <input type="radio" name="pay-method" value="card"> <span>💳 Credit / Debit Card</span>
             </label>
-            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; color:#0F172A;">
               <input type="radio" name="pay-method" value="cod"> <span>💵 Cash on Delivery (COD)</span>
             </label>
           </div>
@@ -564,47 +633,48 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="#" class="brand-logo" style="margin-bottom: 1.2rem; display: inline-flex;">
-            <div class="logo-icon">D</div>
-            <span class="brand-name gradient-text">D LOOP 3D</span>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1.2rem; display: inline-flex;">
+            <img src="assets/logo.png" alt="DLoop Store" class="brand-logo-img" style="height: 42px;">
           </a>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 300px;">
-            Your premier FDM 3D printing studio and filament sales provider. Bringing digital 3D models into physical reality.
+            DLoopStore.in — A Unit of Digiteloop Tech Solutions. Premier FDM 3D printing studio & Authorized Numakers 3D filament store.
           </p>
         </div>
 
         <div>
           <h4 class="footer-col-title">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="quote.html">Upload 3D File</a></li>
-            <li><a href="#ready-products">Pre-Printed Items</a></li>
-            <li><a href="#custom-gifts">Custom Gifts</a></li>
-            <li><a href="filaments.html">Filament Shop</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quote.html">Instant STL Quote</a></li>
+            <li><a href="custom-gifts.html">Custom Gifts ✨</a></li>
+            <li><a href="products.html">Pre-Printed Items</a></li>
+            <li><a href="filaments.html">Numakers Filaments</a></li>
+            <li><a href="account.html">Track Orders</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-col-title">FDM Filaments</h4>
+          <h4 class="footer-col-title">Numakers Filaments</h4>
           <ul class="footer-links">
-            <li><a href="#filament-shop">Silk PLA (1.75mm)</a></li>
-            <li><a href="#filament-shop">Tough ABS Pro</a></li>
-            <li><a href="#filament-shop">Durable PETG</a></li>
-            <li><a href="#filament-shop">Flexible TPU 95A</a></li>
-            <li><a href="#filament-shop">Wood Fill PLA</a></li>
+            <li><a href="filaments.html">Numakers High Speed PLA</a></li>
+            <li><a href="filaments.html">Numakers PLA Matte</a></li>
+            <li><a href="filaments.html">Numakers Tough PETG</a></li>
+            <li><a href="filaments.html">Numakers PETG-CF Carbon</a></li>
+            <li><a href="filaments.html">Numakers Weatherproof ASA</a></li>
+            <li><a href="filaments.html">Numakers PA12-CF Industrial</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Contact Studio</h4>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">
-            <strong>Email:</strong> support@dloop3d.com
+            <strong>Email:</strong> support@dloopstore.in
           </p>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">
-            <strong>Phone:</strong> +91 98765 43210
+            <strong>Phone / WA:</strong> +91 98765 43210
           </p>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
-            <strong>Specialization:</strong> 100% FDM 3D Printing
+            <strong>Location:</strong> Maduravoyal, Chennai - 600095
           </p>
         </div>
       </div>
@@ -616,7 +686,8 @@
   </footer>
 
 
-  <!-- Main JavaScript File -->
+  <!-- Payment Gateway & Application JS -->
+  <script src="pay0-gateway.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -9,18 +9,18 @@
   <link rel="stylesheet" href="index.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <style>
+   <style>
     :root {
-      --bg-dark: #0b0e14;
-      --card-bg: #121620;
-      --card-border: rgba(255, 255, 255, 0.08);
-      --primary: #00f2fe;
-      --accent: #4facfe;
+      --bg-dark: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --card-border: #E2E8F0;
+      --primary: #FF6500;
+      --accent: #FF8800;
     }
 
     body {
       background-color: var(--bg-dark);
-      color: #e2e8f0;
+      color: #0F172A;
       font-family: 'Inter', system-ui, sans-serif;
       min-height: 100vh;
       display: flex;
@@ -35,78 +35,76 @@
 
     /* Account Header Card */
     .user-profile-banner {
-      background: linear-gradient(135deg, rgba(0, 242, 254, 0.08), rgba(79, 172, 254, 0.12));
-      border: 1px solid rgba(0, 242, 254, 0.25);
+      background: linear-gradient(135deg, rgba(255, 101, 0, 0.06), rgba(0, 132, 255, 0.06));
+      border: 1px solid #E2E8F0;
       border-radius: 16px;
       padding: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .user-avatar-circle {
-      width: 60px;
-      height: 60px;
+    .user-avatar-badge {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #00f2fe, #4facfe);
-      color: #000;
-      font-size: 1.5rem;
+      background: linear-gradient(135deg, #FF6500, #0084FF);
+      color: #FFFFFF;
+      font-size: 1.8rem;
       font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 4px 15px rgba(255, 101, 0, 0.25);
     }
 
     .account-tabs-nav {
       display: flex;
       gap: 8px;
-      background: #121620;
-      padding: 6px;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
       margin-bottom: 24px;
-      flex-wrap: wrap;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 8px;
+      overflow-x: auto;
     }
 
-    .account-tab-btn {
-      flex: 1;
-      min-width: 140px;
-      padding: 12px 16px;
+    .acc-tab-btn {
+      padding: 10px 18px;
+      border-radius: 8px;
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-weight: 600;
       font-size: 0.9rem;
-      border-radius: 8px;
+      font-weight: 600;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
-    .account-tab-btn:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.04);
+    .acc-tab-btn:hover {
+      color: var(--primary);
+      background: #F1F5F9;
     }
 
-    .account-tab-btn.active {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #000;
+    .acc-tab-btn.active {
+      color: var(--primary);
+      background: rgba(255, 101, 0, 0.1);
       font-weight: 700;
-      box-shadow: 0 4px 14px rgba(0, 242, 254, 0.3);
     }
 
-    .tab-pane {
+    .account-view-panel {
       display: none;
     }
 
-    .tab-pane.active {
+    .account-view-panel.active {
       display: block;
       animation: fadeIn 0.25s ease;
     }
@@ -116,67 +114,95 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .dashboard-panel {
+    .account-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
 
-    /* Addresses Grid */
-    .address-grid {
+    .account-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #0F172A;
+    }
+
+    .orders-empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-muted);
+    }
+
+    .orders-empty-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+
+    .address-card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 16px;
       margin-top: 16px;
     }
 
-    .address-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 18px;
+    .address-item-card {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 16px;
       position: relative;
       transition: all 0.2s ease;
     }
 
-    .address-card.default-address {
+    .address-item-card.default-address {
       border-color: var(--primary);
-      background: rgba(0, 242, 254, 0.03);
+      background: rgba(255, 101, 0, 0.04);
     }
 
-    .address-type-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      margin-bottom: 8px;
+    .auth-toggle-box {
+      max-width: 440px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
 
-    .address-card.default-address .address-type-badge {
-      background: rgba(0, 242, 254, 0.2);
-      color: var(--primary);
+    .auth-field-group {
+      margin-bottom: 16px;
     }
 
-    /* Auth View (Logged Out State) */
-    .auth-portal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      max-width: 900px;
-      margin: 0 auto;
-      align-items: center;
+    .auth-field-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
     }
 
-    @media (max-width: 768px) {
-      .auth-portal-grid {
-        grid-template-columns: 1fr;
-      }
+    .auth-field-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #0F172A;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .auth-field-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.15);
     }
   </style>
 </head>
@@ -186,19 +212,15 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
-        <div class="logo-icon">D</div>
-        <div>
-          <span class="brand-name gradient-text">D LOOP 3D</span>
-          <span class="fdm-badge">FDM Specialist</span>
-        </div>
+        <img src="assets/logo.png" alt="DLoop Store .in" class="brand-logo-img">
       </a>
 
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="quote.html" class="nav-link">Instant Quote</a></li>
+        <li><a href="quote.html" class="nav-link">Instant Quote ⚡</a></li>
+        <li><a href="custom-gifts.html" class="nav-link">Custom Gifts ✨</a></li>
         <li><a href="products.html" class="nav-link">Pre-Printed Products</a></li>
-        <li><a href="index.html#custom-gifts" class="nav-link">Custom Gifts</a></li>
-        <li><a href="filaments.html" class="nav-link">Filament Store</a></li>
+        <li><a href="filaments.html" class="nav-link">Filaments</a></li>
         <li><a href="account.html" class="nav-link active">My Account</a></li>
       </ul>
 
@@ -210,10 +232,88 @@
           <span class="cart-count" id="cart-count">0</span>
         </button>
 
-        <a href="quote.html" class="btn btn-primary">Upload 3D File</a>
+        <a href="quote.html" class="btn btn-primary">Instant STL Quote</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileNavDrawer()" aria-label="Open Navigation Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Drawer Overlay & Sidebar Navigation -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay">
+    <div class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/logo.png" alt="DLoop Store" class="brand-logo-img" style="height: 38px;">
+        </a>
+        <button class="mobile-drawer-close" id="close-mobile-drawer-btn" onclick="closeMobileNavDrawer()">✕</button>
+      </div>
+
+      <div class="mobile-drawer-body">
+        <a href="index.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>🏠</span> Home
+        </a>
+        <a href="quote.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>⚡</span> Instant 3D Quote & Slicer
+        </a>
+        <a href="custom-gifts.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>✨</span> Custom Gifts & Lithophane
+        </a>
+        <a href="products.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>📦</span> Pre-Printed Products
+        </a>
+        <a href="filaments.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()">
+          <span>🧵</span> Filaments Store
+        </a>
+        <a href="account.html" class="mobile-nav-item active" onclick="closeMobileNavDrawer()">
+          <span>👤</span> My Account & Live Tracking
+        </a>
+        <a href="admin.html" class="mobile-nav-item" onclick="closeMobileNavDrawer()" style="color: var(--text-dim); font-size: 0.82rem; margin-top: 1rem;">
+          <span>⚙️</span> Admin Portal
+        </a>
+      </div>
+
+      <div class="mobile-drawer-footer">
+        <a href="quote.html" class="btn btn-primary" style="width: 100%; text-align: center;" onclick="closeMobileNavDrawer()">
+          ⚡ Upload 3D File (STL)
+        </a>
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-align: center;">
+          📞 Helpline: +91 98765 43210
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Quick Navigation Bar -->
+  <div class="mobile-bottom-bar">
+    <div class="mobile-bottom-items">
+      <a href="index.html" class="mobile-bottom-link">
+        <span class="bot-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="quote.html" class="mobile-bottom-link">
+        <span class="bot-icon">⚡</span>
+        <span>Quote</span>
+      </a>
+      <a href="custom-gifts.html" class="mobile-bottom-link">
+        <span class="bot-icon">✨</span>
+        <span>Gifts</span>
+      </a>
+      <a href="filaments.html" class="mobile-bottom-link">
+        <span class="bot-icon">🧵</span>
+        <span>Filament</span>
+      </a>
+      <a href="account.html" class="mobile-bottom-link active">
+        <span class="bot-icon">👤</span>
+        <span>Account</span>
+      </a>
+    </div>
+  </div>
 
   <!-- Main Account Page Body -->
   <main class="account-page-wrapper">
@@ -227,7 +327,7 @@
           <div style="display:flex; align-items:center; gap:16px;">
             <div class="user-avatar-circle" id="user-avatar-initials">JD</div>
             <div>
-              <h2 style="font-size:1.4rem; font-weight:800; color:#fff;" id="dash-user-name">Welcome Back</h2>
+              <h2 style="font-size:1.4rem; font-weight:800; color:#0F172A;" id="dash-user-name">Welcome Back</h2>
               <div style="font-size:0.85rem; color:var(--text-muted); margin-top:2px;" id="dash-user-email">user@example.com</div>
             </div>
           </div>
@@ -259,7 +359,7 @@
           <div class="dashboard-panel">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
               <div>
-                <h3 style="font-size:1.15rem; color:#fff;">📦 Your Orders & Live Shiprocket Tracking</h3>
+                <h3 style="font-size:1.15rem; color:#0F172A;">📦 Your Orders & Live Shiprocket Tracking</h3>
                 <p style="font-size:0.82rem; color:var(--text-muted);">Real-time shipment updates, AWB tracking, and invoice details.</p>
               </div>
               <a href="filaments.html" class="btn btn-outline btn-sm">🛍️ Shop Filaments</a>
@@ -276,7 +376,7 @@
           <div class="dashboard-panel">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
               <div>
-                <h3 style="font-size:1.15rem; color:#fff;">🛒 Your Shopping Cart</h3>
+                <h3 style="font-size:1.15rem; color:#0F172A;">🛒 Your Shopping Cart</h3>
                 <p style="font-size:0.82rem; color:var(--text-muted);">Review selected items and proceed to instant checkout.</p>
               </div>
               <a href="quote.html" class="btn btn-outline btn-sm">+ Add 3D Print STL</a>
@@ -293,7 +393,7 @@
           <div class="dashboard-panel">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
               <div>
-                <h3 style="font-size:1.15rem; color:#fff;">📍 Saved Delivery Addresses</h3>
+                <h3 style="font-size:1.15rem; color:#0F172A;">📍 Saved Delivery Addresses</h3>
                 <p style="font-size:0.82rem; color:var(--text-muted);">Manage your shipping addresses for 1-click checkout.</p>
               </div>
               <button type="button" class="btn btn-primary btn-sm" onclick="openAddAddressModal()">
@@ -310,7 +410,7 @@
         <!-- TAB 4: MY PROFILE -->
         <div id="tab-profile" class="tab-pane">
           <div class="dashboard-panel" style="max-width:700px;">
-            <h3 style="font-size:1.15rem; color:#fff; margin-bottom:16px;">👤 Personal Profile & Account Settings</h3>
+            <h3 style="font-size:1.15rem; color:#0F172A; margin-bottom:16px;">👤 Personal Profile & Account Settings</h3>
             
             <form id="profile-edit-form" onsubmit="handleProfileUpdate(event)">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
@@ -334,9 +434,9 @@
               </div>
             </form>
 
-            <hr style="border-color:rgba(255,255,255,0.06); margin-bottom:24px;">
+            <hr style="border-color:#E2E8F0; margin-bottom:24px;">
 
-            <h4 style="font-size:1rem; color:#fff; margin-bottom:14px;">🔒 Change Password</h4>
+            <h4 style="font-size:1rem; color:#0F172A; margin-bottom:14px;">🔒 Change Password</h4>
             <form id="password-change-form" onsubmit="handlePasswordChange(event)">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
                 <div>
@@ -349,7 +449,7 @@
                 </div>
               </div>
               <div style="display:flex; justify-content:flex-end;">
-                <button type="submit" class="btn btn-outline">🔑 Update Password</button>
+                <button type="submit" class="btn btn-secondary">Update Password</button>
               </div>
             </form>
           </div>
@@ -364,7 +464,7 @@
             <div class="hero-tag" style="margin-bottom:1rem;">
               <span class="dot"></span> Customer Account & Tracking Portal
             </div>
-            <h1 style="font-size:2.2rem; font-weight:800; line-height:1.2; margin-bottom:1rem; color:#fff;">
+            <h1 style="font-size:2.2rem; font-weight:800; line-height:1.2; margin-bottom:1rem; color:#0F172A;">
               Track Orders, Manage Carts & Instant 3D Checkout.
             </h1>
             <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
@@ -384,9 +484,9 @@
           </div>
 
           <!-- Auth Card -->
-          <div class="auth-card" style="box-shadow: 0 20px 60px rgba(0,242,254,0.15);">
+          <div class="auth-card" style="box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
             <div class="auth-header">
-              <h3 style="font-size:1.2rem; color:#fff; font-weight:800;" id="portal-auth-title">Customer Login</h3>
+              <h3 style="font-size:1.2rem; color:#0F172A; font-weight:800;" id="portal-auth-title">Customer Login</h3>
               <div class="auth-tabs">
                 <button class="auth-tab active" id="portal-tab-login" onclick="switchPortalAuthTab('login')">Sign In</button>
                 <button class="auth-tab" id="portal-tab-signup" onclick="switchPortalAuthTab('signup')">Create Account</button>
@@ -571,21 +671,21 @@
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
         
         <!-- Order Summary Box -->
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem;">
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 1rem; border-radius: 8px; margin-bottom: 1.2rem;">
           <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--primary);">Order Summary</h4>
-          <div id="checkout-items-summary" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"></div>
+          <div id="checkout-items-summary" style="font-size: 0.85rem; color: #475569; margin-bottom: 0.5rem;"></div>
           
-          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-muted); border-top:1px dashed rgba(255,255,255,0.1); padding-top:0.5rem; margin-bottom:4px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:#475569; border-top:1px dashed #CBD5E1; padding-top:0.5rem; margin-bottom:4px;">
             <span>Items Subtotal:</span>
-            <span id="checkout-subtotal-val" style="color:#fff; font-weight:700;">₹0</span>
+            <span id="checkout-subtotal-val" style="color:#0F172A; font-weight:700;">₹0</span>
           </div>
 
-          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-muted); margin-bottom:6px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:#475569; margin-bottom:6px;">
             <span>Delivery (<span id="checkout-delivery-note" style="font-size:0.75rem;">Standard Courier</span>):</span>
-            <span id="checkout-delivery-val" style="color:#34d399; font-weight:700;">FREE</span>
+            <span id="checkout-delivery-val" style="color:#059669; font-weight:700;">FREE</span>
           </div>
 
-          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.15rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.5rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.15rem; border-top: 1px solid #E2E8F0; padding-top: 0.5rem; color:#0F172A;">
             <span>Total Payable:</span>
             <span style="color: var(--primary);" id="checkout-grand-total">₹0</span>
           </div>
@@ -595,7 +695,7 @@
           
           <!-- Delivery Method Selector (Courier vs Self Pickup) -->
           <div style="margin-bottom: 1.2rem;">
-            <label class="config-label" style="margin-bottom: 6px;">Select Fulfillment Method *</label>
+            <label class="config-label" style="margin-bottom: 6px; color:#334155; font-weight:600;">Select Fulfillment Method *</label>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
               <button type="button" id="chk-method-courier-btn" class="delivery-toggle-btn active" onclick="setCheckoutDeliveryMethod('courier')">
                 🚚 Shiprocket Courier
@@ -607,71 +707,71 @@
           </div>
 
           <!-- Self Pickup Info Box -->
-          <div id="chk-pickup-info" style="display:none; background:rgba(0,242,254,0.06); border:1px solid rgba(0,242,254,0.25); padding:12px; border-radius:8px; margin-bottom:1rem; font-size:0.85rem; color:#e2e8f0; line-height:1.5;">
+          <div id="chk-pickup-info" style="display:none; background:rgba(255,101,0,0.06); border:1px solid rgba(255,101,0,0.25); padding:12px; border-radius:8px; margin-bottom:1rem; font-size:0.85rem; color:#334155; line-height:1.5;">
             <div style="font-weight:700; color:var(--primary); margin-bottom:4px;">🏬 Pickup Location: D Loop 3D Studio</div>
             <div>📍 No. 25, 3rd Cross Street, Ganga Nagar, Maduravoyal, Chennai, Tamil Nadu - 600095</div>
-            <div style="font-size:0.78rem; color:var(--text-dim); margin-top:4px;">🕒 Pickup Timings: Mon – Sat, 9:30 AM – 7:30 PM (Free ₹0 Delivery)</div>
+            <div style="font-size:0.78rem; color:#64748B; margin-top:4px;">🕒 Pickup Timings: Mon – Sat, 9:30 AM – 7:30 PM (Free ₹0 Delivery)</div>
           </div>
 
-          <h4 style="font-size: 0.95rem; margin-bottom: 0.8rem; color: #fff;">Customer Contact & Shipping Details</h4>
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.8rem; color: #0F172A;">Customer Contact & Shipping Details</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
             <div>
-              <label class="config-label">Full Name *</label>
-              <input type="text" id="chk-name" name="name" autocomplete="shipping name" class="input-field" placeholder="John Doe" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              <label class="config-label" style="color:#334155; font-weight:600;">Full Name *</label>
+              <input type="text" id="chk-name" name="name" autocomplete="shipping name" class="input-field" placeholder="John Doe" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
             <div>
-              <label class="config-label">Phone Number *</label>
-              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              <label class="config-label" style="color:#334155; font-weight:600;">Phone Number *</label>
+              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
           </div>
 
           <div style="margin-bottom: 0.8rem;">
-            <label class="config-label">Email Address *</label>
-            <input type="email" id="chk-email" name="email" autocomplete="shipping email" class="input-field" placeholder="john@example.com" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+            <label class="config-label" style="color:#334155; font-weight:600;">Email Address *</label>
+            <input type="email" id="chk-email" name="email" autocomplete="shipping email" class="input-field" placeholder="john@example.com" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
           </div>
 
-          <!-- Courier Address Fields (Hidden when Self-Pickup is selected) -->
+          <!-- Courier Address Fields -->
           <div id="chk-courier-fields">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <label class="config-label">Pincode *</label>
+                  <label class="config-label" style="color:#334155; font-weight:600;">Pincode *</label>
                   <button type="button" class="btn btn-outline btn-sm" onclick="triggerCheckoutGPSFill()" style="font-size:0.7rem; padding:1px 6px;">📍 GPS Fill</button>
                 </div>
-                <input type="text" id="chk-pincode" name="postal-code" autocomplete="shipping postal-code" class="input-field" placeholder="e.g. 600095" maxlength="6" oninput="handleCheckoutPincodeChange(this.value)" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <input type="text" id="chk-pincode" name="postal-code" autocomplete="shipping postal-code" class="input-field" placeholder="e.g. 600095" maxlength="6" oninput="handleCheckoutPincodeChange(this.value)" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
               <div>
-                <label class="config-label">City / Town *</label>
-                <input type="text" id="chk-city" name="city" autocomplete="shipping address-level2" class="input-field" placeholder="Chennai" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <label class="config-label" style="color:#334155; font-weight:600;">City / Town *</label>
+                <input type="text" id="chk-city" name="city" autocomplete="shipping address-level2" class="input-field" placeholder="Chennai" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.6rem;">
               <div>
-                <label class="config-label">Door / Flat No *</label>
-                <input type="text" id="chk-door" name="address-line1" autocomplete="shipping address-line1" class="input-field" placeholder="Door No, Flat, Building" required style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <label class="config-label" style="color:#334155; font-weight:600;">Door / Flat No *</label>
+                <input type="text" id="chk-door" name="address-line1" autocomplete="shipping address-line1" class="input-field" placeholder="Door No, Flat, Building" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
               <div>
-                <label class="config-label">Street / Road</label>
-                <input type="text" id="chk-street" name="address-line2" autocomplete="shipping address-line2" class="input-field" placeholder="Street Name, Road" style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+                <label class="config-label" style="color:#334155; font-weight:600;">Street / Road</label>
+                <input type="text" id="chk-street" name="address-line2" autocomplete="shipping address-line2" class="input-field" placeholder="Street Name, Road" style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
               </div>
             </div>
 
             <div style="margin-bottom: 0.8rem;">
-              <label class="config-label">Area / Locality / Landmark</label>
-              <input type="text" id="chk-area" name="address-line3" autocomplete="shipping address-line3" class="input-field" placeholder="Area, Locality, Near Landmark" style="width:100%; padding:0.6rem; background:rgba(255,255,255,0.05); border:1px solid var(--border-color); color:#fff; border-radius:6px;">
+              <label class="config-label" style="color:#334155; font-weight:600;">Area / Locality / Landmark</label>
+              <input type="text" id="chk-area" name="address-line3" autocomplete="shipping address-line3" class="input-field" placeholder="Area, Locality, Near Landmark" style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
           </div>
 
-          <h4 style="font-size: 0.95rem; margin-top: 1.2rem; margin-bottom: 0.8rem; color: #fff;">Payment Method</h4>
+          <h4 style="font-size: 0.95rem; margin-top: 1.2rem; margin-bottom: 0.8rem; color: #0F172A;">Payment Method</h4>
           <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem;">
-            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; color:#0F172A;">
               <input type="radio" name="pay-method" value="upi" checked> <span>⚡ UPI / GPay / PhonePe / Paytm</span>
             </label>
-            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; color:#0F172A;">
               <input type="radio" name="pay-method" value="card"> <span>💳 Credit / Debit Card</span>
             </label>
-            <label style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; background: #F8FAFC; border: 1px solid #CBD5E1; padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; color:#0F172A;">
               <input type="radio" name="pay-method" value="cod"> <span>💵 Cash on Delivery (COD)</span>
             </label>
           </div>
@@ -688,11 +788,10 @@
       <div class="footer-grid">
         <div>
           <a href="index.html" class="brand-logo" style="margin-bottom: 1.2rem; display: inline-flex;">
-            <div class="logo-icon">D</div>
-            <span class="brand-name gradient-text">D LOOP 3D</span>
+            <img src="assets/logo.png" alt="DLoop Store" class="brand-logo-img" style="height: 42px;">
           </a>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 300px;">
-            Your premier FDM 3D printing studio and filament sales provider. Bringing digital 3D models into physical reality.
+            DLoopStore.in — A Unit of Digiteloop Tech Solutions. Premier FDM 3D printing studio & Official Numakers 3D filament store.
           </p>
         </div>
 
@@ -710,26 +809,28 @@
           <h4 class="footer-col-title">Store & Services</h4>
           <ul class="footer-links">
             <li><a href="quote.html">Upload 3D File (Instant Quote)</a></li>
-            <li><a href="filaments.html">Filament Store (11 Materials)</a></li>
-            <li><a href="index.html#ready-products">Pre-Printed Products</a></li>
+            <li><a href="custom-gifts.html">Custom Gifts ✨</a></li>
+            <li><a href="products.html">Pre-Printed Products</a></li>
+            <li><a href="filaments.html">Numakers Filaments</a></li>
             <li><a href="admin.html">Admin Portal</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Contact Studio</h4>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Email:</strong> support@dloop3d.com</p>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Phone:</strong> +91 98765 43210</p>
-          <p style="color: var(--text-muted); font-size: 0.9rem;"><strong>Specialization:</strong> 100% FDM 3D Printing</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Email:</strong> support@dloopstore.in</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;"><strong>Phone / WA:</strong> +91 98765 43210</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;"><strong>Studio:</strong> Maduravoyal, Chennai - 600095</p>
         </div>
       </div>
 
       <div class="footer-bottom">
-        &copy; 2026 D Loop 3D. All rights reserved. Specialized FDM 3D Printing & Filament Store.
+        &copy; 2026 DLoopStore.in (Digiteloop Tech Solutions). All rights reserved. Specialized FDM 3D Printing & Numakers Filament Store.
       </div>
     </div>
   </footer>
 
+  <script src="pay0-gateway.js"></script>
   <script src="app.js"></script>
 
   <!-- Dedicated Account Page Controller -->
@@ -896,7 +997,7 @@
         container.innerHTML = `
           <div style="text-align:center; padding:3rem 1rem; color:var(--text-muted);">
             <div style="font-size:3rem; margin-bottom:0.6rem;">📦</div>
-            <h4 style="color:#fff; font-size:1.1rem; margin-bottom:0.4rem;">No Orders Yet</h4>
+            <h4 style="color:#0F172A; font-size:1.1rem; margin-bottom:0.4rem;">No Orders Yet</h4>
             <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:1.2rem;">When you order filaments or 3D prints, your Shiprocket live tracking will appear here.</p>
             <a href="filaments.html" class="btn btn-primary btn-sm">Explore Filament Store</a>
           </div>
@@ -907,10 +1008,10 @@
       const reversed = [...myOrders].reverse();
       container.innerHTML = reversed.map((order, idx) => {
         const statusMap = {
-          'new': { text: 'Order Placed', color: '#60a5fa', bg: 'rgba(59,130,246,0.15)', step: 1 },
-          'processing': { text: 'In Production / Packed', color: '#fbbf24', bg: 'rgba(245,158,11,0.15)', step: 2 },
-          'shipped': { text: 'Dispatched (In-Transit)', color: '#a78bfa', bg: 'rgba(139,92,246,0.15)', step: 3 },
-          'delivered': { text: 'Delivered', color: '#34d399', bg: 'rgba(16,185,129,0.15)', step: 4 }
+          'new': { text: 'Order Placed', color: '#2563eb', bg: 'rgba(37,99,235,0.1)', step: 1 },
+          'processing': { text: 'In Production / Packed', color: '#d97706', bg: 'rgba(217,119,6,0.1)', step: 2 },
+          'shipped': { text: 'Dispatched (In-Transit)', color: '#7c3aed', bg: 'rgba(124,58,237,0.1)', step: 3 },
+          'delivered': { text: 'Delivered', color: '#059669', bg: 'rgba(5,150,105,0.1)', step: 4 }
         };
         const st = statusMap[order.status] || statusMap['new'];
         const dateStr = order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) : 'Recent';
@@ -922,10 +1023,10 @@
             const fileName = it.fileName || (it.name && it.name.startsWith('Custom FDM Print: ') ? it.name.replace('Custom FDM Print: ', '') : it.name);
 
             return `
-              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.06); font-size:0.85rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:6px 0; border-bottom:1px dashed #CBD5E1; font-size:0.85rem; color:#0F172A;">
                 <div>
                   <strong>${escapeHTML(it.name)}</strong> 
-                  ${it.details ? `<span style="color:var(--text-dim)">(${escapeHTML(it.details)})</span>` : ''} 
+                  ${it.details ? `<span style="color:#64748B">(${escapeHTML(it.details)})</span>` : ''} 
                   × ${it.qty} — <span style="font-weight:700; color:var(--primary);">₹${it.total || it.price * it.qty}</span>
                 </div>
                 ${isStl ? `
@@ -939,7 +1040,7 @@
         } else if (order.item) {
           const isStl = Boolean(order.item && order.item.toLowerCase().includes('.stl'));
           itemsHtml = `
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; font-size:0.85rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; font-size:0.85rem; color:#0F172A;">
               <span><strong>${escapeHTML(order.item)}</strong> × ${order.qty || 1} — <span style="font-weight:700; color:var(--primary);">₹${order.total || 0}</span></span>
               ${isStl ? `
                 <button type="button" class="btn btn-outline btn-sm" style="padding:2px 8px; font-size:0.72rem; border-color:var(--primary); color:var(--primary);" onclick="downloadStlModel('${escapeHTML(order.orderId)}', '${escapeHTML(order.item)}')">
@@ -963,9 +1064,9 @@
               <span class="status-badge" style="background:${st.bg}; color:${st.color};">● ${st.text}</span>
             </div>
 
-            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.05); padding:10px 14px; border-radius:8px; margin-bottom:12px;">
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:10px 14px; border-radius:8px; margin-bottom:12px;">
               ${itemsHtml}
-              <div style="display:flex; justify-content:space-between; border-top:1px dashed rgba(255,255,255,0.1); margin-top:8px; padding-top:8px; font-weight:800;">
+              <div style="display:flex; justify-content:space-between; border-top:1px dashed #CBD5E1; margin-top:8px; padding-top:8px; font-weight:800; color:#0F172A;">
                 <span>Total Paid:</span>
                 <span style="color:var(--primary); font-size:1.05rem;">₹${(order.total||0).toLocaleString()}</span>
               </div>
@@ -973,20 +1074,20 @@
 
             <!-- Delivery & Tracking Section -->
             ${order.deliveryMethod === 'pickup' ? `
-              <div class="shiprocket-box" style="border-color:rgba(0,242,254,0.35); background:rgba(0,242,254,0.03);">
+              <div class="shiprocket-box" style="border-color:rgba(255,101,0,0.35); background:rgba(255,101,0,0.03);">
                 <div class="shiprocket-header">
                   <div class="shiprocket-brand">
-                    <span class="shiprocket-brand-icon" style="background:var(--primary); color:#000; font-size:0.9rem;">🏬</span>
-                    <span style="color:#fff; font-weight:700;">Direct Self Pickup (D Loop 3D Studio)</span>
+                    <span class="shiprocket-brand-icon" style="background:var(--primary); color:#fff; font-size:0.9rem;">🏬</span>
+                    <span style="color:#0F172A; font-weight:700;">Direct Self Pickup (D Loop 3D Studio)</span>
                   </div>
-                  <span style="font-size:0.75rem; color:#34d399; font-weight:700; background:rgba(52,211,153,0.1); padding:3px 10px; border-radius:999px; border:1px solid rgba(52,211,153,0.3);">
+                  <span style="font-size:0.75rem; color:#059669; font-weight:700; background:rgba(5,150,105,0.1); padding:3px 10px; border-radius:999px; border:1px solid rgba(5,150,105,0.25);">
                     Free Studio Pickup (₹0)
                   </span>
                 </div>
                 <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.6; padding:8px 0;">
                   <div>📍 <strong>Pickup Studio Address:</strong> No. 25, 3rd Cross Street, Ganga Nagar, Maduravoyal, Chennai, Tamil Nadu - 600095</div>
                   <div style="font-size:0.8rem; color:var(--text-dim); margin-top:3px;">🕒 <strong>Operating Hours:</strong> Monday – Saturday (9:30 AM – 7:30 PM)</div>
-                  <div style="font-size:0.8rem; color:#38bdf8; margin-top:4px;">📞 Studio Contact: +91 98765 43210 (Show your Order ID <strong>${escapeHTML(order.orderId)}</strong> upon arrival)</div>
+                  <div style="font-size:0.8rem; color:var(--primary); margin-top:4px;">📞 Studio Contact: +91 98765 43210 (Show your Order ID <strong>${escapeHTML(order.orderId)}</strong> upon arrival)</div>
                 </div>
               </div>
             ` : `
@@ -1021,6 +1122,24 @@
 
             <div style="font-size:0.75rem; color:var(--text-dim); margin-top:6px;">
               📍 ${order.deliveryMethod === 'pickup' ? 'Fulfillment: <strong>Self Pickup at Studio</strong>' : `Shipping to: ${escapeHTML(order.address || '')}`}
+            </div>
+
+            <!-- Payment Status & Pay Now Action Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:10px; border-top:1px dashed #CBD5E1; flex-wrap:wrap; gap:8px;">
+              <div style="font-size:0.8rem;">
+                ${order.paymentStatus === 'PAID' ? 
+                  `<span style="color:#059669; font-weight:800; background:rgba(5,150,105,0.1); padding:3px 10px; border-radius:999px;">● Paid via UPI (${order.utr ? 'UTR: ' + escapeHTML(order.utr) : 'Verified'})</span>` : 
+                  (order.paymentMethod === 'cod' ? 
+                    `<span style="color:#475569; font-weight:700; background:#F1F5F9; padding:3px 10px; border-radius:999px;">💵 Cash on Delivery</span>` : 
+                    `<span style="color:#d97706; font-weight:800; background:rgba(217,119,6,0.1); padding:3px 10px; border-radius:999px;">⏳ Payment Pending (UPI)</span>`
+                  )
+                }
+              </div>
+              ${(order.paymentStatus !== 'PAID' && order.paymentMethod !== 'cod') ? `
+                <button type="button" class="btn btn-primary btn-sm" onclick="Pay0Gateway.initiateCheckout({ orderId: '${escapeHTML(order.orderId)}', total: ${order.total || 0}, customer: '${escapeHTML(order.customer || '')}', phone: '${escapeHTML(order.phone || '')}', email: '${escapeHTML(order.email || '')}' })" style="background:linear-gradient(135deg, #FF6500, #FF8800); border:none; padding:5px 12px; font-weight:700;">
+                  ⚡ Complete UPI Payment
+                </button>
+              ` : ''}
             </div>
           </div>
         `;
@@ -1113,7 +1232,7 @@
         container.innerHTML = `
           <div style="text-align:center; padding:3rem 1rem; color:var(--text-muted);">
             <div style="font-size:3rem; margin-bottom:0.6rem;">🛒</div>
-            <h4 style="color:#fff; font-size:1.1rem; margin-bottom:0.4rem;">Your Cart is Empty</h4>
+            <h4 style="color:#0F172A; font-size:1.1rem; margin-bottom:0.4rem;">Your Cart is Empty</h4>
             <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:1.2rem;">Add filament spools, instant 3D quotes, or custom gifts.</p>
             <a href="filaments.html" class="btn btn-primary btn-sm">Browse Filaments</a>
           </div>
@@ -1126,11 +1245,11 @@
         const itemTotal = item.price * item.qty;
         grandTotal += itemTotal;
         return `
-          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:8px; margin-bottom:8px; flex-wrap:wrap; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; margin-bottom:8px; flex-wrap:wrap; gap:10px;">
             <div style="display:flex; align-items:center; gap:12px;">
               <img src="${item.img || 'assets/filaments.png'}" style="width:48px; height:48px; border-radius:6px; object-fit:cover;">
               <div>
-                <div style="font-weight:700; color:#fff;">${escapeHTML(item.name)}</div>
+                <div style="font-weight:700; color:#0F172A;">${escapeHTML(item.name)}</div>
                 <div style="font-size:0.75rem; color:var(--text-dim);">${escapeHTML(item.details||'')}</div>
                 <div style="font-size:0.85rem; color:var(--primary); font-weight:700;">₹${item.price} × ${item.qty} = ₹${itemTotal}</div>
               </div>
@@ -1145,7 +1264,7 @@
       container.innerHTML = `
         <div>
           ${itemsHtml}
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px; border-top:1px solid #E2E8F0; flex-wrap:wrap; gap:12px;">
             <div>
               <div style="font-size:0.82rem; color:var(--text-dim);">Total Payable Amount</div>
               <div style="font-size:1.4rem; font-weight:800; color:var(--primary);">₹${grandTotal.toLocaleString()}</div>
@@ -1197,7 +1316,7 @@
             <span class="address-type-badge">${escapeHTML(addr.title || 'Address')}</span>
             ${addr.isDefault ? '<span style="font-size:0.75rem; color:var(--primary); font-weight:700;">★ Default</span>' : ''}
           </div>
-          <div style="font-weight:700; color:#fff; margin-bottom:4px;">${escapeHTML(addr.recipient || currentUser.name)}</div>
+          <div style="font-weight:700; color:#0F172A; margin-bottom:4px;">${escapeHTML(addr.recipient || currentUser.name)}</div>
           <div style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:8px;">
             ${escapeHTML(addr.line)}<br>
             ${escapeHTML(addr.city)}, ${escapeHTML(addr.state || 'Tamil Nadu')} - <strong>${escapeHTML(addr.pincode)}</strong>
