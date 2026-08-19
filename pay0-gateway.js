@@ -1,5 +1,5 @@
 /**
- * D Loop 3D — Pay0 Payment Gateway Unified SDK & Client Bridge
+ * D Loop Store — Pay0 Payment Gateway Unified SDK & Client Bridge
  * Official Integration for https://pay0.shop/docs
  * 0% Fee Safe Instant UPI Payments (GPay, PhonePe, Paytm, BHIM, Cred)
  */
@@ -13,7 +13,7 @@
     secret: 'IhVZmJ4Kte200064108',
     apiBaseUrl: 'https://pay0.shop/api',
     webhookUrl: 'https://dloopstore.in/api/pay0_webhook.php',
-    storeName: 'D Loop 3D Studio',
+    storeName: 'D Loop Store (Digiteloop Tech Solutions)',
     enabled: true
   };
 
@@ -129,7 +129,7 @@
    */
   async function createPay0Order(options) {
     const config = getPay0Config();
-    const cleanMobile = String(options.customerMobile || '').replace(/\D/g, '').slice(-10) || '9876543210';
+    const cleanMobile = String(options.customerMobile || '').replace(/\D/g, '').slice(-10) || '9884872483';
     const amountVal = parseFloat(options.amount || 1).toFixed(2);
     
     // Redirect URL where customer lands after payment
@@ -183,7 +183,7 @@
         customerName: orderData.customer,
         customerMobile: orderData.phone,
         customerEmail: orderData.email,
-        remark1: 'D Loop 3D',
+        remark1: 'D Loop Store',
         remark2: orderData.orderId
       });
 

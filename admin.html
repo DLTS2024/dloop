@@ -1320,6 +1320,7 @@
                 <thead>
                   <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC; font-size:0.82rem; text-align:left; color:#475569;">
                     <th style="padding:12px 16px;">Product</th>
+                    <th style="padding:12px 14px;">Brand</th>
                     <th style="padding:12px 14px;">SKU</th>
                     <th style="padding:12px 14px;">Category</th>
                     <th style="padding:12px 14px;">Price</th>
@@ -1343,10 +1344,19 @@
                 <form id="prod-edit-form" onsubmit="handleProductSave(event)">
                   <input type="hidden" id="pem-idx">
 
-                  <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; margin-bottom:12px;">
+                  <div style="display:grid; grid-template-columns:1.8fr 1.2fr 1fr 1fr; gap:12px; margin-bottom:12px;">
                     <div>
                       <label class="config-label" style="color:#334155; font-weight:600;">Product Title *</label>
                       <input type="text" id="pem-name" required placeholder="e.g. Flexi Octopus Magic Green 1 Pcs">
+                    </div>
+                    <div>
+                      <label class="config-label" style="color:#334155; font-weight:600;">Brand / Maker *</label>
+                      <input type="text" id="pem-brand" list="brand-options-list" required placeholder="D Loop 3D">
+                      <datalist id="brand-options-list">
+                        <option value="D Loop 3D">
+                        <option value="KV Wood Works">
+                        <option value="Elegance Dangle">
+                      </datalist>
                     </div>
                     <div>
                       <label class="config-label" style="color:#334155; font-weight:600;">SKU *</label>
@@ -1432,7 +1442,7 @@
 
             const list = state.ready || [];
             if (!list.length) {
-              tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:#94a3b8;">No products found. Click "+ Add New 3D Product" to add.</td></tr>`;
+              tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:2rem; color:#94a3b8;">No products found. Click "+ Add New 3D Product" to add.</td></tr>`;
               return;
             }
 
@@ -1442,20 +1452,24 @@
               const thumb = (p.images && p.images.length > 0) ? p.images[0] : (p.img || 'assets/dragon.png');
               const isOut = (p.stock !== undefined && p.stock <= 0);
               const imgCount = (p.images && p.images.length) ? p.images.length : (p.img ? 1 : 0);
+              const brand = p.brand || 'D Loop 3D';
 
               tr.innerHTML = `
                 <td style="padding:12px 16px;">
                   <div style="display:flex; align-items:center; gap:12px;">
                     <img src="${thumb}" style="width:44px; height:44px; border-radius:6px; object-fit:cover; background:#000;">
                     <div>
-                      <strong style="color:#fff; font-size:0.9rem;">${escapeHTML(p.name)}</strong>
-                      <div style="font-size:0.75rem; color:#94a3b8;">${p.highlights ? p.highlights[0] || '' : ''}</div>
+                      <strong style="color:#0F172A; font-size:0.9rem;">${escapeHTML(p.name)}</strong>
+                      <div style="font-size:0.75rem; color:#64748B;">${p.highlights ? p.highlights[0] || '' : ''}</div>
                     </div>
                   </div>
                 </td>
-                <td style="padding:12px 14px; font-size:0.85rem; font-family:monospace; color:#38bdf8;">${escapeHTML(p.sku || p.id)}</td>
-                <td style="padding:12px 14px; font-size:0.85rem; color:#94a3b8;">${escapeHTML(p.category || 'Toys')}</td>
-                <td style="padding:12px 14px; font-size:0.9rem; font-weight:700; color:#10b981;">₹${p.price}</td>
+                <td style="padding:12px 14px;">
+                  <span class="badge-brand-pill ${brand.includes('KV Wood') ? 'badge-kv' : (brand.includes('Elegance') ? 'badge-elegance' : 'badge-dloop')}" style="position:static; display:inline-block;">${escapeHTML(brand)}</span>
+                </td>
+                <td style="padding:12px 14px; font-size:0.85rem; font-family:monospace; color:#0284c7;">${escapeHTML(p.sku || p.id)}</td>
+                <td style="padding:12px 14px; font-size:0.85rem; color:#475569;">${escapeHTML(p.category || 'Toys')}</td>
+                <td style="padding:12px 14px; font-size:0.9rem; font-weight:700; color:#16a34a;">₹${p.price}</td>
                 <td style="padding:12px 14px;">
                   <span class="status-badge ${isOut ? 'status-cancelled' : 'status-shipped'}" style="font-size:0.75rem;">
                     ${isOut ? '● Out of Stock (0)' : `● In Stock (${p.stock || 10})`}
@@ -1485,6 +1499,7 @@
               const p = state.ready[idx];
               document.getElementById('pem-title').textContent = `✏️ Edit "${p.name}"`;
               document.getElementById('pem-name').value = p.name || '';
+              document.getElementById('pem-brand').value = p.brand || 'D Loop 3D';
               document.getElementById('pem-sku').value = p.sku || p.id || '';
               document.getElementById('pem-category').value = p.category || '3D Printed Toys';
               document.getElementById('pem-price').value = p.price || 0;
@@ -1503,6 +1518,7 @@
             } else {
               document.getElementById('pem-title').textContent = '➕ Add New 3D Product';
               document.getElementById('pem-sku').value = `1879${Math.floor(100 + Math.random() * 900)}`;
+              document.getElementById('pem-brand').value = 'D Loop 3D';
               document.getElementById('pem-category').value = '3D Printed Toys';
               document.getElementById('pem-price').value = 249;
               document.getElementById('pem-mrp').value = 399;
@@ -1530,7 +1546,7 @@
             div.style.gap = '8px';
             div.style.alignItems = 'center';
             div.innerHTML = `
-              <span style="font-size:0.75rem; color:#94a3b8; width:65px;">Image ${count + 1}:</span>
+              <span style="font-size:0.75rem; color:#64748B; width:65px;">Image ${count + 1}:</span>
               <input type="text" class="pem-img-input" value="${escapeHTML(val)}" placeholder="https://example.com/photo.jpg" style="flex:1;">
               <button type="button" class="btn btn-danger btn-sm" onclick="this.parentElement.remove()" style="padding:4px 8px;">✕</button>
             `;
@@ -1553,11 +1569,13 @@
             const highlights = document.getElementById('pem-highlights').value.split('\n').map(h => h.trim()).filter(Boolean);
             const matSpec = document.getElementById('pem-spec-mat').value.trim();
             const dimSpec = document.getElementById('pem-spec-dim').value.trim();
+            const brand = document.getElementById('pem-brand').value.trim() || 'D Loop 3D';
 
             const prodObj = {
               id: idx >= 0 && state.ready[idx] ? state.ready[idx].id : `prod-${Date.now()}`,
               sku: document.getElementById('pem-sku').value.trim(),
               name: document.getElementById('pem-name').value.trim(),
+              brand: brand,
               category: document.getElementById('pem-category').value.trim(),
               price: Number(document.getElementById('pem-price').value) || 0,
               mrp: Number(document.getElementById('pem-mrp').value) || 0,
@@ -1567,6 +1585,7 @@
               img: images[0],
               highlights: highlights,
               specs: {
+                'Brand': brand,
                 'Material': matSpec || 'Silk PLA (1.75mm)',
                 'Dimensions': dimSpec || 'Standard Desk Size',
                 'Print Technology': '100% FDM Farm Printed',

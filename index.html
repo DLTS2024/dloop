@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D Loop 3D — Specialized FDM 3D Printing Studio & Filament Store</title>
-  <meta name="description" content="D Loop 3D - Specialized FDM 3D Printing Services, Instant STL File Quote Calculator, Pre-Printed Gifts & High-Quality FDM Filaments Shop.">
+  <title>D Loop Store — 3D Printing, Custom Gifts & Numakers Filaments | Digiteloop Tech Solutions</title>
+  <meta name="description" content="D Loop Store (A Unit of Digiteloop Tech Solutions) — In-house 3D printing manufacturing by D Loop 3D, instant STL file quote calculator, custom personalized gifts, and genuine Numakers 3D filaments.">
   
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="index.css">
@@ -19,7 +19,8 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
-        <img src="assets/logo.png" alt="DLoop Store .in" class="brand-logo-img">
+        <img src="assets/logo.png" alt="D Loop Store" class="brand-logo-img">
+        <span class="brand-logo-text">D Loop <span class="brand-highlight">Store</span></span>
       </a>
 
       <ul class="nav-links">
@@ -56,7 +57,8 @@
     <div class="mobile-nav-drawer">
       <div class="mobile-drawer-header">
         <a href="index.html" class="brand-logo">
-          <img src="assets/logo.png" alt="DLoop Store" class="brand-logo-img" style="height: 38px;">
+          <img src="assets/logo.png" alt="D Loop Store" class="brand-logo-img" style="height: 38px;">
+          <span class="brand-logo-text">D Loop <span class="brand-highlight">Store</span></span>
         </a>
         <button class="mobile-drawer-close" id="close-mobile-drawer-btn" onclick="closeMobileNavDrawer()">✕</button>
       </div>
@@ -90,7 +92,7 @@
           ⚡ Upload 3D File (STL)
         </a>
         <div style="font-size: 0.75rem; color: var(--text-dim); text-align: center;">
-          📞 Helpline: +91 98765 43210
+          📞 Helpline: +91 98848 72483
         </div>
       </div>
     </div>
@@ -111,9 +113,9 @@
         <span class="bot-icon">✨</span>
         <span>Gifts</span>
       </a>
-      <a href="filaments.html" class="mobile-bottom-link">
-        <span class="bot-icon">🧵</span>
-        <span>Filament</span>
+      <a href="products.html" class="mobile-bottom-link">
+        <span class="bot-icon">📦</span>
+        <span>Products</span>
       </a>
       <a href="account.html" class="mobile-bottom-link">
         <span class="bot-icon">👤</span>
@@ -122,84 +124,264 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <div class="hero-tag">
-            <span class="dot"></span>
-            Exclusively FDM 3D Printing & Supplies Studio
-          </div>
-
-          <h1 class="hero-title">
-            Precision <span class="gradient-text">FDM 3D Printing</span> & Custom Creations
-          </h1>
-
-          <p class="hero-desc">
-            Welcome to <strong>D Loop 3D</strong>. We specialize exclusively in high-precision FDM (Fused Deposition Modeling) 3D printing. Upload your CAD file for an instant price quote, shop premium filaments, or order pre-printed & customizable gifts!
-          </p>
-
-          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="quote.html" class="btn btn-primary">
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-              </svg>
-              Upload 3D File for Quote
-            </a>
-            
-            <a href="filaments.html" class="btn btn-secondary">
-              Shop Filaments
-            </a>
-
-            <a href="custom-gifts.html" class="btn btn-accent">
-              Customized Gifts ✨
-            </a>
-          </div>
-
-          <div class="hero-stats">
-            <div>
-              <div class="stat-number">24-48h</div>
-              <div class="stat-label">Fast Production Turnaround</div>
+  <!-- HERO BANNER SLIDER (4 SLIDES INTERACTIVE CAROUSEL) -->
+  <section class="hero-slider-section" id="hero-slider-section">
+    <div class="hero-slider-wrapper">
+      <div class="hero-slider-container" id="hero-banner-slider" tabindex="0" aria-label="Hero Carousel">
+        
+        <!-- SLIDE 1: Precision FDM 3D Printing & Quote -->
+        <div class="hero-slide slide-fdm active" data-slide-index="0">
+          <div class="hero-slide-grid">
+            <div class="hero-slide-content">
+              <div class="slide-tag tag-orange">
+                <span class="dot" style="width:8px; height:8px; border-radius:50%; background:var(--primary); display:inline-block;"></span>
+                Exclusively FDM 3D Printing Studio
+              </div>
+              <h1 class="hero-slide-title">
+                Precision <span class="gradient-text">FDM 3D Printing</span> & Rapid Slicing
+              </h1>
+              <p class="hero-slide-desc">
+                Upload your CAD / STL files for instant millimeter-precision quotes, high-speed print farm manufacturing, and premium grade Numakers filaments.
+              </p>
+              <div class="hero-slide-ctas">
+                <a href="quote.html" class="btn btn-primary">
+                  ⚡ Upload 3D File (Instant Quote)
+                </a>
+                <a href="filaments.html" class="btn btn-secondary">
+                  Shop Filaments 🛍️
+                </a>
+              </div>
             </div>
-            <div>
-              <div class="stat-number">100%</div>
-              <div class="stat-label">FDM Precision Focus</div>
-            </div>
-            <div>
-              <div class="stat-number">15+</div>
-              <div class="stat-label">Filament Colors & Types</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hero Visual Image Stack -->
-        <div class="hero-visual">
-          <div class="hero-card-stack">
-            <div class="hero-img-card hero-img-main">
-              <img src="assets/dragon.png" alt="D Loop 3D Articulated Print">
-            </div>
-
-            <div class="hero-img-card hero-img-sub">
-              <img src="assets/filaments.png" alt="D Loop 3D Filaments">
-            </div>
-
-            <div class="hero-badge-float">
-              <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success);"></div>
-              <div>
-                <div style="font-size: 0.85rem; font-weight: 700;">FDM Print Farm Active</div>
-                <div style="font-size: 0.75rem; color: var(--text-dim);">Accepting New STL Files</div>
+            <div class="hero-slide-visual">
+              <div class="slide-img-frame">
+                <img src="assets/dragon.png" alt="Precision FDM 3D Printing">
+                <div class="slide-badge-pill">
+                  <span style="color:#10b981;">●</span> 100% FDM Precision Farm Active
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- SLIDE 2: Customized Gifts & Optical Illusion Planks -->
+        <div class="hero-slide slide-gifts" data-slide-index="1">
+          <div class="hero-slide-grid">
+            <div class="hero-slide-content">
+              <div class="slide-tag tag-pink">
+                ✨ Personalized Creations & Decor
+              </div>
+              <h2 class="hero-slide-title">
+                Customized <span style="background:linear-gradient(135deg,#ec4899,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">3D Printed Gifts</span> & Planks
+              </h2>
+              <p class="hero-slide-desc">
+                Surprise your loved ones with optical illusion dual-name planks, high-definition 3D photo lithophanes, and rotating couple desk sculptures.
+              </p>
+              <div class="hero-slide-ctas">
+                <a href="custom-gifts.html" class="btn btn-accent">
+                  🎁 Explore Custom Gifts (20+ Items)
+                </a>
+                <a href="#custom-gifts-showcase" class="btn btn-outline">
+                  Browse Popular Gifts ▾
+                </a>
+              </div>
+            </div>
+            <div class="hero-slide-visual">
+              <div class="slide-img-frame">
+                <img src="assets/gifts/dual-name-plank_1.jpg" alt="Custom Dual Name Plank Gift">
+                <div class="slide-badge-pill" style="background:rgba(236,72,153,0.9);">
+                  💑 Handcrafted for Memories
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: KV Wood Works Collaboration -->
+        <div class="hero-slide slide-wood" data-slide-index="2">
+          <div class="hero-slide-grid">
+            <div class="hero-slide-content">
+              <div class="slide-tag tag-wood">
+                🪵 Brand Collaboration
+              </div>
+              <h2 class="hero-slide-title">
+                <span style="color:#b45309;">KV Wood Works</span> × D Loop 3D
+              </h2>
+              <p class="hero-slide-desc">
+                Handcrafted solid teak & walnut furniture blended with aerospace-grade 3D printed precision mounts, laptop risers, and bespoke accent tables.
+              </p>
+              <div class="hero-slide-ctas">
+                <a href="products.html?brand=KV+Wood+Works" class="btn btn-primary" style="background:#b45309; border-color:#b45309;">
+                  🪑 Shop KV Woodcraft Collection
+                </a>
+                <a href="products.html?cat=Furniture+%26+Woodcraft" class="btn btn-secondary">
+                  View Furniture Items →
+                </a>
+              </div>
+            </div>
+            <div class="hero-slide-visual">
+              <div class="slide-img-frame">
+                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80" alt="KV Wood Works Teak Laptop Stand">
+                <div class="slide-badge-pill" style="background:rgba(180,83,9,0.9);">
+                  🌿 100% Solid Teak Woodcraft
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4: Elegance Dangle Women's Accessories -->
+        <div class="hero-slide slide-dangle" data-slide-index="3">
+          <div class="hero-slide-grid">
+            <div class="hero-slide-content">
+              <div class="slide-tag tag-elegance">
+                🌸 Designer Fashion & Jewelry
+              </div>
+              <h2 class="hero-slide-title">
+                <span style="background:linear-gradient(135deg,#db2777,#f43f5e); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Elegance Dangle</span> Accessories
+              </h2>
+              <p class="hero-slide-desc">
+                Featherlight 3D printed drop earrings, sterling silver botanical jewelry, and eternal blooming rose flower bouquets for fashion and gifting.
+              </p>
+              <div class="hero-slide-ctas">
+                <a href="products.html?brand=Elegance+Dangle" class="btn btn-accent" style="background:linear-gradient(135deg,#db2777,#f43f5e); border:none;">
+                  🌸 Shop Elegance Dangle
+                </a>
+                <a href="products.html?cat=Women%27s+Accessories" class="btn btn-outline">
+                  Earrings & Bouquets →
+                </a>
+              </div>
+            </div>
+            <div class="hero-slide-visual">
+              <div class="slide-img-frame">
+                <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80" alt="Elegance Dangle 3D Printed Earrings">
+                <div class="slide-badge-pill" style="background:rgba(219,39,119,0.9);">
+                  ✨ Featherlight Hypoallergenic
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="hero-slider-arrow prev" id="hero-slider-prev" aria-label="Previous Slide">‹</button>
+        <button class="hero-slider-arrow next" id="hero-slider-next" aria-label="Next Slide">›</button>
+
+        <!-- Pagination Indicators -->
+        <div class="hero-slider-dots">
+          <button class="hero-dot-indicator active" data-dot="0" aria-label="Slide 1"><div class="dot-progress"></div></button>
+          <button class="hero-dot-indicator" data-dot="1" aria-label="Slide 2"><div class="dot-progress"></div></button>
+          <button class="hero-dot-indicator" data-dot="2" aria-label="Slide 3"><div class="dot-progress"></div></button>
+          <button class="hero-dot-indicator" data-dot="3" aria-label="Slide 4"><div class="dot-progress"></div></button>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Upload 3D File for Instant Quote Section (SNH Cloud Supernova Layout) -->
-  <!-- Upload 3D File for Instant Quote Section (Robu Reference Layout) -->
-  <section class="section" id="quote-tool" style="padding-top: 100px;">
+  <!-- SECTION 1: CUSTOMIZED 3D GIFTS SHOWCASE (Top 4 to 5 Products) -->
+  <section class="section" id="custom-gifts-showcase" style="padding-top: 40px; padding-bottom: 50px;">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+        <div>
+          <div class="section-subtitle" style="color:#db2777;">✨ Personalized Creations</div>
+          <h2 class="section-title" style="margin-bottom:0.4rem;">Customized <span style="background:linear-gradient(135deg,#ec4899,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">3D Gifts</span></h2>
+          <p class="section-desc" style="max-width:600px; margin-bottom:0;">Turn your special moments into 3D art! Optical illusion dual-name flip planks, HD photo lithophanes, and anniversary combos.</p>
+        </div>
+        <div>
+          <a href="custom-gifts.html" class="btn btn-accent" style="white-space:nowrap;">
+            🎁 View All Custom Gifts (20+ Items) →
+          </a>
+        </div>
+      </div>
+
+      <!-- Rendered by JS: 4 top curated custom gifts -->
+      <div class="index-showcase-grid" id="index-custom-gifts-grid">
+        <!-- Rendered dynamically by renderIndexCustomGifts() -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: BRAND SHOWCASES (SEPARATED BY BRAND ON HOME PAGE) -->
+  <section class="section" id="brand-showcases" style="padding-top: 20px; padding-bottom: 50px;">
+    <div class="container">
+      
+      <!-- BRAND 1: 🪵 KV Wood Works Collection -->
+      <div class="brand-section-card brand-section-kv">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:14px; margin-bottom:22px;">
+          <div>
+            <div class="slide-tag tag-wood" style="margin-bottom:6px;">🪵 Handcrafted Woodcraft Collaboration</div>
+            <h2 style="font-size:1.65rem; color:#0F172A; margin-bottom:4px; font-weight:800;">
+              <span style="color:#b45309;">KV Wood Works</span> Collection
+            </h2>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0; max-width:620px;">
+              Handcrafted solid teak & walnut furniture blended with aerospace-grade 3D printed precision mounts, laptop risers, and mini coffee tables.
+            </p>
+          </div>
+          <div>
+            <a href="products.html?brand=KV+Wood+Works" class="btn btn-secondary" style="white-space:nowrap; border-color:#b45309; color:#b45309;">
+              🪵 View All KV Wood Works Collection →
+            </a>
+          </div>
+        </div>
+
+        <div class="index-showcase-grid" id="index-kvwood-grid">
+          <!-- Rendered dynamically by renderIndexBrandProducts() -->
+        </div>
+      </div>
+
+      <!-- BRAND 2: 🌸 Elegance Dangle Studio -->
+      <div class="brand-section-card brand-section-elegance">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:14px; margin-bottom:22px;">
+          <div>
+            <div class="slide-tag tag-elegance" style="margin-bottom:6px;">🌸 Women's Designer Studio</div>
+            <h2 style="font-size:1.65rem; color:#0F172A; margin-bottom:4px; font-weight:800;">
+              <span style="background:linear-gradient(135deg,#db2777,#f43f5e); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Elegance Dangle</span> Accessories
+            </h2>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0; max-width:620px;">
+              Featherlight 3D printed drop earrings, sterling silver botanical jewelry, and eternal blooming rose flower bouquets for fashion and gifting.
+            </p>
+          </div>
+          <div>
+            <a href="products.html?brand=Elegance+Dangle" class="btn btn-accent" style="white-space:nowrap; background:linear-gradient(135deg,#db2777,#f43f5e); border:none;">
+              🌸 View All Elegance Dangle Studio →
+            </a>
+          </div>
+        </div>
+
+        <div class="index-showcase-grid" id="index-elegance-grid">
+          <!-- Rendered dynamically by renderIndexBrandProducts() -->
+        </div>
+      </div>
+
+      <!-- BRAND 3: 🐉 D Loop 3D Farm Creations -->
+      <div class="brand-section-card brand-section-dloop">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:14px; margin-bottom:22px;">
+          <div>
+            <div class="slide-tag tag-orange" style="margin-bottom:6px;">⚡ Precision FDM Studio</div>
+            <h2 style="font-size:1.65rem; color:#0F172A; margin-bottom:4px; font-weight:800;">
+              <span class="gradient-text">D Loop 3D</span> Innovations
+            </h2>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0; max-width:620px;">
+              Articulated crystal dragons, flexi octopus toys, phone stands, parametric vases, and tactile infinity cubes printed on our 24/7 farm.
+            </p>
+          </div>
+          <div>
+            <a href="products.html?brand=D+Loop+3D" class="btn btn-primary" style="white-space:nowrap;">
+              📦 View All 3D Printed Products →
+            </a>
+          </div>
+        </div>
+
+        <div class="index-showcase-grid" id="index-dloop-grid">
+          <!-- Rendered dynamically by renderIndexBrandProducts() -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Upload 3D File for Instant Quote Section (Robu / Supernova Reference Layout) -->
+  <section class="section" id="quote-tool" style="padding-top: 20px;">
     <div class="container">
 
       <!-- Top Discount / Notice Banner -->
@@ -304,103 +486,25 @@
     </div>
   </section>
 
-
-  <!-- Pre-printed Products Section -->
-  <section class="section" id="ready-products" style="background: rgba(255, 255, 255, 0.01);">
+  <!-- FDM Filaments Store Showcase Section (4 Curated Filaments with View More Button) -->
+  <section class="section" id="filament-shop" style="padding-top: 30px; padding-bottom: 60px;">
     <div class="container">
-      <div class="section-header">
-        <div class="section-subtitle">Ready to Ship</div>
-        <h2 class="section-title">Pre-Printed <span class="gradient-text">3D Products</span></h2>
-        <p class="section-desc">Browse our curated collection of pre-printed 3D products, articulated dragons, fidget gadgets, and desk accessories crafted with FDM precision.</p>
-      </div>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter-prod="all">All Products</button>
-        <button class="filter-btn" data-filter-prod="toys">Articulated Toys</button>
-        <button class="filter-btn" data-filter-prod="desk">Desk Organizers</button>
-        <button class="filter-btn" data-filter-prod="lithophane">Lithophanes</button>
-        <button class="filter-btn" data-filter-prod="gadgets">Mechanical Gadgets</button>
-      </div>
-
-      <div class="products-grid" id="products-grid-container">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Customized Gifts Section -->
-  <section class="section" id="custom-gifts">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-subtitle">Personalized Creations</div>
-        <h2 class="section-title">Customizable <span class="gradient-pink">Gift Products</span></h2>
-        <p class="section-desc">Create unforgettable gifts! Personalize 3D printed lithophane lamps, custom name keychains, and desk lightboxes.</p>
-        <div style="margin-top: 1rem;">
-          <a href="custom-gifts.html" class="btn btn-primary" style="background:linear-gradient(135deg, #ec4899 0%, #a855f7 100%); border:none;">
-            🎁 Explore Full Custom 3D Gifts Superstore (20+ Items) →
-          </a>
-        </div>
-      </div>
-
-      <div class="gift-configurator">
-        <!-- Preview Box -->
-        <div class="gift-preview-box">
-          <img src="assets/lithophane.png" class="gift-preview-img" id="gift-preview-image-elem" alt="Lithophane Preview">
-          <div class="lithophane-text-overlay" id="gift-preview-text">D LOOP 3D</div>
-        </div>
-
-        <!-- Customizer Form -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
         <div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Personalized Photo Lithophane Desk Frame</h3>
-          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-            Upload your favorite photo, and our FDM 3D printers will convert it into a high-definition translucent 3D lithophane portrait panel mounted on a premium wooden stand.
-          </p>
-
-          <div class="config-group">
-            <div class="config-label">Enter Custom Text / Name (Bottom Inscription)</div>
-            <input type="text" class="input-field" id="gift-custom-text" value="D LOOP 3D" placeholder="e.g. Happy Birthday Arjun!">
-          </div>
-
-          <div class="config-group">
-            <div class="config-label">Upload Photo for Lithophane</div>
-            <input type="file" class="input-field" id="gift-photo-input" accept="image/*">
-          </div>
-
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 2rem;">
-            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">₹849</div>
-            <button class="btn btn-accent" id="btn-order-custom-gift">
-              🎁 Order Custom Gift
-            </button>
-          </div>
+          <div class="section-subtitle">🧬 Raw Supplies & Materials</div>
+          <h2 class="section-title" style="margin-bottom:0.4rem;">3D Printing <span class="gradient-text">Filament Shop</span></h2>
+          <p class="section-desc" style="max-width:600px; margin-bottom:0;">100% Genuine Numakers filaments. High-speed, high-impact PLA, PETG, TPU, and Carbon Fiber with ±0.02mm dimensional precision (Sourced & Resold by DLoopStore).</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FDM Filaments Store Section -->
-  <section class="section" id="filament-shop" style="background: rgba(255, 255, 255, 0.01);">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-subtitle">Raw Supplies & Materials</div>
-        <h2 class="section-title">3D Printing <span class="gradient-text">Filament Shop</span></h2>
-        <p class="section-desc">High-grade FDM 3D printing filaments for your home or industrial 3D printers. Premium quality, tight dimensional tolerance (±0.02mm), zero tangles.</p>
-        <div style="margin-top: 1rem;">
-          <a href="filaments.html" class="btn btn-primary">
-            🛍️ Open Full Filament Superstore (11 Materials & 50+ Colors) →
+        <div>
+          <a href="filaments.html" class="btn btn-primary" style="white-space:nowrap;">
+            🛍️ View All Filaments (11 Materials & 50+ Colors) →
           </a>
         </div>
       </div>
 
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter-fil="all">All Filaments</button>
-        <button class="filter-btn" data-filter-fil="pla">PLA Filament</button>
-        <button class="filter-btn" data-filter-fil="abs">ABS Filament</button>
-        <button class="filter-btn" data-filter-fil="petg">PETG Filament</button>
-        <button class="filter-btn" data-filter-fil="tpu">TPU Flexible</button>
-      </div>
-
-      <div class="products-grid" id="filaments-grid-container">
-        <!-- Rendered by JS -->
+      <!-- Rendered by JS: 4 top curated filaments -->
+      <div class="index-showcase-grid" id="index-filaments-showcase-grid">
+        <!-- Rendered dynamically by renderIndexFilamentsShowcase() -->
       </div>
     </div>
   </section>
@@ -411,7 +515,7 @@
       <div class="section-header">
         <div class="section-subtitle">Our Specialization</div>
         <h2 class="section-title">Why We Specialize <span class="gradient-text">Exclusively in FDM</span></h2>
-        <p class="section-desc">At D Loop 3D, FDM 3D printing is our sole focus. Here is why FDM technology delivers the best results for your prototyping and production needs.</p>
+        <p class="section-desc">At D Loop 3D (our in-house manufacturing arm), FDM 3D printing is our sole focus. Here is why our precision farm delivers the best results for your prototyping and production needs.</p>
       </div>
 
       <div class="features-grid">
@@ -432,18 +536,34 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Cost-Effective & Scalable</h3>
+          <div class="feature-icon">🎯</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Tight Tolerances (±0.15mm)</h3>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
-            FDM technology eliminates costly mold toolings and resin post-curing cycles, offering the best cost-per-gram value in 3D manufacturing.
+            Calibrated Bambu Lab and high-speed precision print farm machines guarantee exact fit for multi-part mechanical assemblies.
           </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🎨</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Vibrant Color Options</h3>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">50+ Engineering Colors</h3>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
-            Choose from over 15+ solid, metallic silk, dual-color gradient, glow-in-the-dark, and wood fill filaments.
+            Choose from an extensive library of premium solid, matte, marble, translucent, glow-in-dark, and silk colors.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Rapid Turnaround (24h)</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Multi-printer distributed farm queue ensures immediate production initiation upon order placement with rapid dispatch.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Industrial Material Portfolio</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            From standard PLA+ to carbon fiber reinforced PETG-CF and temperature-resistant ABS, we cater to all engineering demands.
           </p>
         </div>
       </div>
@@ -496,7 +616,7 @@
           </div>
           <div class="config-group" style="margin-bottom: 0.8rem;">
             <label class="config-label" style="color:#334155; font-weight:600;">Phone Number</label>
-            <input type="tel" id="cq-phone" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
+            <input type="tel" id="cq-phone" class="input-field" placeholder="+91 98848 72483" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
           </div>
           <div class="config-group" style="margin-bottom: 1rem;">
             <label class="config-label" style="color:#334155; font-weight:600;">Special Requirements / Notes</label>
@@ -512,7 +632,7 @@
   <div class="modal-overlay" id="checkout-modal-overlay">
     <div class="modal-card" style="max-width: 640px;">
       <div class="modal-header">
-        <h3 style="color:#0F172A;">🚀 D Loop 3D Express Checkout</h3>
+        <h3 style="color:#0F172A;">🚀 D Loop Store Express Checkout</h3>
         <button class="modal-close-btn" id="close-checkout-modal">✕</button>
       </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
@@ -567,7 +687,7 @@
             </div>
             <div>
               <label class="config-label" style="color:#334155; font-weight:600;">Phone Number *</label>
-              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98765 43210" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
+              <input type="tel" id="chk-phone" name="tel" autocomplete="shipping tel" class="input-field" placeholder="+91 98848 72483" required style="width:100%; padding:0.6rem; background:#FFFFFF; border:1px solid #CBD5E1; color:#0F172A; border-radius:6px;">
             </div>
           </div>
 
@@ -634,10 +754,11 @@
       <div class="footer-grid">
         <div>
           <a href="index.html" class="brand-logo" style="margin-bottom: 1.2rem; display: inline-flex;">
-            <img src="assets/logo.png" alt="DLoop Store" class="brand-logo-img" style="height: 42px;">
+            <img src="assets/logo.png" alt="D Loop Store" class="brand-logo-img" style="height: 42px;">
+            <span class="brand-logo-text" style="font-size:1.3rem;">D Loop <span class="brand-highlight">Store</span></span>
           </a>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 300px;">
-            DLoopStore.in — A Unit of Digiteloop Tech Solutions. Premier FDM 3D printing studio & Authorized Numakers 3D filament store.
+            DLoopStore.in — A Unit of Digiteloop Tech Solutions. Premier online store for D Loop 3D in-house manufactured creations, custom gifts & genuine Numakers filaments.
           </p>
         </div>
 
@@ -671,7 +792,7 @@
             <strong>Email:</strong> support@dloopstore.in
           </p>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">
-            <strong>Phone / WA:</strong> +91 98765 43210
+            <strong>Phone / WA:</strong> +91 98848 72483
           </p>
           <p style="color: var(--text-muted); font-size: 0.9rem;">
             <strong>Location:</strong> Maduravoyal, Chennai - 600095
@@ -680,13 +801,14 @@
       </div>
 
       <div class="footer-bottom">
-        &copy; 2026 D Loop 3D. All rights reserved. Specialized FDM 3D Printing & Filament Store.
+        &copy; 2026 DLoopStore.in (Digiteloop Tech Solutions). All rights reserved. In-House 3D Manufacturing by D Loop 3D.
       </div>
     </div>
   </footer>
 
 
-  <!-- Payment Gateway & Application JS -->
+  <!-- Catalogs, Payment Gateway & Application JS -->
+  <script src="custom-gifts-data.js"></script>
   <script src="pay0-gateway.js"></script>
   <script src="app.js"></script>
 </body>

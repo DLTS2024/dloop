@@ -93,6 +93,7 @@ const PREPRINTED_PRODUCTS = [
     sku: '1879347',
     name: 'Flexi Octopus Magic Green 1 Pcs',
     category: '3D Printed Toys',
+    brand: 'D Loop 3D',
     price: 224,
     mrp: 349,
     stock: 15,
@@ -113,6 +114,7 @@ const PREPRINTED_PRODUCTS = [
       'Stress relief tactile toy'
     ],
     specs: {
+      'Brand': 'D Loop 3D',
       'Material': 'Silk Dual-Color PLA (1.75mm)',
       'Layer Height': '0.16mm High Detail',
       'Infill Density': '20% Gyroid',
@@ -125,200 +127,11 @@ const PREPRINTED_PRODUCTS = [
     packageIncludes: '1x Flexi Octopus Magic Green 1 Pcs'
   },
   {
-    id: 'prod-1879351',
-    sku: '1879351',
-    name: 'Flexi Octopus Magic Red 1 Pcs',
-    category: '3D Printed Toys',
-    price: 235,
-    mrp: 360,
-    stock: 12,
-    rating: '5.0',
-    reviews: 24,
-    tag: 'Trending',
-    tagClass: 'pink',
-    desc: 'Vibrant dual-color Magic Red & Blue flexible octopus figurine. Articulated tentacles twist and wiggle smoothly right off the print bed with zero assembly.',
-    images: [
-      'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'
-    ],
-    highlights: [
-      'Dual-tone Magic Red metallic gloss',
-      'Smooth print-in-place ball sockets',
-      'Durable drop-safe PLA silk material'
-    ],
-    specs: {
-      'Material': 'Silk Metallic PLA',
-      'Layer Height': '0.16mm Precision',
-      'Infill Density': '20% Infill',
-      'Dimensions': '110 × 110 × 42 mm',
-      'Weight': '44 grams',
-      'Country of Origin': 'India'
-    },
-    warranty: '15 Days Replacement Warranty Against Defects.',
-    packageIncludes: '1x Flexi Octopus Magic Red 1 Pcs'
-  },
-  {
-    id: 'prod-1879358',
-    sku: '1879358',
-    name: 'Flexi Octopus Silk Blue 1 Pcs',
-    category: '3D Printed Toys',
-    price: 224,
-    mrp: 340,
-    stock: 18,
-    rating: '4.8',
-    reviews: 14,
-    tag: 'Popular',
-    tagClass: '',
-    desc: 'Deep ocean silk blue articulated flexible octopus. Smooth, tactile stress-relief companion for desks, workstations, and creative gifts.',
-    images: [
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80'
-    ],
-    highlights: [
-      'Silk glossy royal blue finish',
-      'Ultra smooth joint movement',
-      '100% biodegradable PLA filament'
-    ],
-    specs: {
-      'Material': 'Silk Blue PLA (1.75mm)',
-      'Layer Height': '0.20mm Standard',
-      'Weight': '40 grams',
-      'Country of Origin': 'India'
-    },
-    warranty: '15 Days Replacement Warranty Against Defects.',
-    packageIncludes: '1x Flexi Octopus Silk Blue 1 Pcs'
-  },
-  {
-    id: 'prod-1879363',
-    sku: '1879363',
-    name: 'Flexi Turtle Mobile Stand Silk green 1 Pcs',
-    category: 'Mobile & Desk Stands',
-    price: 448,
-    mrp: 599,
-    stock: 8,
-    rating: '4.9',
-    reviews: 31,
-    tag: 'Functional Art',
-    tagClass: 'pink',
-    desc: 'Dual-purpose articulated turtle companion and sturdy mobile phone stand. Holds all smartphone models in horizontal and vertical orientations securely.',
-    images: [
-      'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80'
-    ],
-    highlights: [
-      'Universal smartphone stand (Horizontal & Vertical)',
-      'Articulated flippers and head',
-      'Weighted base for stable anti-tip phone holding'
-    ],
-    specs: {
-      'Material': 'Tough PETG / Silk PLA Blend',
-      'Dimensions': '130 × 95 × 55 mm',
-      'Weight': '78 grams',
-      'Compatibility': 'All Android & iPhone Devices'
-    },
-    warranty: '15 Days Replacement Warranty Against Sealed Product Defects.',
-    packageIncludes: '1x Flexi Turtle Mobile Stand Silk Green'
-  },
-  {
-    id: 'prod-1879372',
-    sku: '1879372',
-    name: 'Infinity Cube Fidget Toy For Stress Relief Magic Green 1 Pcs',
-    category: 'Fidget & Art',
-    price: 235,
-    mrp: 350,
-    stock: 0,
-    rating: '4.8',
-    reviews: 42,
-    tag: 'Out of Stock',
-    tagClass: '',
-    desc: 'Endless folding infinity cube fidget toy. Folds continuously inside out with tight-tolerance print-in-place hinges for satisfying focus and tactile anxiety relief.',
-    images: [
-      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'
-    ],
-    highlights: [
-      'Seamless multi-directional hinge action',
-      'Pocket-friendly EDC desk toy',
-      'Zero assembly required'
-    ],
-    specs: {
-      'Material': 'PLA Tough High-Impact',
-      'Dimensions': '40 × 40 × 40 mm (Closed)',
-      'Weight': '35 grams',
-      'Country of Origin': 'India'
-    },
-    warranty: '15 Days Replacement Warranty Against Defects.',
-    packageIncludes: '1x Infinity Cube Fidget Toy Magic Green'
-  },
-  {
-    id: 'prod-1879377',
-    sku: '1879377',
-    name: 'Infinity Cube Fidget Toy For Stress Relief Magic Red 1 Pcs',
-    category: 'Fidget & Art',
-    price: 235,
-    mrp: 350,
-    stock: 0,
-    rating: '4.9',
-    reviews: 38,
-    tag: 'Out of Stock',
-    tagClass: '',
-    desc: 'Metallic Silk Red infinity folding cube. Precision 0.16mm layer lines and reinforced interior core for long-lasting fidgeting satisfaction.',
-    images: [
-      'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80'
-    ],
-    highlights: [
-      'Magic Red silk finish with metallic sheen',
-      'Continuous flip mechanism',
-      'Reinforced hinge durability'
-    ],
-    specs: {
-      'Material': 'PLA Silk Pro',
-      'Dimensions': '40 × 40 × 40 mm',
-      'Weight': '35 grams'
-    },
-    warranty: '15 Days Replacement Warranty.',
-    packageIncludes: '1x Infinity Cube Fidget Toy Magic Red'
-  },
-  {
-    id: 'prod-1879381',
-    sku: '1879381',
-    name: 'Marble Flower Vase For Home Decor 1 Pcs',
-    category: 'Home Decor',
-    price: 660,
-    mrp: 990,
-    stock: 6,
-    rating: '5.0',
-    reviews: 19,
-    tag: 'Premium Decor',
-    tagClass: 'pink',
-    desc: 'Geometric fluted spiral modern flower vase 3D printed with marble speckled filament. Waterproof interior coating suitable for dry and fresh floral arrangements.',
-    images: [
-      'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'
-    ],
-    highlights: [
-      'Authentic marble-speckled aesthetic texture',
-      'Water-sealed vase interior',
-      'Contemporary parametric fluted design'
-    ],
-    specs: {
-      'Material': 'Marble Composite PLA (Waterproofed)',
-      'Dimensions': '90 × 90 × 200 mm',
-      'Weight': '165 grams',
-      'Care': 'Hand wash with cold water'
-    },
-    warranty: '15 Days Replacement Warranty Against Defects.',
-    packageIncludes: '1x Marble Flower Vase 1 Pcs'
-  },
-  {
     id: 'prod-1879301',
     sku: '1879301',
     name: 'Articulated Crystal Dragon (Dual-Color Silk)',
     category: '3D Printed Toys',
+    brand: 'D Loop 3D',
     price: 699,
     mrp: 999,
     stock: 14,
@@ -338,6 +151,7 @@ const PREPRINTED_PRODUCTS = [
       'High strength joint engineering'
     ],
     specs: {
+      'Brand': 'D Loop 3D',
       'Material': 'Dual-Color Silk Chameleon PLA',
       'Length': '450 mm',
       'Weight': '140 grams',
@@ -345,15 +159,330 @@ const PREPRINTED_PRODUCTS = [
     },
     warranty: '15 Days Replacement Warranty Against Broken Joints.',
     packageIncludes: '1x Articulated Crystal Dragon (45cm)'
+  },
+  {
+    id: 'prod-kv-laptop-stand',
+    sku: 'KVW-8801',
+    name: 'KV Solid Teak Ergonomic Laptop Stand & Desk Dock',
+    category: 'Furniture & Woodcraft',
+    brand: 'KV Wood Works',
+    price: 1299,
+    mrp: 1899,
+    stock: 10,
+    rating: '5.0',
+    reviews: 28,
+    tag: 'Collab Special',
+    tagClass: 'pink',
+    desc: 'Handcrafted solid natural teak wood ergonomic laptop riser crafted in collaboration with KV Wood Works. Features precision 3D printed anti-slip cable routing anchors and angle-locking joints for superior ergonomics and airflow.',
+    images: [
+      'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      '100% Genuine solid seasoned teak wood',
+      'Precision 3D printed vibration dampeners & cable anchors',
+      'Elevates laptop screen to eye-level posture',
+      'Natural honey-gloss beeswax polished finish'
+    ],
+    specs: {
+      'Brand': 'KV Wood Works × D Loop 3D',
+      'Material': 'Solid Seasoned Teak Wood + Tough PETG Accents',
+      'Compatibility': 'Laptops from 11" to 17.3"',
+      'Dimensions': '280 × 240 × 145 mm',
+      'Weight': '680 grams',
+      'Origin': 'Handcrafted in Tamil Nadu, India'
+    },
+    warranty: '1 Year Woodcraft Warranty & 15 Days Replacement Guarantee.',
+    packageIncludes: '1x KV Solid Teak Laptop Stand, 2x 3D Cable Clips'
+  },
+  {
+    id: 'prod-kv-headphone-dock',
+    sku: 'KVW-8802',
+    name: 'KV Minimalist Walnut Headphone Stand & Phone Dock',
+    category: 'Furniture & Woodcraft',
+    brand: 'KV Wood Works',
+    price: 849,
+    mrp: 1299,
+    stock: 14,
+    rating: '4.9',
+    reviews: 34,
+    tag: 'Artisan Wood',
+    tagClass: 'pink',
+    desc: 'Artisanal curved American walnut headphone stand featuring an integrated 3D printed heavy-duty phone charging cradle and wireless cable pass-through.',
+    images: [
+      'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Curved arch protects headphone headband foam',
+      'Built-in 3D printed smartphone slot',
+      'Weighted anti-tip base with non-slip silicone feet'
+    ],
+    specs: {
+      'Brand': 'KV Wood Works',
+      'Material': 'American Walnut Veneer & Matte PLA Accents',
+      'Height': '275 mm',
+      'Base Diameter': '135 mm',
+      'Weight': '420 grams'
+    },
+    warranty: '6 Months Craft Warranty.',
+    packageIncludes: '1x KV Walnut Headphone Stand'
+  },
+  {
+    id: 'prod-kv-geodesic-table',
+    sku: 'KVW-8803',
+    name: 'KV Artisan Oak Mini Table with 3D Geodesic Accents',
+    category: 'Furniture & Woodcraft',
+    brand: 'KV Wood Works',
+    price: 2499,
+    mrp: 3499,
+    stock: 5,
+    rating: '5.0',
+    reviews: 16,
+    tag: 'Furniture Collab',
+    tagClass: 'pink',
+    desc: 'Bespoke accent side table combining hand-turned natural oak legs, live edge wooden top, and high-strength 3D printed geodesic geometric brace brackets.',
+    images: [
+      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Artisanal turned Oak wood legs',
+      '3D printed Carbon Fiber reinforced geodesic joints',
+      'Sturdy load bearing up to 25 kg'
+    ],
+    specs: {
+      'Brand': 'KV Wood Works',
+      'Wood Type': 'Prime Indian Oak & Teak',
+      'Dimensions': '400 × 400 × 480 mm',
+      'Weight': '2.8 kg'
+    },
+    warranty: '1 Year Structural Woodcraft Warranty.',
+    packageIncludes: '1x KV Artisan Mini Table, Hex Tool & Assembly Hardware'
+  },
+  {
+    id: 'prod-ed-flora-earrings',
+    sku: 'ELD-7701',
+    name: 'Elegance Dangle Geometric Flora 3D Drop Earrings',
+    category: "Women's Accessories",
+    brand: 'Elegance Dangle',
+    price: 299,
+    mrp: 499,
+    stock: 25,
+    rating: '4.9',
+    reviews: 46,
+    tag: 'Jewelry Trend',
+    tagClass: 'pink',
+    desc: 'Featherlight parametric geometric floral drop earrings crafted by Elegance Dangle. Ultra-high precision 0.08mm micro-layer 3D printed petals paired with 925 sterling silver hypoallergenic hooks.',
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Featherlight weight (<3 grams per earring) for all-day comfort',
+      '925 Sterling Silver hypoallergenic ear hooks',
+      'Intricate parametric floral petals with silk shimmer finish',
+      'Water and perfume splash resistant'
+    ],
+    specs: {
+      'Brand': 'Elegance Dangle',
+      'Material': 'Micro-precision Silk PLA + 925 Silver Hooks',
+      'Length': '52 mm',
+      'Weight': '2.8 grams / pair',
+      'Origin': 'Handcrafted & Assembled in India'
+    },
+    warranty: '15 Days Replacement Warranty for hooks & print integrity.',
+    packageIncludes: '1x Pair Elegance Dangle Earrings in Velvet Gift Pouch'
+  },
+  {
+    id: 'prod-ed-rose-bouquet',
+    sku: 'ELD-7702',
+    name: 'Elegance Dangle Eternal 3D Rose Bouquet in Textured Vase',
+    category: "Women's Accessories",
+    brand: 'Elegance Dangle',
+    price: 649,
+    mrp: 999,
+    stock: 18,
+    rating: '5.0',
+    reviews: 62,
+    tag: 'Eternal Bouquet',
+    tagClass: 'pink',
+    desc: 'Stunning forever blooming 3D sculpted rose flower bouquet with delicate petal layers, spiraling green foliage, and an elegant marble-texture display vase by Elegance Dangle.',
+    images: [
+      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Never withering 3D printed eternal bouquet',
+      'Scent-absorbing ceramic-feel petals (add your favorite perfume)',
+      'Includes marble-finish geometric vase'
+    ],
+    specs: {
+      'Brand': 'Elegance Dangle',
+      'Flowers Count': '7 Artisan 3D Roses + Foliage',
+      'Bouquet Height': '240 mm',
+      'Weight': '210 grams'
+    },
+    warranty: '15 Days Replacement Guarantee.',
+    packageIncludes: '1x Eternal Rose Bouquet, 1x Geometric Textured Vase'
+  },
+  {
+    id: 'prod-ed-spiral-chandelier',
+    sku: 'ELD-7703',
+    name: 'Elegance Dangle Golden Spiral Chandelier Earrings',
+    category: "Women's Accessories",
+    brand: 'Elegance Dangle',
+    price: 349,
+    mrp: 599,
+    stock: 20,
+    rating: '4.9',
+    reviews: 39,
+    tag: 'Statement Piece',
+    tagClass: 'pink',
+    desc: 'Eye-catching helical golden spiral chandelier earrings designed to sway gracefully with movement. Printed in metallic enchanted gold silk filament with polished gold-plated hooks.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Graceful dynamic movement when walking',
+      'Metallic gold shine without tarnishing',
+      'Featherlight comfort for weddings and celebrations'
+    ],
+    specs: {
+      'Brand': 'Elegance Dangle',
+      'Material': 'Enchanted Gold Silk Metallic + Gold Hooks',
+      'Length': '68 mm',
+      'Weight': '3.4 grams'
+    },
+    warranty: '15 Days Replacement Warranty.',
+    packageIncludes: '1x Pair Spiral Chandelier Earrings in Gift Pouch'
+  },
+  {
+    id: 'prod-1879363',
+    sku: '1879363',
+    name: 'Flexi Turtle Mobile Stand Silk green 1 Pcs',
+    category: 'Mobile & Desk Stands',
+    brand: 'D Loop 3D',
+    price: 448,
+    mrp: 599,
+    stock: 8,
+    rating: '4.9',
+    reviews: 31,
+    tag: 'Functional Art',
+    tagClass: 'pink',
+    desc: 'Dual-purpose articulated turtle companion and sturdy mobile phone stand. Holds all smartphone models in horizontal and vertical orientations securely.',
+    images: [
+      'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Universal smartphone stand (Horizontal & Vertical)',
+      'Articulated flippers and head',
+      'Weighted base for stable anti-tip phone holding'
+    ],
+    specs: {
+      'Brand': 'D Loop 3D',
+      'Material': 'Tough PETG / Silk PLA Blend',
+      'Dimensions': '130 × 95 × 55 mm',
+      'Weight': '78 grams',
+      'Compatibility': 'All Android & iPhone Devices'
+    },
+    warranty: '15 Days Replacement Warranty Against Sealed Product Defects.',
+    packageIncludes: '1x Flexi Turtle Mobile Stand Silk Green'
+  },
+  {
+    id: 'prod-1879381',
+    sku: '1879381',
+    name: 'Marble Flower Vase For Home Decor 1 Pcs',
+    category: 'Home Decor',
+    brand: 'D Loop 3D',
+    price: 660,
+    mrp: 990,
+    stock: 6,
+    rating: '5.0',
+    reviews: 19,
+    tag: 'Premium Decor',
+    tagClass: 'pink',
+    desc: 'Geometric fluted spiral modern flower vase 3D printed with marble speckled filament. Waterproof interior coating suitable for dry and fresh floral arrangements.',
+    images: [
+      'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Authentic marble-speckled aesthetic texture',
+      'Water-sealed vase interior',
+      'Contemporary parametric fluted design'
+    ],
+    specs: {
+      'Brand': 'D Loop 3D',
+      'Material': 'Marble Composite PLA (Waterproofed)',
+      'Dimensions': '90 × 90 × 200 mm',
+      'Weight': '165 grams',
+      'Care': 'Hand wash with cold water'
+    },
+    warranty: '15 Days Replacement Warranty Against Defects.',
+    packageIncludes: '1x Marble Flower Vase 1 Pcs'
+  },
+  {
+    id: 'prod-1879372',
+    sku: '1879372',
+    name: 'Infinity Cube Fidget Toy For Stress Relief Magic Green 1 Pcs',
+    category: 'Fidget & Art',
+    brand: 'D Loop 3D',
+    price: 235,
+    mrp: 350,
+    stock: 12,
+    rating: '4.8',
+    reviews: 42,
+    tag: 'EDC Fidget',
+    tagClass: 'pink',
+    desc: 'Endless folding infinity cube fidget toy. Folds continuously inside out with tight-tolerance print-in-place hinges for satisfying focus and tactile anxiety relief.',
+    images: [
+      'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'
+    ],
+    highlights: [
+      'Seamless multi-directional hinge action',
+      'Pocket-friendly EDC desk toy',
+      'Zero assembly required'
+    ],
+    specs: {
+      'Brand': 'D Loop 3D',
+      'Material': 'PLA Tough High-Impact',
+      'Dimensions': '40 × 40 × 40 mm (Closed)',
+      'Weight': '35 grams',
+      'Country of Origin': 'India'
+    },
+    warranty: '15 Days Replacement Warranty Against Defects.',
+    packageIncludes: '1x Infinity Cube Fidget Toy Magic Green'
   }
 ];
 
 function getReadyProducts() {
   const stock = loadAdminStock();
-  if (stock.ready && Array.isArray(stock.ready) && stock.ready.length > 0) {
-    return stock.ready;
-  }
-  return PREPRINTED_PRODUCTS;
+  const adminReady = (stock && Array.isArray(stock.ready)) ? stock.ready : [];
+  
+  // Ensure every existing item has brand populated
+  adminReady.forEach(p => {
+    if (!p.brand) {
+      const match = PREPRINTED_PRODUCTS.find(orig => orig.id === p.id || orig.sku === p.sku);
+      p.brand = (match && match.brand) ? match.brand : 'D Loop 3D';
+    }
+  });
+
+  // Merge PREPRINTED_PRODUCTS so all default brand items (KV Wood Works, Elegance Dangle, D Loop 3D) are always available
+  const merged = [...adminReady];
+  PREPRINTED_PRODUCTS.forEach(p => {
+    if (!merged.some(m => m.id === p.id || m.sku === p.sku)) {
+      merged.push(p);
+    }
+  });
+
+  return merged;
 }
 window.getReadyProducts = getReadyProducts;
 
@@ -373,7 +502,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 142,
     tag: 'Numakers High Speed 500mm/s',
     tagClass: 'badge-primary',
-    desc: 'Official Numakers high-speed PLA spool for FDM 3D printers. Low warping, easy printing, excellent layer adhesion & ultra-vibrant colors.',
+    desc: 'Genuine Numakers high-speed PLA spool for FDM 3D printers. Low warping, easy printing, excellent layer adhesion & ultra-vibrant colors.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
@@ -420,7 +549,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 89,
     tag: 'Numakers Anti-Glare Finish',
     tagClass: 'badge-accent',
-    desc: 'Official Numakers satin-smooth matte surface finish that effectively masks print layer lines. Perfect for architectural models and glare-free prototypes.',
+    desc: 'Genuine Numakers satin-smooth matte surface finish that effectively masks print layer lines. Perfect for architectural models and glare-free prototypes.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/keychains.png',
     colors: [
@@ -447,7 +576,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 116,
     tag: 'Numakers Water & Chemical Proof',
     tagClass: 'badge-primary',
-    desc: 'Official Numakers high strength PETG. Weather resistant, high impact resistance, and virtually odorless with exceptional layer cohesion.',
+    desc: 'Genuine Numakers high strength PETG. Weather resistant, high impact resistance, and virtually odorless with exceptional layer cohesion.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
@@ -481,7 +610,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 47,
     tag: 'Numakers 15% Carbon Fiber',
     tagClass: 'badge-warning',
-    desc: 'Official Numakers reinforced with 15% high-modulus carbon fibers. Provides extreme structural rigidity, minimal warping, and a dark carbon texture finish.',
+    desc: 'Genuine Numakers reinforced with 15% high-modulus carbon fibers. Provides extreme structural rigidity, minimal warping, and a dark carbon texture finish.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/filaments.png',
     colors: [
@@ -507,7 +636,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 62,
     tag: 'Numakers UV & Weather Resistant',
     tagClass: 'badge-accent',
-    desc: 'Official Numakers ultimate outdoor FDM material. Exceptional resistance to UV radiation, harsh sunlight, rain, and heat without color fading.',
+    desc: 'Genuine Numakers ultimate outdoor FDM material. Exceptional resistance to UV radiation, harsh sunlight, rain, and heat without color fading.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/keychains.png',
     colors: [
@@ -540,7 +669,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 31,
     tag: 'Numakers Aerospace 150°C',
     tagClass: 'badge-warning',
-    desc: 'Official Numakers professional engineering grade Nylon 12 with carbon fibers. Continuous heat resistance up to 150°C, ultra-low moisture absorption, and extreme tensile strength.',
+    desc: 'Genuine Numakers professional engineering grade Nylon 12 with carbon fibers. Continuous heat resistance up to 150°C, ultra-low moisture absorption, and extreme tensile strength.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/filaments.png',
     colors: [
@@ -566,7 +695,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 24,
     tag: 'Numakers Self Lubricating Nylon',
     tagClass: 'badge-primary',
-    desc: 'Official Numakers pure polyamide 12 filament offering unmatched tough flexibility, chemical resistance against oils & solvents, and ultra-low friction.',
+    desc: 'Genuine Numakers pure polyamide 12 filament offering unmatched tough flexibility, chemical resistance against oils & solvents, and ultra-low friction.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
@@ -592,7 +721,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 95,
     tag: 'Numakers Metallic Sheen',
     tagClass: 'badge-pink',
-    desc: 'Official Numakers special gloss formulation to yield a silky, mirror-like metallic sheen. Transforms 3D models into eye-catching jewelry, trophies, and vases.',
+    desc: 'Genuine Numakers special gloss formulation to yield a silky, mirror-like metallic sheen. Transforms 3D models into eye-catching jewelry, trophies, and vases.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/lithophane.png',
     colors: [
@@ -620,7 +749,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 53,
     tag: 'Numakers Special & Gradient',
     tagClass: 'badge-warning',
-    desc: 'Official Numakers aesthetic formulations. Marble White simulates real granite stone finish, while Blue Shift features smooth color-changing gradient transitions.',
+    desc: 'Genuine Numakers aesthetic formulations. Marble White simulates real granite stone finish, while Blue Shift features smooth color-changing gradient transitions.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/dragon.png',
     colors: [
@@ -647,7 +776,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 38,
     tag: 'Numakers UL94-V0 Fire Retardant',
     tagClass: 'badge-accent',
-    desc: 'Official Numakers UL94 V-0 flame retardant ABS formulation. Self-extinguishes within 10 seconds of flame exposure. Essential for electrical enclosures & drone safety.',
+    desc: 'Genuine Numakers UL94 V-0 flame retardant ABS formulation. Self-extinguishes within 10 seconds of flame exposure. Essential for electrical enclosures & drone safety.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/keychains.png',
     colors: [
@@ -673,7 +802,7 @@ const FILAMENT_PRODUCTS = [
     reviews: 77,
     tag: 'Numakers High Impact 95°C',
     tagClass: 'badge-primary',
-    desc: 'Official Numakers structural grade ABS for high-temp environments up to 95°C. High impact resistance, acetone vapor smoothing compatible, and high dimensional rigidity.',
+    desc: 'Genuine Numakers structural grade ABS for high-temp environments up to 95°C. High impact resistance, acetone vapor smoothing compatible, and high dimensional rigidity.',
     img: 'assets/filaments.png',
     sampleImg: 'assets/filaments.png',
     colors: [
@@ -3247,6 +3376,315 @@ function parseAsciiSTL(text) {
   return { positions, volumeCm3, dimX, dimY, dimZ };
 }
 
+// --- Hero Banner Slider Engine ---
+let currentHeroSlide = 0;
+let heroSlideTimer = null;
+const HERO_SLIDE_INTERVAL = 5000;
+
+function initHeroSlider() {
+  const slider = document.getElementById('hero-banner-slider');
+  if (!slider) return;
+
+  const slides = slider.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot-indicator');
+  const prevBtn = document.getElementById('hero-slider-prev');
+  const nextBtn = document.getElementById('hero-slider-next');
+
+  if (!slides.length) return;
+
+  function showSlide(index) {
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+    currentHeroSlide = index;
+
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === currentHeroSlide);
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentHeroSlide);
+    });
+
+    // Reset progress bar on active dot
+    const activeDot = document.querySelector('.hero-dot-indicator.active .dot-progress');
+    if (activeDot) {
+      activeDot.style.animation = 'none';
+      void activeDot.offsetWidth; // trigger reflow
+      activeDot.style.animation = `dotFill ${HERO_SLIDE_INTERVAL}ms linear forwards`;
+    }
+  }
+
+  function nextSlide() {
+    showSlide(currentHeroSlide + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentHeroSlide - 1);
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    heroSlideTimer = setInterval(nextSlide, HERO_SLIDE_INTERVAL);
+  }
+
+  function stopAutoPlay() {
+    if (heroSlideTimer) {
+      clearInterval(heroSlideTimer);
+      heroSlideTimer = null;
+    }
+  }
+
+  // Event Listeners
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      startAutoPlay();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      startAutoPlay();
+    });
+  }
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      showSlide(idx);
+      startAutoPlay();
+    });
+  });
+
+  slider.addEventListener('mouseenter', stopAutoPlay);
+  slider.addEventListener('mouseleave', startAutoPlay);
+
+  // Touch Swipe Support for Mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slider.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAutoPlay();
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+      nextSlide();
+    } else if (touchEndX - touchStartX > 50) {
+      prevSlide();
+    }
+    startAutoPlay();
+  }, { passive: true });
+
+  // Keyboard navigation
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prevSlide(); startAutoPlay(); }
+    if (e.key === 'ArrowRight') { nextSlide(); startAutoPlay(); }
+  });
+
+  showSlide(0);
+  startAutoPlay();
+}
+window.initHeroSlider = initHeroSlider;
+
+// --- Render Index Customized Gifts (Top 4 to 5 Items) ---
+function renderIndexCustomGifts() {
+  const container = document.getElementById('index-custom-gifts-grid');
+  if (!container) return;
+
+  const catalog = (typeof CUSTOM_GIFTS_CATALOG !== 'undefined') ? CUSTOM_GIFTS_CATALOG : [];
+  if (!catalog.length) return;
+
+  // Take top 4 curated customizable gifts
+  const topGifts = catalog.slice(0, 4);
+
+  container.innerHTML = topGifts.map(item => {
+    const detailUrl = `custom-gifts.html?item=${encodeURIComponent(item.id)}`;
+    const discount = item.originalPrice ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100) : 0;
+
+    return `
+      <div class="index-showcase-card" id="gift-card-${item.id}">
+        <div class="showcase-img-box">
+          <span class="showcase-badge badge-gift">${escapeHTML(item.badge || 'CUSTOM GIFT')}</span>
+          <a href="${detailUrl}">
+            <img src="${item.img || 'assets/lithophane.png'}" alt="${escapeHTML(item.name)}" loading="lazy">
+          </a>
+        </div>
+
+        <div class="showcase-body">
+          <div class="showcase-meta-row">
+            <span class="showcase-cat-tag">${escapeHTML(item.categoryLabel || 'Personalized Gift')}</span>
+            <div class="showcase-rating">★ ${item.rating || '5.0'} <span>(${item.reviews || 40}+)</span></div>
+          </div>
+
+          <a href="${detailUrl}" class="showcase-title" title="${escapeHTML(item.name)}">
+            ${escapeHTML(item.name)}
+          </a>
+
+          <p class="showcase-desc">${escapeHTML((item.description || '').substring(0, 85))}...</p>
+
+          <div class="showcase-price-row">
+            <div class="showcase-price-box">
+              <span class="showcase-price">₹${item.price}</span>
+              ${item.originalPrice ? `<span class="showcase-mrp">₹${item.originalPrice}</span>` : ''}
+              ${discount > 0 ? `<span class="showcase-discount">${discount}% OFF</span>` : ''}
+            </div>
+            <span class="showcase-gst-tag">Custom Made</span>
+          </div>
+
+          <div class="showcase-action-row">
+            <a href="${detailUrl}" class="showcase-btn-detail" title="View details">Details ↗</a>
+            <a href="${detailUrl}" class="showcase-btn-buy" style="background:linear-gradient(135deg,#ec4899,#a855f7); border:none;">
+              Customize ✨
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+window.renderIndexCustomGifts = renderIndexCustomGifts;
+
+// --- Render Index Brand-Separated Products (KV Wood Works, Elegance Dangle, D Loop 3D) ---
+function renderIndexBrandProducts() {
+  const prods = getReadyProducts();
+  if (!prods || !prods.length) return;
+
+  function renderCard(item, brandBadgeClass) {
+    const thumbImg = (item.images && item.images.length > 0) ? item.images[0] : (item.img || 'assets/dragon.png');
+    const isOut = (item.stock !== undefined && item.stock <= 0);
+    const detailUrl = `product-detail.html?id=${encodeURIComponent(item.id || item.sku)}`;
+    const brand = item.brand || 'D Loop 3D';
+    const discount = (item.mrp && item.mrp > item.price) ? Math.round(((item.mrp - item.price) / item.mrp) * 100) : 0;
+
+    return `
+      <div class="index-showcase-card" id="card-${item.id}">
+        <div class="showcase-img-box">
+          <span class="showcase-badge ${brandBadgeClass}">${escapeHTML(brand)}</span>
+          <a href="${detailUrl}">
+            <img src="${thumbImg}" alt="${escapeHTML(item.name)}" loading="lazy">
+          </a>
+        </div>
+
+        <div class="showcase-body">
+          <div class="showcase-meta-row">
+            <span class="showcase-cat-tag">${escapeHTML(item.category || 'Product')}</span>
+            <div class="showcase-rating">★ ${item.rating || '5.0'} <span>(${item.reviews || 20})</span></div>
+          </div>
+
+          <a href="${detailUrl}" class="showcase-title" title="${escapeHTML(item.name)}">
+            ${escapeHTML(item.name)}
+          </a>
+
+          <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:4px;">SKU: ${escapeHTML(item.sku || item.id)}</div>
+          <p class="showcase-desc">${escapeHTML((item.desc || '').substring(0, 80))}...</p>
+
+          <div class="showcase-price-row">
+            <div class="showcase-price-box">
+              <span class="showcase-price">₹${item.price}</span>
+              ${item.mrp && item.mrp > item.price ? `<span class="showcase-mrp">₹${item.mrp}</span>` : ''}
+              ${discount > 0 ? `<span class="showcase-discount">${discount}% OFF</span>` : ''}
+            </div>
+            <span class="showcase-gst-tag">Incl. GST</span>
+          </div>
+
+          <div class="showcase-action-row">
+            <a href="${detailUrl}" class="showcase-btn-detail" title="View details">Details ↗</a>
+            ${isOut ? `
+              <button class="showcase-btn-buy out" disabled>Out of Stock 🔒</button>
+            ` : `
+              <button class="showcase-btn-buy" onclick="addReadyProductToCart('${item.id}', 1)">
+                Add to Cart 🛒
+              </button>
+            `}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 1. KV Wood Works Grid (3 to 4 items)
+  const kvGrid = document.getElementById('index-kvwood-grid');
+  if (kvGrid) {
+    const kvItems = prods.filter(p => (p.brand || '').includes('KV Wood')).slice(0, 4);
+    kvGrid.innerHTML = kvItems.map(it => renderCard(it, 'badge-kv')).join('');
+  }
+
+  // 2. Elegance Dangle Grid (3 to 4 items)
+  const edGrid = document.getElementById('index-elegance-grid');
+  if (edGrid) {
+    const edItems = prods.filter(p => (p.brand || '').includes('Elegance')).slice(0, 4);
+    edGrid.innerHTML = edItems.map(it => renderCard(it, 'badge-elegance')).join('');
+  }
+
+  // 3. D Loop 3D Grid (3 to 4 items)
+  const dlGrid = document.getElementById('index-dloop-grid');
+  if (dlGrid) {
+    const dlItems = prods.filter(p => (p.brand || '').includes('D Loop') || (!p.brand)).slice(0, 4);
+    dlGrid.innerHTML = dlItems.map(it => renderCard(it, 'badge-dloop')).join('');
+  }
+}
+window.renderIndexBrandProducts = renderIndexBrandProducts;
+
+// --- Render Index Filament Supplies Showcase (4 Curated Filaments) ---
+function renderIndexFilamentsShowcase() {
+  const container = document.getElementById('index-filaments-showcase-grid');
+  if (!container) return;
+
+  const filaments = (typeof FILAMENT_PRODUCTS !== 'undefined') ? FILAMENT_PRODUCTS.slice(0, 4) : [];
+  if (!filaments.length) return;
+
+  container.innerHTML = filaments.map(item => {
+    const colorsCount = item.colors ? item.colors.length : 1;
+
+    return `
+      <div class="index-showcase-card" id="fil-showcase-${item.id}">
+        <div class="showcase-img-box">
+          <span class="showcase-badge badge-dloop">NUMAKERS OFFICIAL</span>
+          <a href="filaments.html">
+            <img src="${item.img || 'assets/filaments.png'}" alt="${escapeHTML(item.name)}" loading="lazy">
+          </a>
+        </div>
+
+        <div class="showcase-body">
+          <div class="showcase-meta-row">
+            <span class="showcase-cat-tag">1.75mm FDM Filament</span>
+            <div class="showcase-rating">★ ${item.rating || '4.9'} <span>(${item.reviews || 80}+)</span></div>
+          </div>
+
+          <a href="filaments.html" class="showcase-title" title="${escapeHTML(item.name)}">
+            ${escapeHTML(item.name)}
+          </a>
+
+          <p class="showcase-desc">${escapeHTML((item.desc || '').substring(0, 80))}...</p>
+
+          <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:8px;">
+            🎨 <strong>${colorsCount} Colors Available</strong> (±0.02mm)
+          </div>
+
+          <div class="showcase-price-row">
+            <div class="showcase-price-box">
+              <span class="showcase-price">₹${item.price}</span>
+              <span style="font-size:0.75rem; color:var(--text-dim);">/ 1kg Spool</span>
+            </div>
+            <span class="showcase-gst-tag">In Stock</span>
+          </div>
+
+          <div class="showcase-action-row">
+            <a href="filaments.html" class="showcase-btn-detail" title="View details">Details ↗</a>
+            <a href="filaments.html" class="showcase-btn-buy">
+              Shop Colors 🛍️
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+window.renderIndexFilamentsShowcase = renderIndexFilamentsShowcase;
+
 // --- Render Helper Functions ---
 function renderProducts(items, containerId) {
   const container = document.getElementById(containerId);
@@ -3258,16 +3696,25 @@ function renderProducts(items, containerId) {
     const thumbImg = (item.images && item.images.length > 0) ? item.images[0] : (item.img || 'assets/dragon.png');
     const isOut = (item.stock !== undefined && item.stock <= 0);
     const detailUrl = `product-detail.html?id=${encodeURIComponent(item.id || item.sku)}`;
+    const brand = item.brand || 'D Loop 3D';
+    let brandClass = 'badge-dloop';
+    if (brand.includes('KV Wood')) brandClass = 'badge-kv';
+    else if (brand.includes('Elegance')) brandClass = 'badge-elegance';
 
     return `
       <div class="product-card">
         <div class="product-img-wrapper">
           <span class="badge-tag ${item.tagClass || 'badge-primary'}">${item.tag || 'Ready'}</span>
+          <span class="badge-brand-pill ${brandClass}">${escapeHTML(brand)}</span>
           <a href="${detailUrl}">
             <img src="${thumbImg}" alt="${escapeHTML(item.name)}" style="width:100%; height:200px; object-fit:cover;">
           </a>
         </div>
         <div class="product-body">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
+            <span style="font-size:0.75rem; color:var(--primary); font-weight:700; text-transform:uppercase;">${escapeHTML(item.category || 'Product')}</span>
+            <span style="font-size:0.75rem; color:var(--text-dim);">★ ${item.rating || '5.0'} (${item.reviews || 0})</span>
+          </div>
           <a href="${detailUrl}" style="text-decoration:none;">
             <h3 class="product-title">${escapeHTML(item.name)}</h3>
           </a>
@@ -3295,6 +3742,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Seed admin stock from catalog defaults if first visit
   seedAdminStockFromCatalog();
 
+  initHeroSlider();
+  renderIndexCustomGifts();
+  renderIndexBrandProducts();
+  renderIndexFilamentsShowcase();
   initThreeJSViewer();
   setupEventListeners();
   calculateQuote();
