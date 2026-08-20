@@ -16,3 +16,9 @@ yarn-debug.log*
 yarn-error.log*
 .env
 .env.local
+
+# Database credentials (NEVER push to GitHub)
+api/db_config.php
+
+# Server logs
+api/logs/
