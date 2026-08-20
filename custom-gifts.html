@@ -938,13 +938,16 @@
     let uploadedPhotosMap = {};
 
     function getGiftsCatalog() {
+      // Always start with the hardcoded catalog as the base
+      const baseCatalog = (typeof CUSTOM_GIFTS_CATALOG !== 'undefined' ? CUSTOM_GIFTS_CATALOG : []);
+      
       try {
         const stockRaw = localStorage.getItem('dl3d_stock_v1');
         if (stockRaw) {
           const parsed = JSON.parse(stockRaw);
-          if (parsed.customs && Array.isArray(parsed.customs)) {
+          if (parsed.customs && Array.isArray(parsed.customs) && parsed.customs.length > 0) {
             return parsed.customs.map(c => {
-              const fresh = typeof CUSTOM_GIFTS_CATALOG !== 'undefined' ? CUSTOM_GIFTS_CATALOG.find(g => g.id === c.id) : null;
+              const fresh = baseCatalog.find(g => g.id === c.id);
               return {
                 id: c.id,
                 name: c.title || c.name || (fresh ? fresh.name : ''),
@@ -964,8 +967,10 @@
             });
           }
         }
-      } catch (e) {}
-      return (typeof CUSTOM_GIFTS_CATALOG !== 'undefined' ? CUSTOM_GIFTS_CATALOG : []);
+      } catch (e) {
+        console.warn('Stock data parse error, using default catalog:', e);
+      }
+      return baseCatalog;
     }
 
     function renderGiftsList() {
