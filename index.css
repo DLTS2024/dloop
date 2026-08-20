@@ -3322,3 +3322,583 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
 }
 
+/* ==========================================================================
+   MISSING CLASS DEFINITIONS
+   ========================================================================== */
+
+/* Button Outline Variant */
+.btn-outline {
+  background: transparent;
+  color: #475569;
+  border: 1.5px solid #CBD5E1;
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(255, 101, 0, 0.04);
+}
+
+/* Button Small Variant */
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+}
+
+/* Input Field Base */
+.input-field {
+  width: 100%;
+  padding: 0.6rem;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #0F172A;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.12);
+}
+
+/* Delivery Toggle Buttons (Checkout Modal) */
+.delivery-toggle-btn {
+  padding: 0.65rem 0.8rem;
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.delivery-toggle-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(255, 101, 0, 0.04);
+}
+
+.delivery-toggle-btn.active {
+  border-color: var(--primary);
+  background: rgba(255, 101, 0, 0.08);
+  color: var(--primary);
+  font-weight: 700;
+  box-shadow: 0 0 0 2px rgba(255, 101, 0, 0.15);
+}
+
+/* Features Grid (Why FDM Section) */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 101, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVE FIXES
+   ========================================================================== */
+
+/* ---------- Tablet (max-width: 992px) ---------- */
+@media (max-width: 992px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* ---------- Mobile (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+
+  /* -- Global Section Spacing -- */
+  .section {
+    padding: 40px 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.55rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+  }
+
+  .section-desc {
+    font-size: 0.9rem;
+  }
+
+  /* -- Hero Slider Mobile Fix -- */
+  .hero-slider-section {
+    padding-top: 68px;
+    padding-bottom: 14px;
+  }
+
+  .hero-slider-wrapper {
+    padding: 0 8px;
+  }
+
+  .hero-slider-container {
+    border-radius: 16px;
+  }
+
+  .hero-slide {
+    padding: 18px 14px 42px 14px;
+  }
+
+  .slide-tag {
+    font-size: 0.68rem;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+
+  .hero-slide-title {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+  }
+
+  .hero-slide-desc {
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+    max-width: 100%;
+  }
+
+  .hero-slide-ctas {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .hero-slide-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
+  .slide-img-frame {
+    height: 200px;
+    border-radius: 12px;
+  }
+
+  .slide-badge-pill {
+    font-size: 0.68rem;
+    padding: 5px 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .hero-slider-dots {
+    bottom: 10px;
+    gap: 6px;
+  }
+
+  .hero-dot-indicator {
+    width: 24px;
+    height: 4px;
+  }
+
+  .hero-dot-indicator.active {
+    width: 36px;
+  }
+
+  /* -- Section Headers & Brand Section Headers (flex → column on mobile) -- */
+  .section-flex-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .section-flex-header h2 {
+    font-size: 1.25rem !important;
+  }
+
+  .section-flex-header p {
+    font-size: 0.82rem !important;
+  }
+
+  .section-flex-header .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    white-space: normal !important;
+  }
+
+
+  /* -- Quote Notice Banner Mobile -- */
+  .quote-notice-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+    gap: 0.6rem;
+  }
+
+  .notice-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .notice-links a {
+    font-size: 0.78rem;
+  }
+
+  /* -- Quote Toolbar Mobile -- */
+  .quote-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .quote-name-input {
+    width: 100%;
+  }
+
+  .toolbar-left .btn,
+  .toolbar-right .btn {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.7rem;
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* -- Model Card Items Mobile -- */
+  .model-card-item {
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .model-card-pricing {
+    border-left: none !important;
+    border-top: 1px solid #E2E8F0;
+    padding-left: 0 !important;
+    padding-top: 0.8rem;
+    align-items: center !important;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  /* -- Dropzone Mobile -- */
+  .main-dropzone-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .dropzone-icon {
+    font-size: 1.8rem;
+  }
+
+  .dropzone-title {
+    font-size: 0.92rem;
+  }
+
+  .dropzone-sub {
+    font-size: 0.75rem;
+  }
+
+  /* -- Quote Checkout Section Mobile -- */
+  .quote-checkout-section {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .shipping-estimate-box {
+    padding: 1rem;
+  }
+
+  .shipping-input-group {
+    max-width: 100%;
+  }
+
+  .order-summary-panel {
+    padding: 1rem;
+  }
+
+  .order-type-card-ref {
+    padding: 0.6rem;
+  }
+
+  .grand-total-ref-price-line .lbl {
+    font-size: 1rem;
+  }
+
+  .grand-total-ref-price-line .val {
+    font-size: 1.5rem;
+  }
+
+  /* -- Features Grid Mobile (Why FDM) -- */
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .feature-card {
+    padding: 1.1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .feature-card p {
+    font-size: 0.82rem !important;
+  }
+
+  .feature-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* -- Showcase Grid Cards Mobile -- */
+  .showcase-img-box {
+    height: 180px;
+  }
+
+  .showcase-body {
+    padding: 12px;
+  }
+
+  .showcase-title {
+    font-size: 0.9rem;
+  }
+
+  .showcase-desc {
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+  }
+
+  .showcase-price {
+    font-size: 1.1rem;
+  }
+
+  .showcase-mrp {
+    font-size: 0.75rem;
+  }
+
+  .showcase-action-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .showcase-btn-detail,
+  .showcase-btn-buy {
+    font-size: 0.75rem;
+    padding: 7px 6px;
+  }
+
+  /* -- Footer Mobile -- */
+  .footer {
+    padding: 40px 0 20px;
+    margin-top: 30px;
+  }
+
+  /* -- Modals Mobile -- */
+  .modal-card {
+    width: 95% !important;
+    max-width: 100% !important;
+    margin: 8px !important;
+    border-radius: 14px !important;
+  }
+
+  .modal-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .modal-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  /* -- Checkout Modal Fields Mobile -- */
+  #checkout-modal-overlay .modal-card {
+    max-height: 92vh !important;
+  }
+
+  #checkout-modal-overlay [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  /* -- Cart Drawer Mobile -- */
+  .cart-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  /* -- Toast Mobile -- */
+  .toast-container {
+    bottom: 70px;
+    right: 12px;
+    left: 12px;
+  }
+
+  .toast {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+  }
+}
+
+/* ---------- Small Mobile (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .section {
+    padding: 30px 0;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  /* Hero Slider Small Mobile */
+  .hero-slider-section {
+    padding-top: 62px;
+    padding-bottom: 10px;
+  }
+
+  .hero-slider-wrapper {
+    padding: 0 6px;
+  }
+
+  .hero-slide {
+    padding: 14px 12px 38px 12px;
+  }
+
+  .hero-slide-title {
+    font-size: 1.15rem;
+  }
+
+  .hero-slide-desc {
+    font-size: 0.78rem;
+    margin-bottom: 12px;
+  }
+
+  .hero-slide-ctas .btn {
+    font-size: 0.78rem;
+    padding: 9px 12px;
+  }
+
+  .slide-img-frame {
+    height: 170px;
+  }
+
+  .slide-tag {
+    font-size: 0.62rem;
+  }
+
+  /* Brand Section Small Mobile */
+  .brand-section-card {
+    padding: 14px 10px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+  }
+
+  .brand-section-card > div:first-child h2 {
+    font-size: 1.1rem !important;
+  }
+
+  /* Showcase Cards Small Mobile */
+  .index-showcase-grid {
+    gap: 12px;
+  }
+
+  .showcase-img-box {
+    height: 160px;
+  }
+
+  .showcase-body {
+    padding: 10px;
+  }
+
+  .showcase-title {
+    font-size: 0.85rem;
+  }
+
+  .showcase-action-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .showcase-btn-detail,
+  .showcase-btn-buy {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Quote Section Small Mobile */
+  .quote-notice-banner {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .notice-badge {
+    font-size: 0.68rem;
+  }
+
+  .main-dropzone-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  /* Features Grid 480px */
+  .feature-card {
+    padding: 0.9rem;
+  }
+
+  /* Footer Small Mobile */
+  .footer {
+    padding: 30px 0 16px;
+    margin-top: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+    padding-top: 1.2rem;
+  }
+}
+
