@@ -2734,8 +2734,6 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         }
       }
 
-      const paymentMethod = document.querySelector('input[name="pay-method"]:checked')?.value || 'upi';
-      
       if (!customerName || !customerPhone || !customerEmail) {
         showToast('Please fill in all required contact details (Name, Phone & Email).');
         return;
@@ -2799,7 +2797,7 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         pincode: customerPincode,
         city: customerCity || 'Chennai',
         address: customerAddress,
-        paymentMethod: paymentMethod,
+        paymentMethod: 'whatsapp',
         paymentStatus: 'pending',
         utr: null,
         items: orderItems,
@@ -2847,18 +2845,14 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         renderFilaments(FILAMENT_PRODUCTS, 'filaments-grid-container');
       }
 
-      const isOnlinePay = (paymentMethod === 'upi' || paymentMethod === 'card');
-      if (isOnlinePay && typeof Pay0Gateway !== 'undefined') {
-        showToast(`⚡ Redirecting to Pay0 UPI Gateway for Order ${orderId}...`);
-        Pay0Gateway.initiateCheckout(newOrder);
-      } else {
-        showToast(`🎉 Order ${orderId} placed successfully! You can track it in My Orders.`);
-        setTimeout(() => {
-          if (typeof openMyOrdersModal === 'function') {
-            openMyOrdersModal();
-          }
-        }, 1000);
-      }
+      const itemSummary = orderItems.map(item =>
+        `• ${item.name} × ${item.qty} — ₹${Number(item.total).toFixed(2)}`
+      ).join('\n');
+      const deliverySummary = deliveryMethod === 'pickup'
+        ? 'Self pickup at D Loop 3D Studio'
+        : `${customerAddress}, ${customerCity} - ${customerPincode}`;
+      const whatsappMessage = `*📦 NEW ORDER - D LOOP 3D*\n\n*Order ID:* ${orderId}\n\n*Items:*\n${itemSummary}\n\n*Customer:* ${customerName}\n*Phone:* ${customerPhone}\n*Email:* ${customerEmail}\n*Delivery:* ${deliverySummary}\n\n*Total:* *₹${grandTotal.toFixed(2)}*\n\nPlease confirm my order.`;
+      window.location.assign(`https://wa.me/919884872483?text=${encodeURIComponent(whatsappMessage)}`);
     });
   }
 
