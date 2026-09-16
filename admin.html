@@ -1127,7 +1127,7 @@
           const statusClass = `status-${o.status||'new'}`;
           const statusText = (o.status||'new').charAt(0).toUpperCase() + (o.status||'new').slice(1);
           const date = o.createdAt ? new Date(o.createdAt).toLocaleString('en-IN') : 'Unknown';
-          const payMethodMap = {upi:'⚡ Pay0 UPI / GPay / PhonePe', card:'💳 Credit/Debit Card', cod:'💵 Cash on Delivery'};
+          const payMethodMap = {whatsapp:'📱 WhatsApp payment', upi:'⚡ Pay0 UPI / GPay / PhonePe', card:'💳 Credit/Debit Card', cod:'💵 Cash on Delivery'};
           const payText = payMethodMap[o.paymentMethod] || o.paymentMethod || 'Not specified';
 
           let itemsHtml = '';
@@ -1196,7 +1196,7 @@
               ${o.phone ? `📞 Phone: <strong>${escapeHTML(o.phone)}</strong>` : ''}
               ${o.email ? ` · ✉️ ${escapeHTML(o.email)}` : ''}
               ${o.address ? `<br>📍 Shipping Address: <strong>${escapeHTML(o.address)}</strong>` : ''}
-              ${o.paymentMethod ? `<br>💰 Payment: <strong>${payText}</strong> ${o.paymentStatus === 'PAID' ? `<span style="background:rgba(16,185,129,0.15); color:#059669; padding:2px 8px; border-radius:999px; font-weight:800; font-size:0.75rem;">● PAID (UTR: ${escapeHTML(o.utr || 'Verified')})</span>` : `<span style="background:rgba(245,158,11,0.15); color:#d97706; padding:2px 8px; border-radius:999px; font-weight:800; font-size:0.75rem;">● ${o.paymentMethod === 'cod' ? 'CASH ON DELIVERY' : 'UPI PENDING'}</span>`}` : ''}
+              ${o.paymentMethod ? `<br>💰 Payment: <strong>${payText}</strong> ${o.paymentStatus === 'PAID' ? `<span style="background:rgba(16,185,129,0.15); color:#059669; padding:2px 8px; border-radius:999px; font-weight:800; font-size:0.75rem;">● PAID (UTR: ${escapeHTML(o.utr || 'Verified')})</span>` : `<span style="background:rgba(245,158,11,0.15); color:#d97706; padding:2px 8px; border-radius:999px; font-weight:800; font-size:0.75rem;">● ${o.paymentMethod === 'cod' ? 'CASH ON DELIVERY' : 'PAYMENT PENDING'}</span>`}` : ''}
             </div>
             ${itemsHtml ? `<div class="order-items-list">${itemsHtml}</div>` : ''}
 
@@ -1237,6 +1237,11 @@
             <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;flex-wrap:wrap;gap:8px;">
               <div style="font-weight:800;color:#10b981;font-size:1.1rem">Total Payable: ₹${(o.total||0).toLocaleString()}</div>
               <div class="order-actions">
+                ${o.paymentStatus !== 'PAID' && o.paymentMethod !== 'cod' ? `
+                  <button type="button" data-oidx="${actualIdx}" data-payment-status="PAID" class="btn btn-success btn-sm" style="font-weight:800;">
+                    ✅ Mark Payment Received
+                  </button>
+                ` : ''}
                 ${(o.paymentMethod === 'upi' || o.paymentMethod === 'pay0') ? `
                   <button type="button" class="btn btn-outline btn-sm" onclick="checkOrderPay0StatusLive('${escapeHTML(o.orderId)}')" style="border-color:#ff6500; color:#ff6500;">
                     🔄 Verify Pay0 Status
@@ -1271,6 +1276,20 @@
             const oid = photoBtn.getAttribute('data-order-id');
             const itIdx = Number(photoBtn.getAttribute('data-item-idx'));
             previewOrderPhoto(oid, itIdx);
+            return;
+          }
+          const paymentBtn = e.target.closest('button[data-payment-status]');
+          if (paymentBtn) {
+            const oidx = Number(paymentBtn.getAttribute('data-oidx'));
+            if (!confirm('Confirm that payment has been received for this order?')) return;
+            state = load();
+            if (state.orders[oidx]) {
+              state.orders[oidx].paymentStatus = paymentBtn.getAttribute('data-payment-status');
+              state.orders[oidx].paymentReceivedAt = Date.now();
+              if (!state.orders[oidx].utr) state.orders[oidx].utr = 'Manually confirmed';
+              save(state);
+            }
+            renderOrders(root);
             return;
           }
           const btn = e.target.closest('button[data-status]'); if(!btn) return;
