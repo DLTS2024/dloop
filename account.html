@@ -865,6 +865,7 @@
 
         // Render Tabs Content
         renderDashOrders();
+        syncAccountOrderStatuses();
         renderDashCart();
         renderDashAddresses();
         populateProfileForm();
@@ -967,6 +968,36 @@
     }
 
     // TAB 1: Render Orders
+    async function syncAccountOrderStatuses() {
+      const currentUser = getCurrentUser();
+      if (!currentUser) return;
+      const stock = loadAdminStock();
+      const allOrders = [...(stock.orders || []), ...(currentUser.myOrders || [])];
+      const uniqueOrders = [...new Map(allOrders.filter(o => o?.orderId).map(o => [o.orderId, o])).values()];
+      let changed = false;
+      for (const order of uniqueOrders) {
+        try {
+          const params = new URLSearchParams({ orderId: order.orderId, phone: currentUser.phone || '', email: currentUser.email || '' });
+          const response = await fetch(`api/order_status.php?${params.toString()}`, { cache: 'no-store' });
+          const data = await response.json();
+          if (!response.ok || !data.ok || !data.order) continue;
+          const remote = data.order;
+          ['paymentMethod', 'paymentStatus', 'utr', 'status'].forEach(key => {
+            if (remote[key] != null && order[key] !== remote[key]) { order[key] = remote[key]; changed = true; }
+          });
+          [stock.orders, currentUser.myOrders].forEach(list => {
+            const match = Array.isArray(list) && list.find(item => item.orderId === order.orderId);
+            if (match) Object.assign(match, order);
+          });
+        } catch (e) { /* keep the local order visible when temporarily offline */ }
+      }
+      if (changed) {
+        saveAdminStock(stock);
+        setCurrentUser(currentUser);
+        renderDashOrders();
+      }
+    }
+
     function renderDashOrders() {
       const container = document.getElementById('dash-orders-container');
       if (!container) return;
@@ -1131,18 +1162,13 @@
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:10px; border-top:1px dashed #CBD5E1; flex-wrap:wrap; gap:8px;">
               <div style="font-size:0.8rem;">
                 ${order.paymentStatus === 'PAID' ? 
-                  `<span style="color:#059669; font-weight:800; background:rgba(5,150,105,0.1); padding:3px 10px; border-radius:999px;">● Paid via UPI (${order.utr ? 'UTR: ' + escapeHTML(order.utr) : 'Verified'})</span>` : 
+                  `<span style="color:#059669; font-weight:800; background:rgba(5,150,105,0.1); padding:3px 10px; border-radius:999px;">● Paid (${order.utr ? 'UTR: ' + escapeHTML(order.utr) : 'Verified'})</span>` :
                   (order.paymentMethod === 'cod' ? 
                     `<span style="color:#475569; font-weight:700; background:#F1F5F9; padding:3px 10px; border-radius:999px;">💵 Cash on Delivery</span>` : 
-                    `<span style="color:#d97706; font-weight:800; background:rgba(217,119,6,0.1); padding:3px 10px; border-radius:999px;">⏳ Payment Pending (UPI)</span>`
+                    `<span style="color:#d97706; font-weight:800; background:rgba(217,119,6,0.1); padding:3px 10px; border-radius:999px;">⏳ Payment Pending (WhatsApp)</span>`
                   )
                 }
               </div>
-              ${(order.paymentStatus !== 'PAID' && order.paymentMethod !== 'cod') ? `
-                <button type="button" class="btn btn-primary btn-sm" onclick="Pay0Gateway.initiateCheckout({ orderId: '${escapeHTML(order.orderId)}', total: ${order.total || 0}, customer: '${escapeHTML(order.customer || '')}', phone: '${escapeHTML(order.phone || '')}', email: '${escapeHTML(order.email || '')}' })" style="background:linear-gradient(135deg, #FF6500, #FF8800); border:none; padding:5px 12px; font-weight:700;">
-                  ⚡ Complete UPI Payment
-                </button>
-              ` : ''}
             </div>
           </div>
         `;
@@ -1225,6 +1251,8 @@
         renderDashOrders();
       }
     });
+    // Keep the customer view fresh after an admin marks WhatsApp payment received.
+    setInterval(syncAccountOrderStatuses, 15000);
 
     // TAB 2: Render Cart
     function renderDashCart() {
