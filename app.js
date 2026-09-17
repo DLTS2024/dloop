@@ -868,18 +868,36 @@ function saveAdminStock(stockState) {
 
 // Keep the browser copy as a fast fallback, while the order record is also
 // persisted to the shared MySQL database for every device and browser.
-function syncOrderToServer(order) {
+async function syncOrderToServer(order) {
   try {
-    const payload = JSON.stringify(order);
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon('api/orders.php', new Blob([payload], { type: 'application/json' }));
-      return;
-    }
-    fetch('api/orders.php', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true
-    }).catch(() => {});
+    // Wait for the database response before sending the customer to WhatsApp.
+    // A beacon can be cancelled while the page is navigating away, which leaves
+    // the order only in that browser's localStorage.
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    const response = await fetch('api/orders.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.message || 'Order sync failed');
+    return true;
   } catch (e) {
     console.warn('Shared order sync unavailable; the local copy was retained.', e);
+    return false;
+  }
+}
+
+async function syncSavedOrdersToServer() {
+  const stock = loadAdminStock();
+  const orders = Array.isArray(stock?.orders) ? stock.orders.slice(-30) : [];
+  for (const order of orders) {
+    if (order?.orderId && Array.isArray(order.items) && order.items.length) {
+      await syncOrderToServer(order);
+    }
   }
 }
 
@@ -2683,7 +2701,7 @@ window.detectLocationFromGPS = detectLocationFromGPS;
   }
 
   if (checkoutForm) {
-    checkoutForm.addEventListener('submit', (e) => {
+    checkoutForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const currentUser = getCurrentUser();
@@ -2833,7 +2851,7 @@ window.detectLocationFromGPS = detectLocationFromGPS;
       adminStock.orders = adminStock.orders || [];
       adminStock.orders.push(newOrder);
       saveAdminStock(adminStock);
-      syncOrderToServer(newOrder);
+      await syncOrderToServer(newOrder);
 
       // 2. Save order directly to customer's account records for guaranteed persistence
       currentUser.myOrders = currentUser.myOrders || [];
@@ -3753,6 +3771,8 @@ function renderProducts(items, containerId) {
 document.addEventListener('DOMContentLoaded', () => {
   // Seed admin stock from catalog defaults if first visit
   seedAdminStockFromCatalog();
+  // Recover any order that was created while the previous server sync was unavailable.
+  syncSavedOrdersToServer();
 
   initHeroSlider();
   renderIndexCustomGifts();
