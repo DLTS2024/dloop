@@ -487,7 +487,10 @@
 
       let state = load();
 
-      const syncPassword = sessionStorage.getItem('dl3d_admin_sync_password');
+      // Existing admin sessions from before shared sync was added do not have
+      // this session value yet. The panel's current default password keeps
+      // those sessions able to retrieve the shared order list.
+      const syncPassword = sessionStorage.getItem('dl3d_admin_sync_password') || '123456';
       async function syncServerOrders() {
         if (!syncPassword) return;
         try {

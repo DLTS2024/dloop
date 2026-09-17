@@ -893,7 +893,18 @@ async function syncOrderToServer(order) {
 
 async function syncSavedOrdersToServer() {
   const stock = loadAdminStock();
-  const orders = Array.isArray(stock?.orders) ? stock.orders.slice(-30) : [];
+  const currentUser = getCurrentUser();
+  const byId = new Map();
+  const addOrders = (list) => {
+    (Array.isArray(list) ? list : []).forEach(order => {
+      if (order?.orderId) byId.set(order.orderId, order);
+    });
+  };
+  // An older checkout may have reached the customer account before its
+  // local admin copy was written, so recover from both browser stores.
+  addOrders(stock?.orders);
+  addOrders(currentUser?.myOrders);
+  const orders = Array.from(byId.values()).slice(-30);
   for (const order of orders) {
     if (order?.orderId && Array.isArray(order.items) && order.items.length) {
       await syncOrderToServer(order);
