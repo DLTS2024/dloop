@@ -289,6 +289,7 @@
             const newHash = await hashPwd(p);
             localStorage.setItem(ADMIN_HASH_KEY, newHash);
             sessionStorage.setItem(ADMIN_SESSION_KEY,'1');
+            sessionStorage.setItem('dl3d_admin_sync_password', p);
             startAdmin();
           } else {
             alert('❌ Incorrect password. Please enter the correct password (123456).');
@@ -485,6 +486,33 @@
       }
 
       let state = load();
+
+      const syncPassword = sessionStorage.getItem('dl3d_admin_sync_password');
+      async function syncServerOrders() {
+        if (!syncPassword) return;
+        try {
+          const response = await fetch('api/admin_orders.php', {
+            headers: { 'X-DLoop-Admin-Password': syncPassword }, cache: 'no-store'
+          });
+          const data = await response.json();
+          if (response.ok && data.ok && Array.isArray(data.orders)) {
+            state = load();
+            state.orders = data.orders;
+            save(state);
+          }
+        } catch (e) {
+          console.warn('Shared order sync is unavailable.', e);
+        }
+      }
+
+      function updateServerOrder(orderId, action, status) {
+        if (!syncPassword || !orderId) return;
+        fetch('api/admin_orders.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-DLoop-Admin-Password': syncPassword },
+          body: JSON.stringify({ orderId, action, status })
+        }).catch(() => {});
+      }
 
       function renderSection(name){
         const content = document.getElementById('content');
@@ -1287,6 +1315,7 @@
               state.orders[oidx].paymentStatus = paymentBtn.getAttribute('data-payment-status');
               state.orders[oidx].paymentReceivedAt = Date.now();
               if (!state.orders[oidx].utr) state.orders[oidx].utr = 'Manually confirmed';
+              updateServerOrder(state.orders[oidx].orderId, 'mark_paid');
               save(state);
             }
             renderOrders(root);
@@ -1300,7 +1329,10 @@
             if(!confirm('Delete this order record?')) return;
             state.orders.splice(oidx,1);
           } else {
-            if(state.orders[oidx]) state.orders[oidx].status = newStatus;
+            if(state.orders[oidx]) {
+              state.orders[oidx].status = newStatus;
+              updateServerOrder(state.orders[oidx].orderId, 'set_status', newStatus);
+            }
           }
           save(state);
           renderOrders(root);
@@ -2567,6 +2599,7 @@
         }
       });
 
+      await syncServerOrders();
       renderSection('filaments');
     }
 

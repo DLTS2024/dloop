@@ -866,6 +866,23 @@ function saveAdminStock(stockState) {
   }
 }
 
+// Keep the browser copy as a fast fallback, while the order record is also
+// persisted to the shared MySQL database for every device and browser.
+function syncOrderToServer(order) {
+  try {
+    const payload = JSON.stringify(order);
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon('api/orders.php', new Blob([payload], { type: 'application/json' }));
+      return;
+    }
+    fetch('api/orders.php', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true
+    }).catch(() => {});
+  } catch (e) {
+    console.warn('Shared order sync unavailable; the local copy was retained.', e);
+  }
+}
+
 // Generate the complete 52-filament catalog stock state with exact spool numbers from catalog
 function generateCatalogStockState() {
   const categoryMap = {
@@ -2816,6 +2833,7 @@ window.detectLocationFromGPS = detectLocationFromGPS;
       adminStock.orders = adminStock.orders || [];
       adminStock.orders.push(newOrder);
       saveAdminStock(adminStock);
+      syncOrderToServer(newOrder);
 
       // 2. Save order directly to customer's account records for guaranteed persistence
       currentUser.myOrders = currentUser.myOrders || [];
