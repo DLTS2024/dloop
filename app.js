@@ -870,7 +870,7 @@ function saveAdminStock(stockState) {
 // persisted to the shared MySQL database for every device and browser.
 async function syncOrderToServer(order) {
   try {
-    // Wait for the database response before sending the customer to WhatsApp.
+    // Wait for the database response before sending the customer to Pay0.
     // A beacon can be cancelled while the page is navigating away, which leaves
     // the order only in that browser's localStorage.
     const controller = new AbortController();
@@ -2854,7 +2854,9 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         pincode: customerPincode,
         city: customerCity || 'Chennai',
         address: customerAddress,
-        paymentMethod: 'whatsapp',
+        // Payments are handled by the Pay0 hosted UPI checkout.  Keep the
+        // order pending until Pay0 confirms it through the webhook/status API.
+        paymentMethod: 'pay0',
         paymentStatus: 'pending',
         utr: null,
         items: orderItems,
@@ -2903,14 +2905,19 @@ window.detectLocationFromGPS = detectLocationFromGPS;
         renderFilaments(FILAMENT_PRODUCTS, 'filaments-grid-container');
       }
 
-      const itemSummary = orderItems.map(item =>
-        `• ${item.name} × ${item.qty} — ₹${Number(item.total).toFixed(2)}`
-      ).join('\n');
-      const deliverySummary = deliveryMethod === 'pickup'
-        ? 'Self pickup at D Loop 3D Studio'
-        : `${customerAddress}, ${customerCity} - ${customerPincode}`;
-      const whatsappMessage = `*📦 NEW ORDER - D LOOP 3D*\n\n*Order ID:* ${orderId}\n\n*Items:*\n${itemSummary}\n\n*Customer:* ${customerName}\n*Phone:* ${customerPhone}\n*Email:* ${customerEmail}\n*Delivery:* ${deliverySummary}\n\n*Total:* *₹${grandTotal.toFixed(2)}*\n\nPlease confirm my order.`;
-      window.location.assign(`https://wa.me/919884872483?text=${encodeURIComponent(whatsappMessage)}`);
+      // Open the hosted Pay0 checkout instead of redirecting to WhatsApp.
+      // The order is already persisted above, so a temporary gateway failure
+      // will not lose the order and the customer can retry from their account.
+      if (typeof Pay0Gateway !== 'undefined' && typeof Pay0Gateway.initiateCheckout === 'function') {
+        await Pay0Gateway.initiateCheckout(newOrder);
+      } else {
+        checkoutSubmitting = false;
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = submitButton.dataset.originalText || 'Place Order';
+        }
+        showToast('Payment gateway is not available. Please try again in a moment.');
+      }
     });
   }
 
