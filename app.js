@@ -2711,6 +2711,7 @@ window.detectLocationFromGPS = detectLocationFromGPS;
     });
   }
 
+  let checkoutSubmitting = false;
   if (checkoutForm) {
     checkoutForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -2799,6 +2800,16 @@ window.detectLocationFromGPS = detectLocationFromGPS;
             return;
           }
         }
+      }
+
+      // Prevent double-clicks/retries from creating duplicate order IDs.
+      if (checkoutSubmitting) return;
+      checkoutSubmitting = true;
+      const submitButton = checkoutForm.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.dataset.originalText = submitButton.textContent;
+        submitButton.textContent = 'Saving order…';
       }
 
       // Deduct stock for filament items
